@@ -2,47 +2,90 @@
 
 خطوات بناء صورة Docker جديدة ونشرها على سيرفر VPS.
 
-## 1. إزالة الصورة القديمة وبناء صورة جديدة (محلياً)
+**معلومات السيرفر:**
+
+| العنصر | القيمة |
+|---|---|
+| السيرفر | `13.140.138.252` |
+| المستخدم | `root` |
+| مجلد النشر على السيرفر | `/root/boq-and-site-work` |
+| اسم الحاوية | `azoom-boq-app` |
+| المنفذ على السيرفر | `3005` |
+| الدومين | `https://boq.bassir.net/` |
+
+> كلمة مرور SSH لا تُكتب هنا أبداً — أدخلها يدوياً عند الطلب في كل أمر `scp`/`ssh`. **لا تضع كلمة مرور السيرفر داخل أي ملف يُرفع لـ git.**
+
+## 1. حذف الصورة القديمة لهذا المشروع (محلياً)
 
 ```bash
 docker rmi -f azoom-boq:latest 2>/dev/null || true
+```
+
+## 2. بناء صورة جديدة (محلياً)
+
+```bash
 docker build -t azoom-boq:latest .
 ```
 
-## 2. تصدير الصورة إلى ملف tar
+اختياري لكن يُنصح به قبل التصدير — تشغيل سريع محلي للتأكد أن الصورة سليمة:
+
+```bash
+docker rm -f azoom-boq-smoketest 2>/dev/null
+docker run -d --name azoom-boq-smoketest -p 3093:3000 -e ADMIN_USER=admin -e ADMIN_PASSWORD=smoketest123 azoom-boq:latest
+curl -s -o /dev/null -w "root HTTP %{http_code}\n" http://localhost:3093/
+docker rm -f azoom-boq-smoketest
+```
+
+## 3. تصدير الصورة إلى ملف tar
 
 ```bash
 docker save azoom-boq:latest -o azoom-boq.tar
 ```
 
-## 3. نقل ملف tar إلى السيرفر
+## 4. نقل ملف tar وسكربت التشغيل إلى السيرفر
+
+انقل الصورة (`azoom-boq.tar`) **و** سكربت التشغيل (`scripts/run.sh`) معاً في كل نشر — `run.sh` قد يتغيّر بين نسخة وأخرى، فالأسلم رفعه دائماً وليس فقط أول مرة:
 
 ```bash
-scp azoom-boq.tar <user>@<server-ip>:/root/boq-and-site-work/
+scp azoom-boq.tar root@13.140.138.252:/root/boq-and-site-work/
+scp scripts/run.sh root@13.140.138.252:/root/boq-and-site-work/
 ```
 
-> استخدم مفتاح SSH بدل كلمة المرور إن أمكن. **لا تضع كلمة مرور السيرفر داخل أي ملف يُرفع لـ git.**
+## 5. على السيرفر: تحميل الصورة وتشغيلها
 
-## 4. على السيرفر: تحميل الصورة وتشغيلها
-
-داخل مجلد `boq-and-site-work/` يوجد سكربت `run.sh` (منسوخ من `scripts/run.sh` في هذا المستودع) يقوم بـ:
+سكربت `run.sh` (نسخة من `scripts/run.sh` في هذا المستودع) يقوم بـ:
 
 1. تحميل الصورة من ملف tar (`docker load`)
 2. إيقاف/حذف أي حاوية سابقة بنفس الاسم
 3. تشغيل حاوية جديدة على المنفذ **3005** (المنافذ 3000-3004 و3010 محجوزة لمشاريع أخرى على نفس السيرفر — تحقق دائماً بـ `ss -tlnp` قبل اختيار منفذ على سيرفر مشترك)
 4. ربط مجلد بيانات دائم (`azoom-boq-data` volume) حتى لا تُفقد المشاريع عند إعادة النشر
 
+تنفيذ الخطوة عن بُعد بأمر واحد (بدل الدخول بـ ssh تفاعلياً):
+
 ```bash
-cd /root/boq-and-site-work
-chmod +x run.sh
-./run.sh
+ssh root@13.140.138.252 "cd /root/boq-and-site-work && chmod +x run.sh && bash run.sh"
 ```
 
-النظام يصبح متاحاً على: `http://<server-ip>:3005`
+النظام يصبح متاحاً على: `http://13.140.138.252:3005` أو دومين الإنتاج `https://boq.bassir.net/`.
+
+## 6. التحقق بعد النشر (مهم على سيرفر مشترك)
+
+هذا السيرفر يستضيف عشرات الحاويات لمشاريع أخرى — تحقق دائماً أن النشر لم يؤثر عليها:
+
+```bash
+# عدد الحاويات قبل وبعد run.sh يجب أن يتطابق (لا حاويات أخرى تأثرت)
+ssh root@13.140.138.252 "docker ps --format '{{.Names}}' | wc -l"
+
+# الحاوية تعمل على المنفذ الصحيح
+ssh root@13.140.138.252 "docker ps --filter name=azoom-boq-app"
+
+# الموقع يستجيب
+curl -s -o /dev/null -w 'HTTP %{http_code}\n' https://boq.bassir.net/
+```
 
 ## إعادة النشر (تحديث)
 
-كرر الخطوات 1–4. بيانات المشاريع محفوظة في الـ volume `azoom-boq-data` ولا تتأثر بإعادة بناء أو تشغيل الحاوية.
+كرر الخطوات 1–6. بيانات المشاريع محفوظة في الـ volume `azoom-boq-data` ولا تتأثر بإعادة بناء أو تشغيل الحاوية.
 
 ## متغيرات البيئة المهمة
 
