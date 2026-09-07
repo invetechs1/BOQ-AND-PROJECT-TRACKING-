@@ -451,10 +451,9 @@ app.put('/api/projects/:id', auth, (req, res) => {
     for (const it of (data.boqItems || [])) {
       const st = storedItems.get(it.id);
       if (!st) {
+        // بند جديد (بما فيه بند فرعي parentId يشير لبند قائم — مسموح لمدير المشروع دون موافقة، يبدأ بكمية منفذة صفر
+        // فلا أثر مالي فوري؛ أي تنفيذ لاحق عليه يمر بنفس بوابة qty_edit أدناه)
         if ((Number(it.executedQty) || 0) > 0.01) return res.status(403).json({ error: 'pm_new_item_qty_zero', itemId: it.id });
-        // تقسيم بند قائم إلى بنود فرعية (parentId يشير لبند موجود) يتطلب موافقة مالك الشركة أيضاً —
-        // لا يُترك بلا رقابة لمجرد أن البند الأصلي لم يعد يُحذف (لم يعد التقسيم يظهر كحذف+إضافة)
-        if (it.parentId && storedItems.has(it.parentId)) return res.status(403).json({ error: 'pm_item_split_needs_owner', itemId: it.parentId });
         continue;
       }
       const allowed = (Number(st.executedQty) || 0) + (addByItem[it.id] || 0);
@@ -477,6 +476,103 @@ app.put('/api/projects/:id', auth, (req, res) => {
         if (st.status !== r.status) return res.status(403).json({ error: 'pm_cannot_approve_requests' });
       } else if (r.status !== 'pending') {
         return res.status(403).json({ error: 'edit_request_must_start_pending' });
+      }
+    }
+  }
+
+  // رقابة تعديل الإنتاجية: مدير المشروع (pm) لا يعدّل/يحذف يومية قائمة ولا يغيّر الكمية المنفذة إلا عبر طلب مُعتمَد
+  if (req.user.role === 'pm') {
+    const storedLogs = new Map((stored.workLogs || []).map(l => [l.id, l]));
+    const incomingLogs = Array.isArray(data.workLogs) ? data.workLogs : [];
+    const incomingLogIds = new Set(incomingLogs.map(l => l.id));
+    // لا حذف ليوميات قائمة
+    for (const sid of storedLogs.keys()) {
+      if (!incomingLogIds.has(sid)) return res.status(403).json({ error: 'حذف يومية الإنتاجية يتطلب موافقة العميل ومدير المشاريع' });
+    }
+    // لا تعديل ليومية قائمة؛ وجمع الكميات المطبّقة من اليوميات الجديدة
+    const addByItem = {};
+    for (const l of incomingLogs) {
+      const s = storedLogs.get(l.id);
+      if (s) {
+        if ((s.qty || 0) !== (l.qty || 0) || (s.appliedQty || 0) !== (l.appliedQty || 0) ||
+            !!s.applied !== !!l.applied || s.itemId !== l.itemId || s.date !== l.date) {
+          return res.status(403).json({ error: 'تعديل يومية الإنتاجية يتطلب موافقة العميل ومدير المشاريع' });
+        }
+      } else if (l.applied) {
+        addByItem[l.itemId] = (addByItem[l.itemId] || 0) + (Number(l.appliedQty) || 0);
+      }
+    }
+    // الكمية المنفذة لكل بند: لا تتغير إلا بمقدار اليوميات الجديدة المطبّقة؛ البنود الجديدة تبدأ بصفر
+    for (const it of (data.boqItems || [])) {
+      const s = storedItems.get(it.id);
+      if (!s) {
+        if ((Number(it.executedQty) || 0) > 0.01) return res.status(403).json({ error: 'البند الجديد يبدأ بكمية منفذة صفر (البند ' + it.id + ')' });
+        continue;
+      }
+      const allowed = (Number(s.executedQty) || 0) + (addByItem[it.id] || 0);
+      if (Math.abs((Number(it.executedQty) || 0) - allowed) > 0.02) {
+        return res.status(403).json({ error: 'تعديل الكمية المنفذة يتطلب موافقة العميل ومدير المشاريع (البند ' + it.id + ')' });
+      }
+    }
+    // طلبات التعديل: يُضيف مدير المشروع طلبات جديدة فقط (بحالة pending وبدون اعتمادات) ولا يعدّل القائمة
+    const storedReqs = new Map((stored.editRequests || []).map(r => [r.id, r]));
+    for (const r of (Array.isArray(data.editRequests) ? data.editRequests : [])) {
+      const s = storedReqs.get(r.id);
+      if (s) {
+        if (s.status !== r.status || !!s.clientApproved !== !!r.clientApproved || !!s.pmoApproved !== !!r.pmoApproved) {
+          return res.status(403).json({ error: 'مدير المشروع لا يعتمد طلبات التعديل — الاعتماد للعميل ومدير المشاريع' });
+        }
+      } else if (r.status !== 'pending' || r.clientApproved || r.pmoApproved) {
+        return res.status(403).json({ error: 'طلب التعديل الجديد يبدأ بانتظار الموافقة' });
+      }
+    }
+
+    // مستخلصات مقاولي الباطن: مدير المشروع يرفعها بحالة submitted فقط، ولا يعتمدها ولا يصرفها،
+    // ولا يعمّد كمية أكبر من المؤهّل (المنفذ من المقاول بحدود المعتمد من الاستشاري)
+    const round2s = n => Math.round((Number(n) || 0) * 100) / 100;
+    const appliedLogs = (data.workLogs || []).filter(l => l.applied);
+    const subExec = (subId, itemId) => round2s(appliedLogs.filter(l => l.subId === subId && l.itemId === itemId).reduce((s, l) => s + (Number(l.appliedQty) || 0), 0));
+    const itemMap = new Map((data.boqItems || []).map(i => [i.id, i]));
+    const approvedOfItem = it => it ? Math.min(Number(it.executedQty) || 0, it.approvedQty !== undefined ? (Number(it.approvedQty) || 0) : (Number(it.executedQty) || 0)) : 0;
+    const totalSubExec = itemId => round2s((data.subcontractors || []).reduce((s, sub) => s + subExec(sub.id, itemId), 0));
+    const subEligible = (subId, itemId) => {
+      const it = itemMap.get(itemId); if (!it) return 0;
+      const ex = subExec(subId, itemId), tot = totalSubExec(itemId);
+      if (tot <= 0 || ex <= 0) return 0;
+      return round2s(ex * Math.min(1, approvedOfItem(it) / tot));
+    };
+    // كمية معمّدة تراكمياً (من المخزّن غير المرفوض) نبدأ منها ونضيف المستخلصات الجديدة أثناء الفحص
+    const claimedMap = {}; // subId|itemId -> qty
+    (stored.subMustakhlasat || []).filter(m => m.status !== 'rejected').forEach(m => {
+      (m.lines || []).forEach(l => { const k = m.subId + '|' + l.itemId; claimedMap[k] = (claimedMap[k] || 0) + (Number(l.currQty) || 0); });
+    });
+    const storedSubMus = new Map((stored.subMustakhlasat || []).map(m => [m.id, m]));
+    for (const m of (Array.isArray(data.subMustakhlasat) ? data.subMustakhlasat : [])) {
+      const s = storedSubMus.get(m.id);
+      if (s) {
+        // موجود مسبقاً: لا يغيّر حالته/اعتماده/دفعاته/صافيه
+        if (s.status !== m.status || s.approvedBy !== m.approvedBy || round2s(s.net) !== round2s(m.net) ||
+            JSON.stringify(s.payments || []) !== JSON.stringify(m.payments || [])) {
+          return res.status(403).json({ error: 'مدير المشروع لا يعتمد ولا يصرف مستخلصات مقاولي الباطن' });
+        }
+      } else {
+        // جديد: يجب أن يكون submitted وبدون دفعات
+        if (m.status !== 'submitted' || (m.payments || []).length) {
+          return res.status(403).json({ error: 'مستخلص مقاول الباطن الجديد يبدأ بانتظار الاعتماد وبدون صرف' });
+        }
+        // المرفقات إلزامية: المستخلص المعمول من الشركة واعتمادات الاستشاري (أرشيف المشروع)
+        if (!(m.docs || []).some(d => d && d.url)) {
+          return res.status(400).json({ error: 'مستخلص مقاول الباطن يتطلب إرفاق المستخلص المعمول من الشركة واعتمادات الاستشاري' });
+        }
+        // فحص الكميات: لا تجاوز للمؤهّل
+        for (const l of (m.lines || [])) {
+          const k = m.subId + '|' + l.itemId;
+          const avail = round2s(subEligible(m.subId, l.itemId) - (claimedMap[k] || 0));
+          if ((Number(l.currQty) || 0) > avail + 0.02) {
+            return res.status(403).json({ error: 'كمية مقاول الباطن للبند ' + l.itemId + ' تتجاوز المنفّذ المعتمد — مُنع تلقائياً' });
+          }
+          claimedMap[k] = (claimedMap[k] || 0) + (Number(l.currQty) || 0);
+        }
       }
     }
   }
