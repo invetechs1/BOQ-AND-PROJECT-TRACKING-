@@ -91,6 +91,9 @@
   tbody tr:hover td { background: var(--bg3); }
   .item-no { font-family: var(--mono); font-size: 12px; color: var(--amber); font-weight: 600; white-space: nowrap; }
   .amount { font-family: var(--mono); font-size: 12px; text-align: end; white-space: nowrap; }
+  .tight { padding-left: 6px; padding-right: 6px; }
+  .sticky-col { position: sticky; inset-inline-start: 0; z-index: 1; background: var(--bg2); }
+  .sticky-col-th { position: sticky; inset-inline-start: 0; z-index: 2; }
   .amount.claimable { color: var(--green-bright); font-weight: 600; }
   .amount.blocked { color: var(--red); }
   .amount.muted { color: var(--text3); }
@@ -102,8 +105,8 @@
   .prog-fill.green { background: var(--green); } .prog-fill.amber { background: var(--amber); }
   .prog-fill.red { background: var(--red); } .prog-fill.teal { background: var(--teal); }
 
-  .blocker-box { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: var(--red); background: var(--red-dim); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(248,81,73,0.2); }
-  .prereq-box { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: var(--orange); background: var(--orange-dim); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(240,136,62,0.2); }
+  .blocker-box { display: inline-block; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: middle; font-size: 11px; color: var(--red); background: var(--red-dim); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(248,81,73,0.2); }
+  .prereq-box { display: inline-block; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: middle; font-size: 11px; color: var(--orange); background: var(--orange-dim); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(240,136,62,0.2); }
   .chain { font-family: var(--mono); font-size: 11px; color: var(--text2); direction: ltr; text-align: right; }
   .chain b { color: var(--orange); font-weight: 600; }
 
@@ -389,8 +392,8 @@
       <table>
         <thead>
           <tr>
-            <th data-i18n="البند">البند</th><th data-i18n="الوصف">الوصف</th><th data-i18n="الوحدة">الوحدة</th><th data-i18n="الكمية">الكمية</th><th data-i18n="السعر">السعر</th><th data-i18n="الإجمالي">الإجمالي</th>
-            <th data-i18n="الكمية المنفذة">الكمية المنفذة</th><th data-i18n="اعتماد الاستشاري">اعتماد الاستشاري</th><th data-i18n="مرفوع %">مرفوع %</th><th data-i18n="صافي للمطالبة">صافي للمطالبة</th><th data-i18n="الحالة">الحالة</th><th data-i18n="العائق / يعتمد على">العائق / يعتمد على</th><th></th>
+            <th class="sticky-col-th" data-i18n="البند">البند</th><th data-i18n="الوصف">الوصف</th><th class="tight" data-i18n="الوحدة">الوحدة</th><th class="tight" data-i18n="الكمية">الكمية</th><th class="tight" data-i18n="السعر">السعر</th><th class="tight" data-i18n="الإجمالي">الإجمالي</th>
+            <th class="tight" data-i18n="الكمية المنفذة">الكمية المنفذة</th><th class="tight" data-i18n="اعتماد الاستشاري">اعتماد الاستشاري</th><th class="tight" data-i18n="مرفوع %">مرفوع %</th><th class="tight" data-i18n="صافي للمطالبة">صافي للمطالبة</th><th data-i18n="الحالة">الحالة</th><th data-i18n="العائق / يعتمد على">العائق / يعتمد على</th><th></th>
           </tr>
         </thead>
         <tbody id="items-tbody"></tbody>
@@ -1876,16 +1879,16 @@ const STATUS_META = {
   claimed_full: {label:'مكتمل ومرفوع', color:'teal',   icon:'📤'}
 };
 Object.assign(I18N_EN, {
-  'خارج النطاق - منفذ سابقاً':'Out of scope - previously done',
+  'خارج النطاق - منفذ سابقاً':'Out of scope',
   'بانتظار توريد العميل':'Awaiting client supply',
-  'معيق - عائق خارجي':'Blocked - external issue',
+  'معيق - عائق خارجي':'Blocked',
   'بانتظار أعمال سابقة':'Awaiting prior work',
-  'متاح للبدء الآن':'Available to start now',
+  'متاح للبدء الآن':'Available',
   'قيد التنفيذ':'In progress',
-  'بانتظار اعتماد الاستشاري':'Awaiting consultant approval',
-  'مكتمل - معتمد':'Complete - approved',
+  'بانتظار اعتماد الاستشاري':'Pending approval',
+  'مكتمل - معتمد':'Approved',
   'مكتمل':'Complete',
-  'مكتمل ومرفوع':'Complete and claimed'
+  'مكتمل ومرفوع':'Claimed'
 });
 
 function statusOf(it){
@@ -2839,22 +2842,20 @@ function renderItemsTable(){
       const g = groupAgg(it);
       sumAmt += g.amt; sumNet += g.net;
       const stColor = g.execPct>=DONE?'green':g.execPct>0?'amber':'red';
-      const kidsAreSplit = childrenOf(it.id).some(k => k.splitAt);
       return '<tr style="background:var(--panel2,rgba(127,127,127,0.06))">' +
-        '<td><button class="group-toggle" onclick="toggleGroup(\'' + esc(it.id) + '\')" data-tip="' + T('عرض/إخفاء البنود الفرعية') + '" style="background:none;border:none;color:inherit;cursor:pointer;font-size:13px;padding:0 4px 0 0">' + (expanded?'▾':'▸') + '</button><span class="item-no">' + esc(it.id) + '</span><br><span style="font-size:10px;color:var(--text3)">' + esc(it.div) + '</span></td>' +
-        '<td><div class="desc-text" style="font-weight:700" data-tip="' + T('بند رئيسي مقسّم إلى ') + g.count + T(' بند فرعي') + '">📁 ' + esc(it.desc) + ' <span class="pill blue" style="font-size:9px">' + g.count + ' ' + T('فرعي') + '</span></div><span style="font-size:10px;color:var(--text3)">' + esc(it.divAr||'') + '</span></td>' +
-        '<td><span style="color:var(--text3)">—</span></td>' +
-        '<td class="amount muted">—</td>' +
-        '<td class="amount muted" data-tip="' + T('مجموع أسعار البنود الفرعية') + '">' + fmtN(g.rateSum) + '</td>' +
-        '<td class="amount">' + fmtN(g.amt) + '</td>' +
-        '<td><span style="display:inline-flex;align-items:center;gap:5px"><span style="font-family:var(--mono);font-size:10px;color:var(--text2)">' + (g.execPct*100).toFixed(1) + '%</span><span class="prog-bar" style="width:56px"><span class="prog-fill ' + stColor + '" style="width:' + (g.execPct*100) + '%;display:block"></span></span></span></td>' +
-        '<td>' + (g.pending>1 ? '<span style="font-size:11px;color:var(--orange)">🕵 ' + T('بانتظار') + ' ' + fmtN(g.pending) + '</span>' : '<span style="color:var(--text3)">—</span>') + '</td>' +
-        '<td class="amount" style="color:var(--teal)">' + (g.claimedPct*100).toFixed(0) + '%</td>' +
-        '<td class="amount ' + (g.net>1?'claimable':'muted') + '">' + (g.net>1?fmtN(g.net):'—') + '</td>' +
+        '<td class="sticky-col"><button class="group-toggle" onclick="toggleGroup(\'' + esc(it.id) + '\')" data-tip="' + T('عرض/إخفاء البنود الفرعية') + '" style="background:none;border:none;color:inherit;cursor:pointer;font-size:13px;padding:0 4px 0 0">' + (expanded?'▾':'▸') + '</button><span class="item-no">' + esc(it.id) + '</span><br><span style="font-size:10px;color:var(--text3)">' + esc(it.div) + '</span></td>' +
+        '<td><div class="desc-text" style="font-weight:700;max-width:195px" data-tip="' + T('بند رئيسي مقسّم إلى ') + g.count + T(' بند فرعي') + '">📁 ' + esc(it.desc) + ' <span class="pill blue" style="font-size:9px">' + g.count + ' ' + T('فرعي') + '</span></div><span style="font-size:10px;color:var(--text3)">' + esc(it.divAr||'') + '</span></td>' +
+        '<td class="tight"><span style="color:var(--text3)">—</span></td>' +
+        '<td class="amount tight muted">—</td>' +
+        '<td class="amount tight muted" data-tip="' + T('مجموع أسعار البنود الفرعية') + '">' + fmtN(g.rateSum) + '</td>' +
+        '<td class="amount tight">' + fmtN(g.amt) + '</td>' +
+        '<td class="tight"><span style="display:inline-flex;align-items:center;gap:5px"><span style="font-family:var(--mono);font-size:10px;color:var(--text2)">' + (g.execPct*100).toFixed(1) + '%</span><span class="prog-bar" style="width:44px"><span class="prog-fill ' + stColor + '" style="width:' + (g.execPct*100) + '%;display:block"></span></span></span></td>' +
+        '<td class="tight">' + (g.pending>1 ? '<span style="font-size:11px;color:var(--orange)">🕵 ' + T('بانتظار') + ' ' + fmtN(g.pending) + '</span>' : '<span style="color:var(--text3)">—</span>') + '</td>' +
+        '<td class="amount tight" style="color:var(--teal)">' + (g.claimedPct*100).toFixed(0) + '%</td>' +
+        '<td class="amount tight ' + (g.net>1?'claimable':'muted') + '">' + (g.net>1?fmtN(g.net):'—') + '</td>' +
         '<td><span class="pill blue" style="font-size:10px">' + T('بند رئيسي') + '</span></td>' +
-        '<td>—</td>' +
-        '<td style="white-space:nowrap"><button class="mini-btn" onclick="openItemModal(\'' + esc(it.id) + '\')">✏️ ' + T('تعديل') + '</button>' +
-        (kidsAreSplit ? '' : ' <button class="mini-btn" onclick="addSubItem(\'' + esc(it.id) + '\')">➕ ' + T('بند فرعي') + '</button>') + '</td>' +
+        '<td class="tight">—</td>' +
+        '<td style="white-space:nowrap"><button class="mini-btn" onclick="openItemModal(\'' + esc(it.id) + '\')">✏️ ' + T('تعديل') + '</button></td>' +
         '</tr>';
     }
     const it2 = it, st = statusOf(it2), net = netClaimable(it2);
@@ -2862,38 +2863,37 @@ function renderItemsTable(){
     // ملاحظة: قيمة البند الفرعي مُحتسبة بالفعل ضمن مجموع البند الرئيسي (groupAgg) أعلاه — لا تُضاف مرة ثانية هنا
     if (!indent) { sumAmt += amt(it2); sumNet += net; }
     let depHtml = '—';
-    if (it2.blocker && it2.blocker.active) depHtml = '<span class="blocker-box" data-tip="' + esc(it2.blocker.note||'') + '">⛔ ' + esc(it2.blocker.reason) + '</span>';
+    if (it2.blocker && it2.blocker.active) depHtml = '<span class="blocker-box" data-tip="' + esc(it2.blocker.reason) + (it2.blocker.note ? ' — ' + esc(it2.blocker.note) : '') + '">⛔ ' + esc(it2.blocker.reason) + '</span>';
     else if ((it2.predecessors||[]).length) {
       const preds = it2.predecessors.map(pid => { const p = getItem(pid); return p ? esc(pid) + ' (' + (itemPct(p)*100).toFixed(0) + '%)' : esc(pid); }).join('، ');
-      depHtml = '<span class="prereq-box" data-tip="' + T('لا يمكن البدء قبل اكتمال هذه البنود') + '">⏭ ' + preds + '</span>';
+      depHtml = '<span class="prereq-box" data-tip="' + esc(preds) + '">⏭ ' + preds + '</span>';
     }
     return '<tr' + (indent ? ' style="background:var(--panel2,rgba(127,127,127,0.02))"' : '') + '>' +
-      '<td' + (indent?' style="padding-inline-start:18px"':'') + '><span class="item-no">' + (indent?'<span style="color:var(--text3)">↳ </span>':'') + esc(it2.id) + '</span><br><span style="font-size:10px;color:var(--text3)">' + esc(it2.div) + '</span></td>' +
-      '<td><div class="desc-text" data-tip="' + esc(it2.desc) + '">' + esc(it2.desc) + '</div><span style="font-size:10px;color:var(--text3)">' + esc(it2.divAr||'') + '</span></td>' +
-      '<td><span class="pill gray" style="font-size:10px">' + esc(it2.unit) + '</span></td>' +
-      '<td class="amount muted">' + fmtQ(qtyBase(it2).totalQty) + '</td>' +
-      '<td class="amount muted">' + fmtN(it2.unitRate) + '</td>' +
-      '<td class="amount">' + fmtN(amt(it2)) + '</td>' +
-      '<td>' + (it2.scope==='others' ? '<span style="color:var(--text3)">—</span>' :
+      '<td class="sticky-col"' + (indent?' style="padding-inline-start:18px"':'') + '><span class="item-no">' + (indent?'<span style="color:var(--text3)">↳ </span>':'') + esc(it2.id) + '</span><br><span style="font-size:10px;color:var(--text3)">' + esc(it2.div) + '</span></td>' +
+      '<td><div class="desc-text" style="max-width:195px" data-tip="' + esc(it2.desc) + '">' + esc(it2.desc) + '</div><span style="font-size:10px;color:var(--text3)">' + esc(it2.divAr||'') + '</span></td>' +
+      '<td class="tight"><span class="pill gray" style="font-size:10px">' + esc(it2.unit) + '</span></td>' +
+      '<td class="amount tight muted">' + fmtQ(qtyBase(it2).totalQty) + '</td>' +
+      '<td class="amount tight muted">' + fmtN(it2.unitRate) + '</td>' +
+      '<td class="amount tight">' + fmtN(amt(it2)) + '</td>' +
+      '<td class="tight">' + (it2.scope==='others' ? '<span style="color:var(--text3)">—</span>' :
         isSplitChild(it2) ?
         ('<span style="display:inline-flex;flex-direction:column;gap:3px;align-items:flex-start">' +
          '<span style="font-size:10px;color:var(--text3)" data-tip="' + T('الكمية والتنفيذ مرآة للبند الأصلي — عدّلها من') + ' ' + esc(it2.parentId) + '">' + T('مرآة للبند الأصلي') + '</span>' +
-         '<span style="display:inline-flex;align-items:center;gap:5px"><span style="font-family:var(--mono);font-size:10px;color:var(--text2)">' + (itemPct(it2)*100).toFixed(1) + '%</span><span class="prog-bar" style="width:56px"><span class="prog-fill ' + (itemPct(it2)>=DONE?'green':itemPct(it2)>0?'amber':'red') + '" style="width:' + (itemPct(it2)*100) + '%;display:block"></span></span></span>' +
+         '<span style="display:inline-flex;align-items:center;gap:5px"><span style="font-family:var(--mono);font-size:10px;color:var(--text2)">' + (itemPct(it2)*100).toFixed(1) + '%</span><span class="prog-bar" style="width:44px"><span class="prog-fill ' + (itemPct(it2)>=DONE?'green':itemPct(it2)>0?'amber':'red') + '" style="width:' + (itemPct(it2)*100) + '%;display:block"></span></span></span>' +
          '</span>') :
         ('<span style="display:inline-flex;flex-direction:column;gap:3px;align-items:flex-start">' +
-        '<input type="number" class="qty-input" min="0" max="' + it2.totalQty + '" step="any" value="' + (Math.round((it2.executedQty||0)*100)/100) + '" onchange="setItemQty(\'' + esc(it2.id) + '\', this.value)" data-tip="' + T('أدخل الكمية المنفذة (من أصل ') + fmtQ(it2.totalQty) + ' ' + esc(it2.unit) + T(') — العميل يحاسب بالكميات') + '">' +
-        '<span style="display:inline-flex;align-items:center;gap:5px"><span style="font-family:var(--mono);font-size:10px;color:var(--text2)">' + (itemPct(it2)*100).toFixed(1) + '%</span><span class="prog-bar" style="width:56px"><span class="prog-fill ' + (itemPct(it2)>=DONE?'green':itemPct(it2)>0?'amber':'red') + '" style="width:' + (itemPct(it2)*100) + '%;display:block"></span></span></span>' +
+        '<input type="number" class="qty-input" style="width:70px" min="0" max="' + it2.totalQty + '" step="any" value="' + (Math.round((it2.executedQty||0)*100)/100) + '" onchange="setItemQty(\'' + esc(it2.id) + '\', this.value)" data-tip="' + T('أدخل الكمية المنفذة (من أصل ') + fmtQ(it2.totalQty) + ' ' + esc(it2.unit) + T(') — العميل يحاسب بالكميات') + '">' +
+        '<span style="display:inline-flex;align-items:center;gap:5px"><span style="font-family:var(--mono);font-size:10px;color:var(--text2)">' + (itemPct(it2)*100).toFixed(1) + '%</span><span class="prog-bar" style="width:44px"><span class="prog-fill ' + (itemPct(it2)>=DONE?'green':itemPct(it2)>0?'amber':'red') + '" style="width:' + (itemPct(it2)*100) + '%;display:block"></span></span></span>' +
         '</span>')) + '</td>' +
-      '<td>' + approvalCell(it2) + '</td>' +
-      '<td class="amount" style="color:var(--teal)">' + (claimedPct(it2)*100).toFixed(0) + '%</td>' +
-      '<td class="amount ' + (net>1?'claimable':'muted') + '">' + (net>1?fmtN(net):'—') + '</td>' +
+      '<td class="tight">' + approvalCell(it2) + '</td>' +
+      '<td class="amount tight" style="color:var(--teal)">' + (claimedPct(it2)*100).toFixed(0) + '%</td>' +
+      '<td class="amount tight ' + (net>1?'claimable':'muted') + '">' + (net>1?fmtN(net):'—') + '</td>' +
       '<td>' + statusPill(st) + '</td>' +
-      '<td>' + depHtml + '</td>' +
+      '<td class="tight">' + depHtml + '</td>' +
       '<td style="white-space:nowrap"><button class="mini-btn" onclick="openItemModal(\'' + esc(it2.id) + '\')">✏️ ' + T('تعديل') + '</button>' +
-      (!indent ? ' <button class="mini-btn" onclick="addSubItem(\'' + esc(it2.id) + '\')">➕ ' + T('بند فرعي') + '</button>' : '') +
-      (!indent && canSplitItem(it2) ? ' <button class="mini-btn" onclick="openSplitItemModal(\'' + esc(it2.id) + '\')" data-tip="' + T('تقسيم سعر الوحدة إلى مكوّنات (نفس الكمية)') + '">✂</button>' : '') +
+      (!indent && canSplitItem(it2) ? ' <button class="mini-btn" onclick="openSplitItemModal(\'' + esc(it2.id) + '\')" data-tip="' + T('تقسيم سعر الوحدة إلى مكوّنات (نفس الكمية)') + '">✂ ' + T('تقسيم الجدول') + '</button>' : '') +
       (!isSplitChild(it2) && it2.scope !== 'others' && (availQty(it2) > 0.01 || pendingApprovalQty(it2) > 0.01)
-        ? ' <button class="mini-btn green" onclick="itemToMustakhlas(\'' + esc(it2.id) + '\')">📤 ' + T('مستخلص') + '</button>' : '') + '</td>' +
+        ? ' <button class="mini-btn green" onclick="itemToMustakhlas(\'' + esc(it2.id) + '\')" data-tip="' + T('نقل إلى مستخلص') + '">📤</button>' : '') + '</td>' +
       '</tr>';
   }).join('') || '<tr><td colspan="13"><div class="empty-state"><p>' + T('لا توجد بنود مطابقة') + '</p></div></td></tr>';
 
@@ -2903,6 +2903,8 @@ function renderItemsTable(){
 }
 Object.assign(I18N_EN, {
   'عرض/إخفاء البنود الفرعية':'Show/hide sub-items',
+  'تقسيم الجدول':'Split BOQ',
+  'نقل إلى مستخلص':'Move to claim',
   'بند رئيسي مقسّم إلى ':'Main item split into ',
   ' بند فرعي':' sub-item(s)',
   'فرعي':'sub',
@@ -2916,17 +2918,18 @@ Object.assign(I18N_EN, {
 // خلية اعتماد الاستشاري في جدول الكميات
 function approvalCell(it){
   if (it.scope === 'others') return '<span style="color:var(--text3)">—</span>';
-  const pend = pendingApprovalQty(it), appr = approvedOf(it);
+  const pend = pendingApprovalQty(it), appr = approvedOf(it), apct = approvedPct(it);
   const canApprove = pdbCanApproveQty();
   let html = '<div style="display:flex;flex-direction:column;gap:3px;align-items:flex-start">';
-  if (appr > 0.001) html += '<span style="font-size:11px;color:var(--green)">✅ ' + T('معتمد') + ' ' + fmtQ(appr) + '</span>';
+  if (appr > 0.001) html += '<span style="display:inline-flex;align-items:center;gap:5px" data-tip="' + T('معتمد') + ' ' + fmtQ(appr) + ' ' + esc(it.unit||'') + '"><span style="font-family:var(--mono);font-size:10px;color:var(--green)">✅ ' + fmtQ(appr) + ' (' + (apct*100).toFixed(1) + '%)</span><span class="prog-bar" style="width:40px"><span class="prog-fill green" style="width:' + (apct*100) + '%;display:block"></span></span></span>';
   if (pend > 0.001) {
     html += '<span style="font-size:11px;color:var(--orange)">🕵 ' + T('بانتظار') + ' ' + fmtQ(pend) + '</span>';
-    if (canApprove) html += '<button class="mini-btn" style="border-color:rgba(240,136,62,0.5);color:var(--orange)" onclick="openApproveQty(\'' + esc(it.id) + '\')">📋 ' + T('اعتماد + استلام') + '</button>';
+    if (canApprove) html += '<button class="mini-btn" style="border-color:rgba(240,136,62,0.5);color:var(--orange)" onclick="openApproveQty(\'' + esc(it.id) + '\')" data-tip="' + T('اعتماد + استلام') + '">📋</button>';
   }
   if (appr < 0.001 && pend < 0.001) html += '<span style="color:var(--text3);font-size:11px">—</span>';
-  // عرض استلامات سابقة
-  if ((it.approvals||[]).length) html += '<button class="mini-btn" style="font-size:10px;padding:1px 5px" onclick="viewApprovals(\'' + esc(it.id) + '\')">📎 ' + it.approvals.length + ' ' + T('استلام') + '</button>';
+  // عرض استلامات سابقة — يظهر دائماً (حتى بلا استلامات بعد) ليبقى مكانه ثابتاً ومعروفاً
+  const recCount = (it.approvals||[]).length;
+  html += '<button class="mini-btn" style="font-size:11px;padding:2px 7px;' + (recCount ? 'border-color:rgba(88,166,255,0.5);color:var(--blue)' : 'opacity:0.5;cursor:default') + '"' + (recCount ? ' onclick="viewApprovals(\'' + esc(it.id) + '\')"' : ' disabled') + ' data-tip="' + T('عرض المستندات المرفوعة لهذا البند') + '">📎 ' + recCount + ' ' + T('استلام') + '</button>';
   html += '</div>';
   return html;
 }
@@ -2934,6 +2937,7 @@ Object.assign(I18N_EN, {
   'معتمد':'Approved',
   'بانتظار':'Pending',
   'اعتماد + استلام':'Approve + receipt',
+  'عرض المستندات المرفوعة لهذا البند':'View the documents uploaded for this item',
   'استلام':'receipt'
 });
 // من يعتمد كميات الاستشاري؟ الموظف الميداني فأعلى (يرفع الاستلام الموقّع)
@@ -3206,7 +3210,6 @@ function deleteApproval(id, approvalId){
 //  ITEM MODAL (add / edit)
 // ============================================================
 let editingItemId = null;
-function addSubItem(parentId){ openItemModal(null, {parentId}); }
 
 function openItemModal(id, opts){
   opts = opts || {};
