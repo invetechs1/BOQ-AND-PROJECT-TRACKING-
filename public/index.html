@@ -314,10 +314,10 @@
   <div class="nav-tab" data-tab="items" onclick="switchTab('items')"><span data-i18n="📋 جدول الكميات">📋 جدول الكميات</span> <span class="tab-count" id="tc-items">0</span></div>
   <div class="nav-tab" data-tab="invoice" onclick="switchTab('invoice')"><span data-i18n="💰 المستخلصات">💰 المستخلصات</span> <span class="tab-count" id="tc-invoice">0</span></div>
   <div class="nav-tab" data-tab="blocked" onclick="switchTab('blocked')"><span data-i18n="🚫 العوائق">🚫 العوائق</span> <span class="tab-count" id="tc-blocked">0</span></div>
-  <div class="nav-tab" data-tab="villas" onclick="switchTab('villas')">🏠 <span id="villas-tab-label">الوحدات</span> <span class="tab-count" id="tc-villas">0</span></div>
-  <div class="nav-tab" data-tab="prod" onclick="switchTab('prod')">👷 الإنتاجية <span class="tab-count" id="tc-prod">0</span><span class="tab-count" id="tc-prod-req" style="display:none;background:var(--red);color:#fff">0</span></div>
-  <div class="nav-tab" data-tab="pricedb" onclick="switchTab('pricedb')">💲 قاعدة الأسعار <span class="tab-count" id="tc-pricedb">0</span></div>
-  <div class="nav-tab" data-tab="subs" onclick="switchTab('subs')">🧱 مقاولو الباطن <span class="tab-count" id="tc-subs">0</span><span class="tab-count" id="tc-subs-alert" style="display:none;background:var(--red);color:#fff">0</span></div>
+  <div class="nav-tab" data-tab="villas" onclick="switchTab('villas')">🏠 <span id="villas-tab-label" data-i18n="الوحدات">الوحدات</span> <span class="tab-count" id="tc-villas">0</span></div>
+  <div class="nav-tab" data-tab="prod" onclick="switchTab('prod')"><span data-i18n="👷 الإنتاجية">👷 الإنتاجية</span> <span class="tab-count" id="tc-prod">0</span><span class="tab-count" id="tc-prod-req" style="display:none;background:var(--red);color:#fff">0</span></div>
+  <div class="nav-tab" data-tab="pricedb" onclick="switchTab('pricedb')"><span data-i18n="💲 قاعدة الأسعار">💲 قاعدة الأسعار</span> <span class="tab-count" id="tc-pricedb">0</span></div>
+  <div class="nav-tab" data-tab="subs" onclick="switchTab('subs')"><span data-i18n="🧱 مقاولو الباطن">🧱 مقاولو الباطن</span> <span class="tab-count" id="tc-subs">0</span><span class="tab-count" id="tc-subs-alert" style="display:none;background:var(--red);color:#fff">0</span></div>
 </div>
 
 <div class="main">
@@ -438,7 +438,7 @@
               <div id="mb-files-list" style="display:flex;flex-direction:column;gap:4px;margin-top:6px"></div>
             </div>
           </div>
-          <div class="alert warning" style="font-size:11px;margin-top:8px" id="mb-flow-note">⬆ بعد الحفظ يذهب المستخلص إلى مدير المشاريع لمراجعته واعتماده وإصدار الفاتورة.</div>
+          <div class="alert warning" style="font-size:11px;margin-top:8px" id="mb-flow-note" data-i18n="⬆ بعد الحفظ يذهب المستخلص إلى مدير المشاريع لمراجعته واعتماده وإصدار الفاتورة.">⬆ بعد الحفظ يذهب المستخلص إلى مدير المشاريع لمراجعته واعتماده وإصدار الفاتورة.</div>
           <div class="divider"></div>
           <div id="mb-totals"></div>
           <div class="divider"></div>
@@ -495,13 +495,13 @@
   <div class="tab-panel" id="tab-villas">
     <div class="filter-bar">
       <span id="villa-filters"></span>
-      <button class="btn btn-amber" onclick="addVilla()"><span data-i18n="+ إضافة">+ إضافة</span> <span id="add-villa-label">وحدة</span></button>
+      <button class="btn btn-amber" onclick="addVilla()"><span data-i18n="+ إضافة">+ إضافة</span> <span id="add-villa-label" data-i18n="وحدة">وحدة</span></button>
       <button class="btn btn-ghost" onclick="syncFromVillas()" data-tip="يحسب نسبة إنجاز كل بند من متوسط نسب الوحدات ويحدث جدول الكميات" data-i18n-tip="يحسب نسبة إنجاز كل بند من متوسط نسب الوحدات ويحدث جدول الكميات" data-i18n="🔄 مزامنة نسب البنود من الوحدات">🔄 مزامنة نسب البنود من الوحدات</button>
     </div>
     <div class="villa-grid" id="villa-grid"></div>
     <div id="villa-detail" style="display:none">
       <div class="section-header">
-        <div class="section-title" id="villa-detail-title">تفاصيل الوحدة</div>
+        <div class="section-title" id="villa-detail-title" data-i18n="تفاصيل الوحدة">تفاصيل الوحدة</div>
         <div>
           <button class="mini-btn red" onclick="deleteVilla()" data-i18n="🗑 حذف الوحدة">🗑 حذف الوحدة</button>
           <button class="btn btn-ghost" onclick="closeVillaDetail()" data-i18n="← عودة">← عودة</button>
@@ -535,10 +535,10 @@
                 <div id="wl-item-list" class="combo-list" style="display:none"></div>
               </div>
             </div>
-            <div class="f-field"><label id="wl-villa-label">الوحدة (اختياري)</label><select id="wl-villa"></select></div>
-            <div class="f-field"><label>مقاول الباطن المنفّذ</label><select id="wl-sub"></select></div>
-            <div class="f-field"><label>الكمية المنفذة اليوم</label><input type="number" id="wl-qty" min="0" step="0.1" placeholder="م² / خ.م / قطعة"></div>
-            <div class="f-field full"><label>ملاحظات</label><input type="text" id="wl-note" placeholder="اختياري"></div>
+            <div class="f-field"><label id="wl-villa-label" data-i18n="الوحدة (اختياري)">الوحدة (اختياري)</label><select id="wl-villa"></select></div>
+            <div class="f-field"><label data-i18n="مقاول الباطن المنفّذ">مقاول الباطن المنفّذ</label><select id="wl-sub"></select></div>
+            <div class="f-field"><label data-i18n="الكمية المنفذة اليوم">الكمية المنفذة اليوم</label><input type="number" id="wl-qty" min="0" step="0.1" placeholder="م² / خ.م / قطعة"></div>
+            <div class="f-field full"><label data-i18n="ملاحظات">ملاحظات</label><input type="text" id="wl-note" placeholder="اختياري"></div>
             <div class="f-field full">
               <label data-i18n="📷 صور من الموقع (اختياري — من الكاميرا أو الاستوديو)">📷 صور من الموقع (اختياري — من الكاميرا أو الاستوديو)</label>
               <input type="file" id="wl-photos" accept="image/*" multiple capture="environment" onchange="wlPhotosPicked(this)">
@@ -558,7 +558,7 @@
         </div>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>التاريخ</th><th>الفرقة</th><th>البند</th><th id="wl-th-villa">الوحدة</th><th>مقاول الباطن</th><th>الكمية</th><th>عمال</th><th>الإنتاجية/عامل</th><th>📷</th><th>مضافة للنسبة</th><th>سجلها</th><th></th></tr></thead>
+            <thead><tr><th data-i18n="التاريخ">التاريخ</th><th data-i18n="الفرقة">الفرقة</th><th data-i18n="البند">البند</th><th id="wl-th-villa" data-i18n="الوحدة">الوحدة</th><th data-i18n="مقاول الباطن">مقاول الباطن</th><th data-i18n="الكمية">الكمية</th><th data-i18n="عمال">عمال</th><th data-i18n="الإنتاجية/عامل">الإنتاجية/عامل</th><th>📷</th><th data-i18n="مضافة للنسبة">مضافة للنسبة</th><th data-i18n="سجلها">سجلها</th><th></th></tr></thead>
             <tbody id="wl-tbody"></tbody>
           </table>
         </div>
@@ -587,26 +587,26 @@
   <!-- ===================== PRICE DATABASE ===================== -->
   <div class="tab-panel" id="tab-pricedb">
     <div class="filter-bar">
-      <button class="filter-btn active" id="pdb-tab-items" onclick="switchPdbView('items')">📋 بنود الأسعار <span class="tab-count" id="pdb-items-count">0</span></button>
-      <button class="filter-btn" id="pdb-tab-offers" onclick="switchPdbView('offers')">📁 العروض <span class="tab-count" id="pdb-offers-count">0</span></button>
+      <button class="filter-btn active" id="pdb-tab-items" onclick="switchPdbView('items')"><span data-i18n="📋 بنود الأسعار">📋 بنود الأسعار</span> <span class="tab-count" id="pdb-items-count">0</span></button>
+      <button class="filter-btn" id="pdb-tab-offers" onclick="switchPdbView('offers')"><span data-i18n="📁 العروض">📁 العروض</span> <span class="tab-count" id="pdb-offers-count">0</span></button>
       <span id="pdb-company-badge" style="margin-inline-start:auto;color:var(--text2);font-size:12px"></span>
     </div>
     <div id="pdb-loading" class="empty-state"><p>⏳ جاري تحميل قاعدة الأسعار...</p></div>
 
     <!-- بنود الأسعار -->
     <div id="pdb-view-items" style="display:none">
-      <div class="alert info" style="font-size:12px">💡 مكتبة أسعار الشركة من العروض السابقة — ابحث، أدرج البنود مباشرة في جدول كميات المشروع الحالي، أو استورد قائمتك من Excel.</div>
+      <div class="alert info" style="font-size:12px" data-i18n="💡 مكتبة أسعار الشركة من العروض السابقة — ابحث، أدرج البنود مباشرة في جدول كميات المشروع الحالي، أو استورد قائمتك من Excel.">💡 مكتبة أسعار الشركة من العروض السابقة — ابحث، أدرج البنود مباشرة في جدول كميات المشروع الحالي، أو استورد قائمتك من Excel.</div>
       <div class="filter-bar">
         <input type="text" class="search-box" id="pdb-search" placeholder="🔍 بحث بالوصف أو الكود..." oninput="renderPdbItems()">
         <select id="pdb-cat-filter" class="search-box" style="width:auto" onchange="renderPdbItems()"></select>
         <span style="margin-inline-start:auto"></span>
-        <button class="btn btn-ghost" id="pdb-btn-import" onclick="openPdbImport()">📥 استيراد Excel</button>
+        <button class="btn btn-ghost" id="pdb-btn-import" onclick="openPdbImport()" data-i18n="📥 استيراد Excel">📥 استيراد Excel</button>
         <button class="btn btn-ghost" id="pdb-btn-export" onclick="exportPdbItemsCSV()">⬇ Excel</button>
-        <button class="btn btn-amber" id="pdb-btn-additem" onclick="openPdbItemModal(null)">+ إضافة بند سعر</button>
+        <button class="btn btn-amber" id="pdb-btn-additem" onclick="openPdbItemModal(null)" data-i18n="+ إضافة بند سعر">+ إضافة بند سعر</button>
       </div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>الكود</th><th>الوصف</th><th>الوحدة</th><th>سعر الوحدة</th><th>التصنيف</th><th>المصدر</th><th>إجراء</th></tr></thead>
+          <thead><tr><th data-i18n="الكود">الكود</th><th data-i18n="الوصف">الوصف</th><th data-i18n="الوحدة">الوحدة</th><th data-i18n="سعر الوحدة">سعر الوحدة</th><th data-i18n="التصنيف">التصنيف</th><th data-i18n="المصدر">المصدر</th><th data-i18n="إجراء">إجراء</th></tr></thead>
           <tbody id="pdb-items-tbody"></tbody>
         </table>
       </div>
@@ -616,7 +616,7 @@
     <div id="pdb-view-offers" style="display:none">
       <div class="filter-bar">
         <span style="margin-inline-start:auto"></span>
-        <button class="btn btn-amber" id="pdb-btn-addoffer" onclick="openPdbOfferModal(null)">+ إضافة عرض</button>
+        <button class="btn btn-amber" id="pdb-btn-addoffer" onclick="openPdbOfferModal(null)" data-i18n="+ إضافة عرض">+ إضافة عرض</button>
       </div>
       <div class="status-cards" id="pdb-offers-grid"></div>
     </div>
@@ -626,14 +626,14 @@
   <div class="tab-panel" id="tab-subs">
     <div id="subs-alert-banner"></div>
     <div class="filter-bar">
-      <button class="filter-btn active" id="sub-tab-list" onclick="switchSubView('list')">🧱 مقاولو الباطن</button>
-      <button class="filter-btn" id="sub-tab-mus" onclick="switchSubView('mus')">📑 مستخلصات مقاولي الباطن <span class="tab-count" id="sub-mus-count">0</span></button>
+      <button class="filter-btn active" id="sub-tab-list" onclick="switchSubView('list')" data-i18n="🧱 مقاولو الباطن">🧱 مقاولو الباطن</button>
+      <button class="filter-btn" id="sub-tab-mus" onclick="switchSubView('mus')"><span data-i18n="📑 مستخلصات مقاولي الباطن">📑 مستخلصات مقاولي الباطن</span> <span class="tab-count" id="sub-mus-count">0</span></button>
     </div>
 
     <div id="sub-view-list">
-      <div class="alert info" style="font-size:12px">💡 سجّل مقاولي الباطن وبنودهم وأسعارهم المتفق عليها. عند إدخال الإنتاجية اليومية يُنسب العمل لمقاول الباطن المنفّذ، وبعد اعتماد الاستشاري للكمية تصبح مستحقة للصرف. افتح صفحة المقاول لتعميد كمياته وبناء مستخلصه تلقائياً.</div>
+      <div class="alert info" style="font-size:12px" data-i18n="💡 سجّل مقاولي الباطن وبنودهم وأسعارهم المتفق عليها. عند إدخال الإنتاجية اليومية يُنسب العمل لمقاول الباطن المنفّذ، وبعد اعتماد الاستشاري للكمية تصبح مستحقة للصرف. افتح صفحة المقاول لتعميد كمياته وبناء مستخلصه تلقائياً.">💡 سجّل مقاولي الباطن وبنودهم وأسعارهم المتفق عليها. عند إدخال الإنتاجية اليومية يُنسب العمل لمقاول الباطن المنفّذ، وبعد اعتماد الاستشاري للكمية تصبح مستحقة للصرف. افتح صفحة المقاول لتعميد كمياته وبناء مستخلصه تلقائياً.</div>
       <div class="filter-bar"><span style="margin-inline-start:auto"></span>
-        <button class="btn btn-green" id="sub-add-btn" onclick="openSubEdit(null)">+ إضافة مقاول باطن</button>
+        <button class="btn btn-green" id="sub-add-btn" onclick="openSubEdit(null)" data-i18n="+ إضافة مقاول باطن">+ إضافة مقاول باطن</button>
       </div>
       <div id="subs-cards" class="status-cards"></div>
     </div>
@@ -642,7 +642,7 @@
       <div id="submus-kpis" class="kpi-grid" style="margin-bottom:14px"></div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>المستخلص</th><th>مقاول الباطن</th><th>التاريخ</th><th>بنود</th><th>الإجمالي</th><th>محتجز+خصومات</th><th>الصافي</th><th>المدفوع</th><th>الحالة</th><th>إجراء</th></tr></thead>
+          <thead><tr><th data-i18n="المستخلص">المستخلص</th><th data-i18n="مقاول الباطن">مقاول الباطن</th><th data-i18n="التاريخ">التاريخ</th><th data-i18n="بنود">بنود</th><th data-i18n="الإجمالي">الإجمالي</th><th data-i18n="محتجز+خصومات">محتجز+خصومات</th><th data-i18n="الصافي">الصافي</th><th data-i18n="المدفوع">المدفوع</th><th data-i18n="الحالة">الحالة</th><th data-i18n="إجراء">إجراء</th></tr></thead>
           <tbody id="submus-tbody"></tbody>
         </table>
       </div>
@@ -654,30 +654,30 @@
 <!-- ===================== MODALS ===================== -->
 <div class="modal-overlay" id="item-modal">
   <div class="modal">
-    <div class="modal-title"><span id="item-modal-title">تعديل بند</span><span class="modal-close" onclick="closeModal('item-modal')">✕</span></div>
+    <div class="modal-title"><span id="item-modal-title" data-i18n="تعديل بند">تعديل بند</span><span class="modal-close" onclick="closeModal('item-modal')">✕</span></div>
     <div class="f-grid">
-      <div class="f-field"><label>رقم البند *</label><input type="text" id="im-id"></div>
-      <div class="f-field"><label>القسم</label><input type="text" id="im-div" list="div-list" placeholder="DIV 9"><datalist id="div-list"></datalist></div>
-      <div class="f-field full"><label>اسم القسم بالعربي</label><input type="text" id="im-divAr" placeholder="أعمال التشطيبات"></div>
-      <div class="f-field full"><label>الوصف *</label><input type="text" id="im-desc"></div>
-      <div class="f-field"><label>الوحدة</label><input type="text" id="im-unit" placeholder="م²"></div>
-      <div class="f-field"><label>الكمية لكل وحدة (اختياري)</label><input type="number" id="im-qtyv" min="0" step="0.01"></div>
-      <div class="f-field"><label>الكمية الكلية *</label><input type="number" id="im-qty" min="0" step="0.01"></div>
-      <div class="f-field"><label>سعر الوحدة (ر.س) *</label><input type="number" id="im-rate" min="0" step="0.01" oninput="imRateHint()">
-        <span style="font-size:11px;color:var(--amber)">⚠️ غير شامل ضريبة القيمة المضافة — تُضاف تلقائياً في المستخلص</span></div>
-      <div class="f-field"><label>الكمية المنفذة</label><input type="number" id="im-exec" min="0" step="0.01"></div>
-      <div class="f-field"><label>نطاق العمل</label>
+      <div class="f-field"><label data-i18n="رقم البند *">رقم البند *</label><input type="text" id="im-id"></div>
+      <div class="f-field"><label data-i18n="القسم">القسم</label><input type="text" id="im-div" list="div-list" placeholder="DIV 9"><datalist id="div-list"></datalist></div>
+      <div class="f-field full"><label data-i18n="اسم القسم بالعربي">اسم القسم بالعربي</label><input type="text" id="im-divAr" placeholder="أعمال التشطيبات"></div>
+      <div class="f-field full"><label data-i18n="الوصف *">الوصف *</label><input type="text" id="im-desc"></div>
+      <div class="f-field"><label data-i18n="الوحدة">الوحدة</label><input type="text" id="im-unit" placeholder="م²"></div>
+      <div class="f-field"><label data-i18n="الكمية لكل وحدة (اختياري)">الكمية لكل وحدة (اختياري)</label><input type="number" id="im-qtyv" min="0" step="0.01"></div>
+      <div class="f-field"><label data-i18n="الكمية الكلية *">الكمية الكلية *</label><input type="number" id="im-qty" min="0" step="0.01"></div>
+      <div class="f-field"><label data-i18n="سعر الوحدة (ر.س) *">سعر الوحدة (ر.س) *</label><input type="number" id="im-rate" min="0" step="0.01" oninput="imRateHint()">
+        <span style="font-size:11px;color:var(--amber)" data-i18n="⚠️ غير شامل ضريبة القيمة المضافة — تُضاف تلقائياً في المستخلص">⚠️ غير شامل ضريبة القيمة المضافة — تُضاف تلقائياً في المستخلص</span></div>
+      <div class="f-field"><label data-i18n="الكمية المنفذة">الكمية المنفذة</label><input type="number" id="im-exec" min="0" step="0.01"></div>
+      <div class="f-field"><label data-i18n="نطاق العمل">نطاق العمل</label>
         <select id="im-scope">
           <option value="azoom" data-i18n="ضمن نطاق أعمالنا">ضمن نطاق أعمالنا</option>
           <option value="others" data-i18n="خارج النطاق (منفذ سابقاً / مقاول آخر)">خارج النطاق (منفذ سابقاً / مقاول آخر)</option>
           <option value="client_supply" data-i18n="تركيب فقط - توريد من العميل">تركيب فقط - توريد من العميل</option>
         </select>
       </div>
-      <div class="f-field full"><label>بند رئيسي (تقسيم البند إلى بنود فرعية)</label>
-        <select id="im-parent" onchange="imRateHint()"><option value="">— بند مستقل (بدون تجميع)</option></select>
+      <div class="f-field full"><label data-i18n="بند رئيسي (تقسيم البند إلى بنود فرعية)">بند رئيسي (تقسيم البند إلى بنود فرعية)</label>
+        <select id="im-parent" onchange="imRateHint()"><option value="" data-i18n="— بند مستقل (بدون تجميع)">— بند مستقل (بدون تجميع)</option></select>
         <span id="im-parent-hint" style="font-size:11px;color:var(--text2)"></span>
-        <span style="font-size:11px;color:var(--text3);display:block">مثال: بند «هدم وترحيل» بسعر 30 — أنشئ تحته «هدم» بـ20 و«ترحيل» بـ10. القيمة تُحسب من الفروع فقط لتفادي الازدواج.</span></div>
-      <div class="f-field full"><label>يعتمد على البنود (لا يمكن البدء قبل اكتمالها)</label><div class="pred-list" id="im-preds"></div></div>
+        <span style="font-size:11px;color:var(--text3);display:block" data-i18n="مثال: بند «هدم وترحيل» بسعر 30 — أنشئ تحته «هدم» بـ20 و«ترحيل» بـ10. القيمة تُحسب من الفروع فقط لتفادي الازدواج.">مثال: بند «هدم وترحيل» بسعر 30 — أنشئ تحته «هدم» بـ20 و«ترحيل» بـ10. القيمة تُحسب من الفروع فقط لتفادي الازدواج.</span></div>
+      <div class="f-field full"><label data-i18n="يعتمد على البنود (لا يمكن البدء قبل اكتمالها)">يعتمد على البنود (لا يمكن البدء قبل اكتمالها)</label><div class="pred-list" id="im-preds"></div></div>
       <div class="f-field full">
         <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
           <input type="checkbox" id="im-blk" style="width:auto"> <span data-i18n="يوجد عائق خارجي يمنع العمل">يوجد عائق خارجي يمنع العمل</span>
@@ -701,6 +701,27 @@
       <button class="btn btn-green" onclick="saveItem()" data-i18n="💾 حفظ البند">💾 حفظ البند</button>
       <button class="btn btn-red" id="im-delete-btn" onclick="deleteItem()" data-i18n="🗑 حذف البند">🗑 حذف البند</button>
       <button class="btn btn-ghost" onclick="closeModal('item-modal')" data-i18n="إلغاء">إلغاء</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="split-item-modal">
+  <div class="modal">
+    <div class="modal-title"><span data-i18n="✂ تقسيم البند إلى بنود فرعية">✂ تقسيم البند إلى بنود فرعية</span><span class="modal-close" onclick="closeModal('split-item-modal')">✕</span></div>
+    <div id="split-item-info" class="alert info" style="font-size:12px"></div>
+    <div class="f-field" style="margin-top:10px;max-width:160px">
+      <label data-i18n="عدد الأجزاء">عدد الأجزاء</label>
+      <select id="split-count" onchange="renderSplitRows()">
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+    </div>
+    <div id="split-rows" style="display:flex;flex-direction:column;gap:10px;margin-top:12px"></div>
+    <div id="split-remaining" style="font-size:12px;margin-top:10px;font-weight:700"></div>
+    <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+      <button class="btn btn-green" id="split-confirm-btn" onclick="confirmSplitItem()" data-i18n="✂ تقسيم البند">✂ تقسيم البند</button>
+      <button class="btn btn-ghost" onclick="closeModal('split-item-modal')" data-i18n="إلغاء">إلغاء</button>
     </div>
   </div>
 </div>
@@ -730,7 +751,7 @@
 
 <div class="modal-overlay" id="doc-modal">
   <div class="modal wide">
-    <div class="modal-title"><span id="doc-title">📄 وثيقة المستخلص</span><span class="modal-close" onclick="closeModal('doc-modal')">✕</span></div>
+    <div class="modal-title"><span id="doc-title" data-i18n="📄 وثيقة المستخلص">📄 وثيقة المستخلص</span><span class="modal-close" onclick="closeModal('doc-modal')">✕</span></div>
     <div id="doc-content"></div>
     <div style="display:flex;gap:10px;margin-top:16px">
       <button class="btn btn-green" onclick="printDoc()" data-i18n="🖨️ طباعة / PDF">🖨️ طباعة / PDF</button>
@@ -742,23 +763,23 @@
 
 <div class="modal-overlay" id="approve-qty-modal">
   <div class="modal">
-    <div class="modal-title"><span id="aq-title">📋 اعتماد كمية من الاستشاري</span><span class="modal-close" onclick="closeModal('approve-qty-modal')">✕</span></div>
+    <div class="modal-title"><span id="aq-title" data-i18n="📋 اعتماد كمية من الاستشاري">📋 اعتماد كمية من الاستشاري</span><span class="modal-close" onclick="closeModal('approve-qty-modal')">✕</span></div>
     <div id="aq-info" class="alert info" style="font-size:12px"></div>
     <div class="f-grid">
-      <div class="f-field"><label>الكمية المنفذة حسب النظام (أدخلها المهندس)</label><input type="number" id="aq-sysqty" readonly style="color:var(--blue)"></div>
-      <div class="f-field"><label>🖊 الكمية الموقّعة على الاستلام (AR) *</label><input type="number" id="aq-arqty" min="0" step="0.01" oninput="aqCheckMatch()" placeholder="كما هي على ورقة الاستشاري"></div>
+      <div class="f-field"><label data-i18n="الكمية المنفذة حسب النظام (أدخلها المهندس)">الكمية المنفذة حسب النظام (أدخلها المهندس)</label><input type="number" id="aq-sysqty" readonly style="color:var(--blue)"></div>
+      <div class="f-field"><label data-i18n="🖊 الكمية الموقّعة على الاستلام (AR) *">🖊 الكمية الموقّعة على الاستلام (AR) *</label><input type="number" id="aq-arqty" min="0" step="0.01" oninput="aqCheckMatch()" placeholder="كما هي على ورقة الاستشاري"></div>
       <div class="f-field full" id="aq-match" style="display:none"></div>
-      <div class="f-field"><label>تاريخ الاعتماد</label><input type="date" id="aq-date"></div>
-      <div class="f-field"><label>اسم الاستشاري / المهندس</label><input type="text" id="aq-consultant" placeholder="من وقّع الاستلام"></div>
-      <div class="f-field"><label>رقم الاستلام (AR)</label><input type="text" id="aq-arno" placeholder="اختياري"></div>
-      <div class="f-field"><label>الكمية المعتمدة (تدخل المستخلص)</label><input type="number" id="aq-qty" min="0" step="0.01" oninput="aqCheckMatch()"></div>
-      <div class="f-field full"><label>📎 استلام الاستشاري الموقّع + كل الملفات الداعمة * — PDF أو صور (يمكن اختيار عدة ملفات)</label><input type="file" id="aq-file" accept="image/*,.pdf,application/pdf" multiple onchange="aqFilePicked(this)"><div id="aq-file-name" style="font-size:11px;color:var(--text2);margin-top:4px;display:flex;flex-direction:column;gap:3px"></div></div>
-      <div class="f-field full"><label>ملاحظات</label><input type="text" id="aq-note"></div>
+      <div class="f-field"><label data-i18n="تاريخ الاعتماد">تاريخ الاعتماد</label><input type="date" id="aq-date"></div>
+      <div class="f-field"><label data-i18n="اسم الاستشاري / المهندس">اسم الاستشاري / المهندس</label><input type="text" id="aq-consultant" placeholder="من وقّع الاستلام"></div>
+      <div class="f-field"><label data-i18n="رقم الاستلام (AR)">رقم الاستلام (AR)</label><input type="text" id="aq-arno" placeholder="اختياري"></div>
+      <div class="f-field"><label data-i18n="الكمية المعتمدة (تدخل المستخلص)">الكمية المعتمدة (تدخل المستخلص)</label><input type="number" id="aq-qty" min="0" step="0.01" oninput="aqCheckMatch()"></div>
+      <div class="f-field full"><label data-i18n="📎 استلام الاستشاري الموقّع + كل الملفات الداعمة * — PDF أو صور (يمكن اختيار عدة ملفات)">📎 استلام الاستشاري الموقّع + كل الملفات الداعمة * — PDF أو صور (يمكن اختيار عدة ملفات)</label><input type="file" id="aq-file" accept="image/*,.pdf,application/pdf" multiple onchange="aqFilePicked(this)"><div id="aq-file-name" style="font-size:11px;color:var(--text2);margin-top:4px;display:flex;flex-direction:column;gap:3px"></div></div>
+      <div class="f-field full"><label data-i18n="ملاحظات">ملاحظات</label><input type="text" id="aq-note"></div>
     </div>
-    <div class="alert warning" style="font-size:11px;margin-top:8px">✅ الكمية المعتمدة يجب أن تطابق الكمية الموقّعة على الاستلام. رفع استلام الاستشاري الموقّع (وأي ملفات داعمة) إلزامي — يبقى دليلاً يُثبت أن الكمية مستلمة ويحق المطالبة بها.</div>
+    <div class="alert warning" style="font-size:11px;margin-top:8px" data-i18n="✅ الكمية المعتمدة يجب أن تطابق الكمية الموقّعة على الاستلام. رفع استلام الاستشاري الموقّع (وأي ملفات داعمة) إلزامي — يبقى دليلاً يُثبت أن الكمية مستلمة ويحق المطالبة بها.">✅ الكمية المعتمدة يجب أن تطابق الكمية الموقّعة على الاستلام. رفع استلام الاستشاري الموقّع (وأي ملفات داعمة) إلزامي — يبقى دليلاً يُثبت أن الكمية مستلمة ويحق المطالبة بها.</div>
     <div style="display:flex;gap:10px;margin-top:12px">
-      <button class="btn btn-green" onclick="saveApproveQty()">✅ اعتماد الكمية</button>
-      <button class="btn btn-ghost" onclick="closeModal('approve-qty-modal')">إلغاء</button>
+      <button class="btn btn-green" onclick="saveApproveQty()" data-i18n="✅ اعتماد الكمية">✅ اعتماد الكمية</button>
+      <button class="btn btn-ghost" onclick="closeModal('approve-qty-modal')" data-i18n="إلغاء">إلغاء</button>
     </div>
   </div>
 </div>
@@ -781,23 +802,23 @@
 
 <div class="modal-overlay" id="subpay-modal">
   <div class="modal" style="max-width:420px">
-    <div class="modal-title"><span>💵 اعتماد صرف لمقاول الباطن</span><span class="modal-close" onclick="closeModal('subpay-modal')">✕</span></div>
+    <div class="modal-title"><span data-i18n="💵 اعتماد صرف لمقاول الباطن">💵 اعتماد صرف لمقاول الباطن</span><span class="modal-close" onclick="closeModal('subpay-modal')">✕</span></div>
     <div class="f-grid" style="grid-template-columns:1fr">
       <div class="f-field"><label id="subpay-info" style="font-size:12px;color:var(--text2)"></label></div>
-      <div class="f-field"><label>تاريخ الصرف</label><input type="date" id="subpay-date"></div>
-      <div class="f-field"><label>المبلغ المعتمَد صرفه (ر.س) — كامل أو جزء</label><input type="number" id="subpay-amount" min="0" step="0.01"></div>
-      <div class="f-field"><label>ملاحظات</label><input type="text" id="subpay-note" placeholder="حوالة / شيك..."></div>
+      <div class="f-field"><label data-i18n="تاريخ الصرف">تاريخ الصرف</label><input type="date" id="subpay-date"></div>
+      <div class="f-field"><label data-i18n="المبلغ المعتمَد صرفه (ر.س) — كامل أو جزء">المبلغ المعتمَد صرفه (ر.س) — كامل أو جزء</label><input type="number" id="subpay-amount" min="0" step="0.01"></div>
+      <div class="f-field"><label data-i18n="ملاحظات">ملاحظات</label><input type="text" id="subpay-note" placeholder="حوالة / شيك..."></div>
     </div>
     <div style="display:flex;gap:10px;margin-top:16px">
-      <button class="btn btn-green" onclick="saveSubPay()">💾 اعتماد الصرف</button>
-      <button class="btn btn-ghost" onclick="closeModal('subpay-modal')">إلغاء</button>
+      <button class="btn btn-green" onclick="saveSubPay()" data-i18n="💾 اعتماد الصرف">💾 اعتماد الصرف</button>
+      <button class="btn btn-ghost" onclick="closeModal('subpay-modal')" data-i18n="إلغاء">إلغاء</button>
     </div>
   </div>
 </div>
 
 <div class="modal-overlay" id="project-modal">
   <div class="modal">
-    <div class="modal-title"><span id="project-modal-title">إضافة مشروع</span><span class="modal-close" onclick="closeModal('project-modal')">✕</span></div>
+    <div class="modal-title"><span id="project-modal-title" data-i18n="إضافة مشروع">إضافة مشروع</span><span class="modal-close" onclick="closeModal('project-modal')">✕</span></div>
     <div class="f-grid">
       <div class="f-field full"><label data-i18n="اسم المشروع *">اسم المشروع *</label><input type="text" id="pm-name" placeholder="مثال: مشروع طريق الملك فهد / برج المكاتب / فلل المرحلة 2" data-i18n-ph="مثال: مشروع طريق الملك فهد / برج المكاتب / فلل المرحلة 2"></div>
       <div class="f-field"><label data-i18n="نوع المشروع">نوع المشروع</label>
@@ -857,64 +878,64 @@
 
 <div class="modal-overlay" id="pdb-item-modal">
   <div class="modal">
-    <div class="modal-title"><span id="pdb-item-title">إضافة بند سعر</span><span class="modal-close" onclick="closeModal('pdb-item-modal')">✕</span></div>
+    <div class="modal-title"><span id="pdb-item-title" data-i18n="إضافة بند سعر">إضافة بند سعر</span><span class="modal-close" onclick="closeModal('pdb-item-modal')">✕</span></div>
     <div class="f-grid">
-      <div class="f-field"><label>الكود</label><input type="text" id="pdi-code" placeholder="اختياري"></div>
-      <div class="f-field"><label>الوحدة *</label><input type="text" id="pdi-unit" list="pdi-units" placeholder="م² / م³ / عدد"><datalist id="pdi-units"></datalist></div>
-      <div class="f-field full"><label>الوصف *</label><input type="text" id="pdi-desc"></div>
-      <div class="f-field"><label>سعر الوحدة (ر.س) *</label><input type="number" id="pdi-rate" min="0" step="0.01"></div>
-      <div class="f-field"><label>التصنيف</label><input type="text" id="pdi-cat" list="pdi-cats" placeholder="أعمال البناء..."><datalist id="pdi-cats"></datalist></div>
-      <div class="f-field"><label>المصدر / رقم العرض</label><input type="text" id="pdi-ref" placeholder="اختياري"></div>
-      <div class="f-field"><label>المشروع</label><input type="text" id="pdi-project" placeholder="اختياري"></div>
-      <div class="f-field full"><label>ملاحظات</label><input type="text" id="pdi-note"></div>
+      <div class="f-field"><label data-i18n="الكود">الكود</label><input type="text" id="pdi-code" placeholder="اختياري"></div>
+      <div class="f-field"><label data-i18n="الوحدة *">الوحدة *</label><input type="text" id="pdi-unit" list="pdi-units" placeholder="م² / م³ / عدد"><datalist id="pdi-units"></datalist></div>
+      <div class="f-field full"><label data-i18n="الوصف *">الوصف *</label><input type="text" id="pdi-desc"></div>
+      <div class="f-field"><label data-i18n="سعر الوحدة (ر.س) *">سعر الوحدة (ر.س) *</label><input type="number" id="pdi-rate" min="0" step="0.01"></div>
+      <div class="f-field"><label data-i18n="التصنيف">التصنيف</label><input type="text" id="pdi-cat" list="pdi-cats" placeholder="أعمال البناء..."><datalist id="pdi-cats"></datalist></div>
+      <div class="f-field"><label data-i18n="المصدر / رقم العرض">المصدر / رقم العرض</label><input type="text" id="pdi-ref" placeholder="اختياري"></div>
+      <div class="f-field"><label data-i18n="المشروع">المشروع</label><input type="text" id="pdi-project" placeholder="اختياري"></div>
+      <div class="f-field full"><label data-i18n="ملاحظات">ملاحظات</label><input type="text" id="pdi-note"></div>
     </div>
     <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
-      <button class="btn btn-green" onclick="savePdbItem()">💾 حفظ</button>
-      <button class="btn btn-red" id="pdi-delete" onclick="deletePdbItem()">🗑 حذف</button>
-      <button class="btn btn-ghost" onclick="closeModal('pdb-item-modal')">إلغاء</button>
+      <button class="btn btn-green" onclick="savePdbItem()" data-i18n="💾 حفظ">💾 حفظ</button>
+      <button class="btn btn-red" id="pdi-delete" onclick="deletePdbItem()" data-i18n="🗑 حذف">🗑 حذف</button>
+      <button class="btn btn-ghost" onclick="closeModal('pdb-item-modal')" data-i18n="إلغاء">إلغاء</button>
     </div>
   </div>
 </div>
 
 <div class="modal-overlay" id="pdb-offer-modal">
   <div class="modal">
-    <div class="modal-title"><span id="pdb-offer-title">إضافة عرض</span><span class="modal-close" onclick="closeModal('pdb-offer-modal')">✕</span></div>
+    <div class="modal-title"><span id="pdb-offer-title" data-i18n="إضافة عرض">إضافة عرض</span><span class="modal-close" onclick="closeModal('pdb-offer-modal')">✕</span></div>
     <div class="f-grid">
-      <div class="f-field"><label>رقم العرض *</label><input type="text" id="pdo-ref"></div>
-      <div class="f-field"><label>التاريخ</label><input type="date" id="pdo-date"></div>
-      <div class="f-field"><label>العميل</label><input type="text" id="pdo-client"></div>
-      <div class="f-field"><label>الموقع</label><input type="text" id="pdo-location"></div>
-      <div class="f-field full"><label>المشروع *</label><input type="text" id="pdo-project"></div>
-      <div class="f-field"><label>نوع العرض</label>
-        <select id="pdo-type"><option value="financial">مالي</option><option value="technical">فني</option><option value="both">مالي + فني</option></select>
+      <div class="f-field"><label data-i18n="رقم العرض *">رقم العرض *</label><input type="text" id="pdo-ref"></div>
+      <div class="f-field"><label data-i18n="التاريخ">التاريخ</label><input type="date" id="pdo-date"></div>
+      <div class="f-field"><label data-i18n="العميل">العميل</label><input type="text" id="pdo-client"></div>
+      <div class="f-field"><label data-i18n="الموقع">الموقع</label><input type="text" id="pdo-location"></div>
+      <div class="f-field full"><label data-i18n="المشروع *">المشروع *</label><input type="text" id="pdo-project"></div>
+      <div class="f-field"><label data-i18n="نوع العرض">نوع العرض</label>
+        <select id="pdo-type"><option value="financial" data-i18n="مالي">مالي</option><option value="technical" data-i18n="فني">فني</option><option value="both" data-i18n="مالي + فني">مالي + فني</option></select>
       </div>
-      <div class="f-field"><label>صلاحية العرض (يوم)</label><input type="number" id="pdo-validity" min="0" value="0"></div>
-      <div class="f-field"><label>الإجمالي قبل الضريبة (ر.س) *</label><input type="number" id="pdo-subtotal" min="0" step="0.01" oninput="pdoRecalc()"></div>
-      <div class="f-field"><label>نسبة الضريبة %</label><input type="number" id="pdo-vat" min="0" step="0.5" value="15" oninput="pdoRecalc()"></div>
-      <div class="f-field full"><label>الإجمالي شامل الضريبة</label><input type="text" id="pdo-grand" readonly style="color:var(--green-bright)"></div>
-      <div class="f-field full"><label>الأقسام (اسم = مبلغ في كل سطر)</label><textarea id="pdo-sections" rows="4" placeholder="التشطيبات الداخلية = 10393288.65&#10;اللاندسكيب = 3819595.06"></textarea></div>
-      <div class="f-field full"><label>ملاحظات</label><textarea id="pdo-notes" rows="2"></textarea></div>
-      <div class="f-field full"><label>📎 ملفات العرض (PDF أو صور)</label><input type="file" id="pdo-files" accept="image/*,.pdf,application/pdf" multiple onchange="pdoFilesPicked(this)"><div id="pdo-files-list" style="display:flex;flex-direction:column;gap:4px;margin-top:6px"></div></div>
+      <div class="f-field"><label data-i18n="صلاحية العرض (يوم)">صلاحية العرض (يوم)</label><input type="number" id="pdo-validity" min="0" value="0"></div>
+      <div class="f-field"><label data-i18n="الإجمالي قبل الضريبة (ر.س) *">الإجمالي قبل الضريبة (ر.س) *</label><input type="number" id="pdo-subtotal" min="0" step="0.01" oninput="pdoRecalc()"></div>
+      <div class="f-field"><label data-i18n="نسبة الضريبة %">نسبة الضريبة %</label><input type="number" id="pdo-vat" min="0" step="0.5" value="15" oninput="pdoRecalc()"></div>
+      <div class="f-field full"><label data-i18n="الإجمالي شامل الضريبة">الإجمالي شامل الضريبة</label><input type="text" id="pdo-grand" readonly style="color:var(--green-bright)"></div>
+      <div class="f-field full"><label data-i18n="الأقسام (اسم = مبلغ في كل سطر)">الأقسام (اسم = مبلغ في كل سطر)</label><textarea id="pdo-sections" rows="4" placeholder="التشطيبات الداخلية = 10393288.65&#10;اللاندسكيب = 3819595.06"></textarea></div>
+      <div class="f-field full"><label data-i18n="ملاحظات">ملاحظات</label><textarea id="pdo-notes" rows="2"></textarea></div>
+      <div class="f-field full"><label data-i18n="📎 ملفات العرض (PDF أو صور)">📎 ملفات العرض (PDF أو صور)</label><input type="file" id="pdo-files" accept="image/*,.pdf,application/pdf" multiple onchange="pdoFilesPicked(this)"><div id="pdo-files-list" style="display:flex;flex-direction:column;gap:4px;margin-top:6px"></div></div>
     </div>
     <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
-      <button class="btn btn-green" onclick="savePdbOffer()">💾 حفظ العرض</button>
-      <button class="btn btn-red" id="pdo-delete" onclick="deletePdbOffer()">🗑 حذف</button>
-      <button class="btn btn-ghost" onclick="closeModal('pdb-offer-modal')">إلغاء</button>
+      <button class="btn btn-green" onclick="savePdbOffer()" data-i18n="💾 حفظ العرض">💾 حفظ العرض</button>
+      <button class="btn btn-red" id="pdo-delete" onclick="deletePdbOffer()" data-i18n="🗑 حذف">🗑 حذف</button>
+      <button class="btn btn-ghost" onclick="closeModal('pdb-offer-modal')" data-i18n="إلغاء">إلغاء</button>
     </div>
   </div>
 </div>
 
 <div class="modal-overlay" id="pdb-insert-modal">
   <div class="modal">
-    <div class="modal-title"><span>➕ إدراج في جدول كميات المشروع</span><span class="modal-close" onclick="closeModal('pdb-insert-modal')">✕</span></div>
+    <div class="modal-title"><span data-i18n="➕ إدراج في جدول كميات المشروع">➕ إدراج في جدول كميات المشروع</span><span class="modal-close" onclick="closeModal('pdb-insert-modal')">✕</span></div>
     <div id="pdb-insert-info" class="alert info" style="font-size:12px"></div>
     <div class="f-grid">
-      <div class="f-field"><label>رقم البند في المشروع</label><input type="text" id="pdb-ins-id"></div>
-      <div class="f-field"><label>الكمية</label><input type="number" id="pdb-ins-qty" min="0" step="0.01" value="0"></div>
+      <div class="f-field"><label data-i18n="رقم البند في المشروع">رقم البند في المشروع</label><input type="text" id="pdb-ins-id"></div>
+      <div class="f-field"><label data-i18n="الكمية">الكمية</label><input type="number" id="pdb-ins-qty" min="0" step="0.01" value="0"></div>
     </div>
     <div style="display:flex;gap:10px;margin-top:16px">
-      <button class="btn btn-green" onclick="confirmInsertToBoq()">➕ إدراج في المشروع الحالي</button>
-      <button class="btn btn-ghost" onclick="closeModal('pdb-insert-modal')">إلغاء</button>
+      <button class="btn btn-green" onclick="confirmInsertToBoq()" data-i18n="➕ إدراج في المشروع الحالي">➕ إدراج في المشروع الحالي</button>
+      <button class="btn btn-ghost" onclick="closeModal('pdb-insert-modal')" data-i18n="إلغاء">إلغاء</button>
     </div>
   </div>
 </div>
@@ -934,51 +955,51 @@
 
 <div class="modal-overlay" id="integration-modal">
   <div class="modal">
-    <div class="modal-title"><span>🔗 ربط Bassir ERP</span><span class="modal-close" onclick="closeModal('integration-modal')">✕</span></div>
+    <div class="modal-title"><span data-i18n="🔗 ربط Bassir ERP">🔗 ربط Bassir ERP</span><span class="modal-close" onclick="closeModal('integration-modal')">✕</span></div>
     <div class="alert info" style="font-size:12px">
       عند تحويل كميات المهندس إلى <strong>مستخلص</strong>، يرسل النظام البنود المُسلَّمة للاستشاري إلى جدول كميات <strong>Bassir ERP</strong> عبر واجهة API.
       جهّز هنا رابط الـ API ومفتاح الدخول — <strong>المبرمج يكمل الربط الفعلي</strong> من جهة Bassir.
     </div>
     <div id="int-company-wrap" class="f-field" style="display:none">
-      <label>الشركة</label>
+      <label data-i18n="الشركة">الشركة</label>
       <select id="int-company" onchange="loadIntegration()"></select>
     </div>
     <label class="switch-row" style="display:flex;align-items:center;gap:8px;margin:6px 0 12px;cursor:pointer">
       <input type="checkbox" id="int-enabled" style="width:18px;height:18px">
-      <span>تفعيل الإرسال التلقائي إلى Bassir ERP عند إنشاء مستخلص جديد</span>
+      <span data-i18n="تفعيل الإرسال التلقائي إلى Bassir ERP عند إنشاء مستخلص جديد">تفعيل الإرسال التلقائي إلى Bassir ERP عند إنشاء مستخلص جديد</span>
     </label>
-    <div class="f-field"><label>رابط API (Endpoint URL)</label>
+    <div class="f-field"><label data-i18n="رابط API (Endpoint URL)">رابط API (Endpoint URL)</label>
       <input type="url" id="int-url" placeholder="https://erp.bassir.example/api/boq/deliveries" dir="ltr" style="text-align:left"></div>
-    <div class="f-field"><label>مفتاح الـ API (API Key / Token)</label>
+    <div class="f-field"><label data-i18n="مفتاح الـ API (API Key / Token)">مفتاح الـ API (API Key / Token)</label>
       <input type="password" id="int-key" placeholder="••••••••" dir="ltr" style="text-align:left" autocomplete="off">
       <span id="int-key-hint" style="font-size:11px;color:var(--text2)"></span></div>
     <details style="margin:4px 0 12px">
       <summary style="cursor:pointer;font-size:12px;color:var(--text2)">إعدادات متقدمة (اسم ترويسة المصادقة)</summary>
       <div class="f-grid" style="grid-template-columns:1fr 1fr;margin-top:8px">
-        <div class="f-field"><label>اسم الترويسة</label><input type="text" id="int-auth-header" placeholder="Authorization" dir="ltr" style="text-align:left"></div>
-        <div class="f-field"><label>بادئة القيمة</label><input type="text" id="int-auth-prefix" placeholder="Bearer " dir="ltr" style="text-align:left"></div>
+        <div class="f-field"><label data-i18n="اسم الترويسة">اسم الترويسة</label><input type="text" id="int-auth-header" placeholder="Authorization" dir="ltr" style="text-align:left"></div>
+        <div class="f-field"><label data-i18n="بادئة القيمة">بادئة القيمة</label><input type="text" id="int-auth-prefix" placeholder="Bearer " dir="ltr" style="text-align:left"></div>
       </div>
     </details>
     <div id="int-status" style="font-size:12px;margin-bottom:12px"></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn btn-green" onclick="saveIntegration()">💾 حفظ الإعدادات</button>
-      <button class="btn btn-ghost" onclick="testIntegration()">🔌 اختبار الاتصال</button>
+      <button class="btn btn-green" onclick="saveIntegration()" data-i18n="💾 حفظ الإعدادات">💾 حفظ الإعدادات</button>
+      <button class="btn btn-ghost" onclick="testIntegration()" data-i18n="🔌 اختبار الاتصال">🔌 اختبار الاتصال</button>
     </div>
   </div>
 </div>
 
 <div class="modal-overlay" id="log-edit-modal">
   <div class="modal">
-    <div class="modal-title"><span>✏️ تعديل يومية إنتاجية</span><span class="modal-close" onclick="closeModal('log-edit-modal')">✕</span></div>
+    <div class="modal-title"><span data-i18n="✏️ تعديل يومية إنتاجية">✏️ تعديل يومية إنتاجية</span><span class="modal-close" onclick="closeModal('log-edit-modal')">✕</span></div>
     <div id="le-info" class="alert info" style="font-size:12px"></div>
     <div class="f-grid">
-      <div class="f-field"><label>الكمية المنفذة *</label><input type="number" id="le-qty" min="0" step="0.01"></div>
-      <div class="f-field full"><label>ملاحظة</label><input type="text" id="le-note"></div>
-      <div class="f-field full" id="le-reason-wrap"><label>سبب التعديل (يُعرض للمعتمِدين) *</label><input type="text" id="le-reason" placeholder="مثال: خطأ في إدخال الكمية"></div>
+      <div class="f-field"><label data-i18n="الكمية المنفذة *">الكمية المنفذة *</label><input type="number" id="le-qty" min="0" step="0.01"></div>
+      <div class="f-field full"><label data-i18n="ملاحظة">ملاحظة</label><input type="text" id="le-note"></div>
+      <div class="f-field full" id="le-reason-wrap"><label data-i18n="سبب التعديل (يُعرض للمعتمِدين) *">سبب التعديل (يُعرض للمعتمِدين) *</label><input type="text" id="le-reason" placeholder="مثال: خطأ في إدخال الكمية"></div>
     </div>
     <div style="display:flex;gap:8px;margin-top:8px">
-      <button class="btn btn-green" id="le-save-btn" onclick="saveLogEdit()">💾 حفظ التعديل</button>
-      <button class="btn btn-ghost" onclick="closeModal('log-edit-modal')">إلغاء</button>
+      <button class="btn btn-green" id="le-save-btn" onclick="saveLogEdit()" data-i18n="💾 حفظ التعديل">💾 حفظ التعديل</button>
+      <button class="btn btn-ghost" onclick="closeModal('log-edit-modal')" data-i18n="إلغاء">إلغاء</button>
     </div>
   </div>
 </div>
@@ -986,32 +1007,32 @@
 <!-- إضافة/تعديل مقاول باطن -->
 <div class="modal-overlay" id="sub-edit-modal">
   <div class="modal wide">
-    <div class="modal-title"><span id="sub-edit-title">مقاول باطن</span><span class="modal-close" onclick="closeModal('sub-edit-modal')">✕</span></div>
+    <div class="modal-title"><span id="sub-edit-title" data-i18n="مقاول باطن">مقاول باطن</span><span class="modal-close" onclick="closeModal('sub-edit-modal')">✕</span></div>
     <div class="f-grid">
-      <div class="f-field"><label>اسم مقاول الباطن *</label><input type="text" id="sub-name" placeholder="مؤسسة ..."></div>
-      <div class="f-field"><label>جوال / تواصل</label><input type="text" id="sub-phone" placeholder="05xxxxxxxx" dir="ltr" style="text-align:left"></div>
-      <div class="f-field"><label>نسبة حجز الجودة الافتراضية %</label><input type="number" id="sub-ret" min="0" max="100" step="0.5" value="10"></div>
-      <div class="f-field full"><label>ملاحظات</label><input type="text" id="sub-note" placeholder="نطاق أعماله / تفاصيل العقد"></div>
+      <div class="f-field"><label data-i18n="اسم مقاول الباطن *">اسم مقاول الباطن *</label><input type="text" id="sub-name" placeholder="مؤسسة ..."></div>
+      <div class="f-field"><label data-i18n="جوال / تواصل">جوال / تواصل</label><input type="text" id="sub-phone" placeholder="05xxxxxxxx" dir="ltr" style="text-align:left"></div>
+      <div class="f-field"><label data-i18n="نسبة حجز الجودة الافتراضية %">نسبة حجز الجودة الافتراضية %</label><input type="number" id="sub-ret" min="0" max="100" step="0.5" value="10"></div>
+      <div class="f-field full"><label data-i18n="ملاحظات">ملاحظات</label><input type="text" id="sub-note" placeholder="نطاق أعماله / تفاصيل العقد"></div>
     </div>
     <div class="divider"></div>
-    <div class="card-title" style="font-size:13px">📋 بنود مقاول الباطن وأسعاره المتفق عليها</div>
-    <div class="alert info" style="font-size:11px">اختر بنداً من جدول كميات المشروع وأدخل السعر المتفق عليه مع المقاول (قد يختلف عن سعر العقد الرئيسي). النظام يحسب مستخلصه بهذه الأسعار.</div>
+    <div class="card-title" style="font-size:13px" data-i18n="📋 بنود مقاول الباطن وأسعاره المتفق عليها">📋 بنود مقاول الباطن وأسعاره المتفق عليها</div>
+    <div class="alert info" style="font-size:11px" data-i18n="اختر بنداً من جدول كميات المشروع وأدخل السعر المتفق عليه مع المقاول (قد يختلف عن سعر العقد الرئيسي). النظام يحسب مستخلصه بهذه الأسعار.">اختر بنداً من جدول كميات المشروع وأدخل السعر المتفق عليه مع المقاول (قد يختلف عن سعر العقد الرئيسي). النظام يحسب مستخلصه بهذه الأسعار.</div>
     <div class="f-grid" style="grid-template-columns:2fr 1fr auto;align-items:end">
-      <div class="f-field"><label>البند</label>
+      <div class="f-field"><label data-i18n="البند">البند</label>
         <div class="combo">
           <input type="text" id="sub-item-search" autocomplete="off" placeholder="🔍 ابحث بالكود أو اسم البند..." oninput="subItemFilter(true)" onfocus="subItemFilter(false)" onblur="subItemBlur()">
           <input type="hidden" id="sub-item-id">
           <div id="sub-item-list" class="combo-list"></div>
         </div>
       </div>
-      <div class="f-field"><label>السعر المتفق (ر.س)</label><input type="number" id="sub-item-rate" min="0" step="0.01"></div>
-      <button class="btn btn-amber" onclick="subAddItemRate()">+ إضافة</button>
+      <div class="f-field"><label data-i18n="السعر المتفق (ر.س)">السعر المتفق (ر.س)</label><input type="number" id="sub-item-rate" min="0" step="0.01"></div>
+      <button class="btn btn-amber" onclick="subAddItemRate()" data-i18n="+ إضافة">+ إضافة</button>
     </div>
     <div id="sub-items-list" style="margin-top:8px"></div>
     <div class="divider"></div>
     <div style="display:flex;gap:8px">
-      <button class="btn btn-green" onclick="saveSub()">💾 حفظ مقاول الباطن</button>
-      <button class="btn btn-ghost" onclick="closeModal('sub-edit-modal')">إلغاء</button>
+      <button class="btn btn-green" onclick="saveSub()" data-i18n="💾 حفظ مقاول الباطن">💾 حفظ مقاول الباطن</button>
+      <button class="btn btn-ghost" onclick="closeModal('sub-edit-modal')" data-i18n="إلغاء">إلغاء</button>
     </div>
   </div>
 </div>
@@ -1019,26 +1040,26 @@
 <!-- صفحة مقاول باطن: الكميات + بناء مستخلص -->
 <div class="modal-overlay" id="sub-detail-modal">
   <div class="modal wide">
-    <div class="modal-title"><span id="sub-detail-title">صفحة مقاول الباطن</span><span class="modal-close" onclick="closeModal('sub-detail-modal')">✕</span></div>
-    <div class="alert info" style="font-size:12px">الكمية المؤهلة = ما نفّذه هذا المقاول (من يومياته) بحدود ما اعتمده الاستشاري. عمّد كمية كل بند (لا تتجاوز المتاح) ثم ابنِ المستخلص.</div>
+    <div class="modal-title"><span id="sub-detail-title" data-i18n="صفحة مقاول الباطن">صفحة مقاول الباطن</span><span class="modal-close" onclick="closeModal('sub-detail-modal')">✕</span></div>
+    <div class="alert info" style="font-size:12px" data-i18n="الكمية المؤهلة = ما نفّذه هذا المقاول (من يومياته) بحدود ما اعتمده الاستشاري. عمّد كمية كل بند (لا تتجاوز المتاح) ثم ابنِ المستخلص.">الكمية المؤهلة = ما نفّذه هذا المقاول (من يومياته) بحدود ما اعتمده الاستشاري. عمّد كمية كل بند (لا تتجاوز المتاح) ثم ابنِ المستخلص.</div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>البند</th><th>الوحدة</th><th>سعر المقاول</th><th>نفّذه</th><th>مؤهل (معتمد)</th><th>سبق تعميده</th><th>متاح للتعميد</th><th>تعميد الآن</th><th>القيمة</th></tr></thead>
+        <thead><tr><th data-i18n="البند">البند</th><th data-i18n="الوحدة">الوحدة</th><th data-i18n="سعر المقاول">سعر المقاول</th><th data-i18n="نفّذه">نفّذه</th><th data-i18n="مؤهل (معتمد)">مؤهل (معتمد)</th><th data-i18n="سبق تعميده">سبق تعميده</th><th data-i18n="متاح للتعميد">متاح للتعميد</th><th data-i18n="تعميد الآن">تعميد الآن</th><th data-i18n="القيمة">القيمة</th></tr></thead>
         <tbody id="sub-detail-tbody"></tbody>
       </table>
     </div>
     <div class="divider"></div>
     <div class="two-col">
       <div>
-        <div class="card-title" style="font-size:13px">الخصومات (يضعها مدير المشروع أو يصفّرها)</div>
+        <div class="card-title" style="font-size:13px" data-i18n="الخصومات (يضعها مدير المشروع أو يصفّرها)">الخصومات (يضعها مدير المشروع أو يصفّرها)</div>
         <div class="f-grid" style="grid-template-columns:1fr 1fr">
-          <div class="f-field"><label>حجز جودة أعمال %</label><input type="number" id="sd-ret" min="0" max="100" step="0.5" oninput="renderSubMusTotals()"></div>
-          <div class="f-field"><label>خصم مواد (ر.س)</label><input type="number" id="sd-materials" min="0" step="0.01" value="0" oninput="renderSubMusTotals()"></div>
-          <div class="f-field"><label>كهرباء وماء (ر.س)</label><input type="number" id="sd-utilities" min="0" step="0.01" value="0" oninput="renderSubMusTotals()"></div>
-          <div class="f-field"><label>سوء أداء / غرامات (ر.س)</label><input type="number" id="sd-performance" min="0" step="0.01" value="0" oninput="renderSubMusTotals()"></div>
-          <div class="f-field"><label>خصومات أخرى (ر.س)</label><input type="number" id="sd-other" min="0" step="0.01" value="0" oninput="renderSubMusTotals()"></div>
-          <div class="f-field"><label>تاريخ المستخلص</label><input type="date" id="sd-date"></div>
-          <div class="f-field full"><label style="color:var(--red)">📎 المرفقات إلزامية * — تُحفظ في أرشيف المشروع</label>
+          <div class="f-field"><label data-i18n="حجز جودة أعمال %">حجز جودة أعمال %</label><input type="number" id="sd-ret" min="0" max="100" step="0.5" oninput="renderSubMusTotals()"></div>
+          <div class="f-field"><label data-i18n="خصم مواد (ر.س)">خصم مواد (ر.س)</label><input type="number" id="sd-materials" min="0" step="0.01" value="0" oninput="renderSubMusTotals()"></div>
+          <div class="f-field"><label data-i18n="كهرباء وماء (ر.س)">كهرباء وماء (ر.س)</label><input type="number" id="sd-utilities" min="0" step="0.01" value="0" oninput="renderSubMusTotals()"></div>
+          <div class="f-field"><label data-i18n="سوء أداء / غرامات (ر.س)">سوء أداء / غرامات (ر.س)</label><input type="number" id="sd-performance" min="0" step="0.01" value="0" oninput="renderSubMusTotals()"></div>
+          <div class="f-field"><label data-i18n="خصومات أخرى (ر.س)">خصومات أخرى (ر.س)</label><input type="number" id="sd-other" min="0" step="0.01" value="0" oninput="renderSubMusTotals()"></div>
+          <div class="f-field"><label data-i18n="تاريخ المستخلص">تاريخ المستخلص</label><input type="date" id="sd-date"></div>
+          <div class="f-field full"><label style="color:var(--red)" data-i18n="📎 المرفقات إلزامية * — تُحفظ في أرشيف المشروع">📎 المرفقات إلزامية * — تُحفظ في أرشيف المشروع</label>
             <div style="font-size:11px;color:var(--text2);margin-bottom:4px">أرفق: <strong>المستخلص المعمول من قِبل الشركة</strong> + <strong>اعتمادات الاستشاري</strong> + التسوية (PDF أو صور)</div>
             <input type="file" id="sd-files" accept="image/*,.pdf,application/pdf" multiple onchange="sdFilesPicked(this)">
             <div id="sd-files-list" style="display:flex;flex-direction:column;gap:4px;margin-top:6px"></div>
@@ -1047,10 +1068,10 @@
       </div>
       <div>
         <div class="invoice-sidebar">
-          <div class="card-title" style="color:var(--green-bright)">💰 ملخص مستخلص المقاول</div>
+          <div class="card-title" style="color:var(--green-bright)" data-i18n="💰 ملخص مستخلص المقاول">💰 ملخص مستخلص المقاول</div>
           <div id="sd-totals"></div>
           <div class="divider"></div>
-          <button class="btn btn-green" onclick="buildSubMus()">💾 بناء مستخلص المقاول</button>
+          <button class="btn btn-green" onclick="buildSubMus()" data-i18n="💾 بناء مستخلص المقاول">💾 بناء مستخلص المقاول</button>
         </div>
       </div>
     </div>
@@ -1206,6 +1227,105 @@ Object.assign(I18N_EN, {
   'المشروع':'Project',
   'تعذر الحفظ:':'Failed to save:'
 });
+// ============================================================
+//  ترجمات إضافية — واجهات مقاولي الباطن، قاعدة الأسعار، الإعدادات، إلخ (استكمال التعريب/English)
+// ============================================================
+Object.assign(I18N_EN, {
+  '📋 بنود الأسعار':'📋 Price items',
+  '📁 العروض':'📁 Offers',
+  '📑 مستخلصات مقاولي الباطن':'📑 Subcontractor claims',
+  '⬆ بعد الحفظ يذهب المستخلص إلى مدير المشاريع لمراجعته واعتماده وإصدار الفاتورة.':'⬆ After saving, the claim goes to the projects manager for review, approval, and invoicing.',
+  'تفاصيل الوحدة':'Unit details',
+  'الوحدة (اختياري)':'Unit (optional)',
+  'مقاول الباطن المنفّذ':'Executing subcontractor',
+  '💡 مكتبة أسعار الشركة من العروض السابقة — ابحث، أدرج البنود مباشرة في جدول كميات المشروع الحالي، أو استورد قائمتك من Excel.':'💡 The company\'s price library from previous offers — search, insert items directly into the current project\'s BOQ, or import your list from Excel.',
+  '📥 استيراد Excel':'📥 Import Excel',
+  '+ إضافة بند سعر':'+ Add price item',
+  'المصدر':'Source',
+  'إجراء':'Action',
+  '+ إضافة عرض':'+ Add offer',
+  '🧱 مقاولو الباطن':'🧱 Subcontractors',
+  '💡 سجّل مقاولي الباطن وبنودهم وأسعارهم المتفق عليها. عند إدخال الإنتاجية اليومية يُنسب العمل لمقاول الباطن المنفّذ، وبعد اعتماد الاستشاري للكمية تصبح مستحقة للصرف. افتح صفحة المقاول لتعميد كمياته وبناء مستخلصه تلقائياً.':'💡 Register subcontractors and their agreed items and rates. When logging daily productivity, work is attributed to the executing subcontractor, and once the consultant approves the quantity it becomes payable. Open the subcontractor\'s page to certify their quantities and automatically build their claim.',
+  '+ إضافة مقاول باطن':'+ Add subcontractor',
+  'المستخلص':'Claim',
+  'بنود':'Items',
+  'محتجز+خصومات':'Retention + deductions',
+  'الصافي':'Net',
+  'المدفوع':'Paid',
+  '⚠️ غير شامل ضريبة القيمة المضافة — تُضاف تلقائياً في المستخلص':'⚠️ Excludes VAT — added automatically in the claim',
+  'بند رئيسي (تقسيم البند إلى بنود فرعية)':'Parent item (split into sub-items)',
+  '— بند مستقل (بدون تجميع)':'— Independent item (no grouping)',
+  'مثال: بند «هدم وترحيل» بسعر 30 — أنشئ تحته «هدم» بـ20 و«ترحيل» بـ10. القيمة تُحسب من الفروع فقط لتفادي الازدواج.':'Example: item "Demolition and removal" at 30 — create under it "Demolition" at 20 and "Removal" at 10. The value is calculated from the sub-items only, to avoid double counting.',
+  '📄 وثيقة المستخلص':'📄 Claim document',
+  'الكمية المنفذة حسب النظام (أدخلها المهندس)':'Executed quantity per the system (entered by the engineer)',
+  '🖊 الكمية الموقّعة على الاستلام (AR) *':'🖊 Quantity signed on the receipt (AR) *',
+  'تاريخ الاعتماد':'Approval date',
+  'اسم الاستشاري / المهندس':'Consultant / engineer name',
+  'رقم الاستلام (AR)':'Receipt number (AR)',
+  'الكمية المعتمدة (تدخل المستخلص)':'Approved quantity (enters the claim)',
+  '📎 استلام الاستشاري الموقّع + كل الملفات الداعمة * — PDF أو صور (يمكن اختيار عدة ملفات)':'📎 Signed consultant receipt + all supporting files * — PDF or images (multiple files allowed)',
+  '✅ الكمية المعتمدة يجب أن تطابق الكمية الموقّعة على الاستلام. رفع استلام الاستشاري الموقّع (وأي ملفات داعمة) إلزامي — يبقى دليلاً يُثبت أن الكمية مستلمة ويحق المطالبة بها.':'✅ The approved quantity must match the quantity signed on the receipt. Uploading the signed consultant receipt (and any supporting files) is mandatory — it stands as proof the quantity was received and is claimable.',
+  '✅ اعتماد الكمية':'✅ Approve quantity',
+  '💵 اعتماد صرف لمقاول الباطن':'💵 Approve payment to subcontractor',
+  'تاريخ الصرف':'Payment date',
+  'المبلغ المعتمَد صرفه (ر.س) — كامل أو جزء':'Amount approved for payment (SAR) — full or partial',
+  '💾 اعتماد الصرف':'💾 Approve payment',
+  'إضافة مشروع':'Add project',
+  'الوحدة *':'Unit *',
+  'المصدر / رقم العرض':'Source / offer number',
+  '🗑 حذف':'🗑 Delete',
+  'رقم العرض *':'Offer number *',
+  'الموقع':'Location',
+  'المشروع *':'Project *',
+  'نوع العرض':'Offer type',
+  'صلاحية العرض (يوم)':'Offer validity (days)',
+  'الإجمالي قبل الضريبة (ر.س) *':'Total before tax (SAR) *',
+  'نسبة الضريبة %':'Tax rate %',
+  'الأقسام (اسم = مبلغ في كل سطر)':'Sections (name = amount, one per line)',
+  '📎 ملفات العرض (PDF أو صور)':'📎 Offer files (PDF or images)',
+  '💾 حفظ العرض':'💾 Save offer',
+  '➕ إدراج في جدول كميات المشروع':'➕ Insert into project BOQ',
+  'رقم البند في المشروع':'Item number in the project',
+  '➕ إدراج في المشروع الحالي':'➕ Insert into current project',
+  'الشركة':'Company',
+  'تفعيل الإرسال التلقائي إلى Bassir ERP عند إنشاء مستخلص جديد':'Enable automatic sending to Bassir ERP when a new claim is created',
+  'رابط API (Endpoint URL)':'API URL (Endpoint URL)',
+  'مفتاح الـ API (API Key / Token)':'API key (API Key / Token)',
+  'اسم الترويسة':'Header name',
+  'بادئة القيمة':'Value prefix',
+  '💾 حفظ الإعدادات':'💾 Save settings',
+  '🔌 اختبار الاتصال':'🔌 Test connection',
+  '✏️ تعديل يومية إنتاجية':'✏️ Edit productivity log',
+  'الكمية المنفذة *':'Executed quantity *',
+  'سبب التعديل (يُعرض للمعتمِدين) *':'Reason for edit (shown to approvers) *',
+  '💾 حفظ التعديل':'💾 Save edit',
+  'مقاول باطن':'Subcontractor',
+  'اسم مقاول الباطن *':'Subcontractor name *',
+  'جوال / تواصل':'Mobile / contact',
+  'نسبة حجز الجودة الافتراضية %':'Default quality retention rate %',
+  '📋 بنود مقاول الباطن وأسعاره المتفق عليها':'📋 Subcontractor\'s items and agreed rates',
+  'اختر بنداً من جدول كميات المشروع وأدخل السعر المتفق عليه مع المقاول (قد يختلف عن سعر العقد الرئيسي). النظام يحسب مستخلصه بهذه الأسعار.':'Choose an item from the project\'s BOQ and enter the rate agreed with the subcontractor (may differ from the main contract rate). The system calculates their claim using these rates.',
+  'السعر المتفق (ر.س)':'Agreed rate (SAR)',
+  '💾 حفظ مقاول الباطن':'💾 Save subcontractor',
+  'صفحة مقاول الباطن':'Subcontractor page',
+  'الكمية المؤهلة = ما نفّذه هذا المقاول (من يومياته) بحدود ما اعتمده الاستشاري. عمّد كمية كل بند (لا تتجاوز المتاح) ثم ابنِ المستخلص.':'Eligible quantity = what this subcontractor executed (from their logs), capped by what the consultant approved. Certify each item\'s quantity (not exceeding what\'s available) then build the claim.',
+  'سعر المقاول':'Subcontractor rate',
+  'نفّذه':'Executed by them',
+  'مؤهل (معتمد)':'Eligible (approved)',
+  'سبق تعميده':'Previously certified',
+  'متاح للتعميد':'Available to certify',
+  'تعميد الآن':'Certify now',
+  'الخصومات (يضعها مدير المشروع أو يصفّرها)':'Deductions (set or zeroed by the projects manager)',
+  'حجز جودة أعمال %':'Quality retention %',
+  'خصم مواد (ر.س)':'Materials deduction (SAR)',
+  'كهرباء وماء (ر.س)':'Electricity & water (SAR)',
+  'سوء أداء / غرامات (ر.س)':'Poor performance / penalties (SAR)',
+  'خصومات أخرى (ر.س)':'Other deductions (SAR)',
+  '📎 المرفقات إلزامية * — تُحفظ في أرشيف المشروع':'📎 Attachments are mandatory * — stored in the project archive',
+  '💰 ملخص مستخلص المقاول':'💰 Subcontractor claim summary',
+  '💾 بناء مستخلص المقاول':'💾 Build subcontractor claim',
+});
+
 function T(s){
   if (LANG !== 'en') return s;
   return Object.prototype.hasOwnProperty.call(I18N_EN, s) ? I18N_EN[s] : s;
@@ -1456,7 +1576,9 @@ Object.assign(I18N_EN, {
   '👷 الإنتاجية':'👷 Productivity',
   'لا يوجد مشروع':'No project',
   'وحدة':'Unit',
-  'الوحدات':'Units'
+  'الوحدات':'Units',
+  'فيلا':'Villa',
+  'الفلل':'Villas'
 });
 
 function currentUser(){
@@ -1483,8 +1605,8 @@ function proj(){
 }
 
 // مسمى الوحدة حسب نوع المشروع (فيلا / مبنى / قطاع طريق ...)
-const UL = () => proj().info.unitLabel || 'وحدة';
-const ULS = () => proj().info.unitsTitle || 'الوحدات';
+const UL = () => T(proj().info.unitLabel || 'وحدة');
+const ULS = () => T(proj().info.unitsTitle || 'الوحدات');
 const PROJECT_TYPES = {
   residential: {label:'فلل / وحدات سكنية', unit:'فيلا', units:'الفلل'},
   buildings:   {label:'مباني', unit:'مبنى', units:'المباني'},
@@ -1712,6 +1834,11 @@ const childrenOf = id => proj().boqItems.filter(i => i.parentId === id);
 const isParent = it => !!it && proj().boqItems.some(i => i.parentId === it.id);   // بند رئيسي = له بنود فرعية
 const isChild = it => !!it && !!it.parentId && !!getItem(it.parentId);            // بند فرعي
 const parentOf = it => (it && it.parentId) ? getItem(it.parentId) : null;
+// تقسيم سعر البند (منفصل عن "بند فرعي" مستقل): بند فرعي "مكوّن سعر" (splitAt) لا يملك كمية/تنفيذ/مرفوع خاصاً به —
+// كلها مرآة للبند الأصلي (نفس الشغل الفعلي)، وله فقط سعر وحدة واعتماد خاصين به. qtyBase تُرجع مصدر الكمية الحقيقي:
+// الأب لمكوّن سعر، أو البند ذاته لأي بند آخر (عادي أو بند فرعي مستقل بكميته الخاصة)
+const isSplitChild = it => !!it && !!it.splitAt && !!it.parentId;
+const qtyBase = it => { const b = isSplitChild(it) ? getItem(it.parentId) : null; return b || it; };
 // تجميع أرقام البند الرئيسي من فروعه (لتفادي الازدواج في الحساب)
 function groupAgg(parent){
   const kids = childrenOf(parent.id);
@@ -1721,15 +1848,15 @@ function groupAgg(parent){
     execPct:wpct(itemPct), approvedPct:wpct(approvedPct), claimedPct:wpct(claimedPct),
     net:kids.reduce((s,k)=>s+netClaimable(k),0), pending:kids.reduce((s,k)=>s+pendingApprovalValue(k),0) };
 }
-const amt = it => (it.totalQty||0) * (it.unitRate||0);
-const approvedOf = it => Math.min(it.executedQty||0, it.approvedQty!==undefined ? it.approvedQty : (it.executedQty||0));
-const itemPct = it => it.totalQty > 0 ? clamp(it.executedQty / it.totalQty, 0, 1) : 0;      // نسبة المنفذ ميدانياً
-const approvedPct = it => it.totalQty > 0 ? clamp(approvedOf(it) / it.totalQty, 0, 1) : 0;    // نسبة المعتمد من الاستشاري
-const claimedPct = it => it.totalQty > 0 ? clamp(it.claimedQty / it.totalQty, 0, 1) : 0;
-const pendingApprovalQty = it => it.scope === 'others' ? 0 : Math.max(0, (it.executedQty||0) - approvedOf(it)); // منفذ بانتظار اعتماد الاستشاري
+const amt = it => (qtyBase(it).totalQty||0) * (it.unitRate||0);
+const approvedOf = it => { const b = qtyBase(it); return Math.min(b.executedQty||0, it.approvedQty!==undefined ? it.approvedQty : (b.executedQty||0)); };
+const itemPct = it => { const b = qtyBase(it); return b.totalQty > 0 ? clamp(b.executedQty / b.totalQty, 0, 1) : 0; };      // نسبة المنفذ ميدانياً
+const approvedPct = it => { const b = qtyBase(it); return b.totalQty > 0 ? clamp(approvedOf(it) / b.totalQty, 0, 1) : 0; };    // نسبة المعتمد من الاستشاري
+const claimedPct = it => { const b = qtyBase(it); return b.totalQty > 0 ? clamp((b.claimedQty||0) / b.totalQty, 0, 1) : 0; };
+const pendingApprovalQty = it => { const b = qtyBase(it); return it.scope === 'others' ? 0 : Math.max(0, (b.executedQty||0) - approvedOf(it)); }; // منفذ بانتظار اعتماد الاستشاري
 const pendingApprovalValue = it => pendingApprovalQty(it) * (it.unitRate||0);
 // المتاح للمستخلص = المعتمد من الاستشاري ناقص المرفوع سابقاً (وليس المنفذ)
-const availQty = it => Math.max(0, approvedOf(it) - (it.claimedQty||0));
+const availQty = it => { const b = qtyBase(it); return Math.max(0, approvedOf(it) - (b.claimedQty||0)); };
 const netClaimable = it => it.scope === 'others' ? 0 : availQty(it) * it.unitRate;
 const remainingValue = it => it.scope === 'others' ? 0 : (1 - itemPct(it)) * amt(it);
 // قائمة "قابلة للتصرف": تستبعد البنود الفرعية (مكوّنات السعر) — تُستخدم في كل مكان يُبنى منه
@@ -1755,6 +1882,8 @@ Object.assign(I18N_EN, {
   'بانتظار أعمال سابقة':'Awaiting prior work',
   'متاح للبدء الآن':'Available to start now',
   'قيد التنفيذ':'In progress',
+  'بانتظار اعتماد الاستشاري':'Awaiting consultant approval',
+  'مكتمل - معتمد':'Complete - approved',
   'مكتمل':'Complete',
   'مكتمل ومرفوع':'Complete and claimed'
 });
@@ -1801,18 +1930,21 @@ function totalsFor(p){
   const t = {contract:0, azoomScope:0, executed:0, approved:0, pendingApproval:0, claimed:0, net:0, locked:0, othersVal:0, musNet:0, collected:0, blockedCount:0, pendingApprovalCount:0};
   const getP = id => p.boqItems.find(i => i.id === id);
   const isParentIn = it => p.boqItems.some(c => c.parentId === it.id);
+  // مصدر الكمية الحقيقي محلياً (لا نستخدم qtyBase العامة المرتبطة بـ proj() الحالي — p قد يكون مشروعاً آخر)
+  const baseP = it => { const b = (it.splitAt && it.parentId) ? getP(it.parentId) : null; return b || it; };
   p.boqItems.forEach(it => {
     if (isParentIn(it)) return; // البند الرئيسي مجرد تجميع — القيمة محسوبة في فروعه
-    const a = amt(it);
+    const b = baseP(it);
+    const a = (b.totalQty||0) * (it.unitRate||0);
     t.contract += a;
     if (it.scope === 'others') { t.othersVal += a; return; }
     t.azoomScope += a;
-    const pct = it.totalQty>0 ? clamp((it.executedQty||0)/it.totalQty,0,1) : 0;
-    const apprOf = Math.min(it.executedQty||0, it.approvedQty!==undefined?it.approvedQty:(it.executedQty||0));
-    const apprPct = it.totalQty>0 ? clamp(apprOf/it.totalQty,0,1) : 0;
-    const claimPct = it.totalQty>0 ? clamp((it.claimedQty||0)/it.totalQty,0,1) : 0;
-    const pendQty = Math.max(0,(it.executedQty||0)-apprOf);
-    const availQ = Math.max(0, apprOf-(it.claimedQty||0));
+    const pct = b.totalQty>0 ? clamp((b.executedQty||0)/b.totalQty,0,1) : 0;
+    const apprOf = Math.min(b.executedQty||0, it.approvedQty!==undefined?it.approvedQty:(b.executedQty||0));
+    const apprPct = b.totalQty>0 ? clamp(apprOf/b.totalQty,0,1) : 0;
+    const claimPct = b.totalQty>0 ? clamp((b.claimedQty||0)/b.totalQty,0,1) : 0;
+    const pendQty = Math.max(0,(b.executedQty||0)-apprOf);
+    const availQ = Math.max(0, apprOf-(b.claimedQty||0));
     t.executed += pct * a;
     t.approved += apprPct * a;
     t.pendingApproval += pendQty * (it.unitRate||0);
@@ -1867,7 +1999,12 @@ Object.assign(I18N_EN, {
   'مباني':'Buildings',
   'بنية تحتية':'Infrastructure',
   'طرق':'Roads',
-  'أخرى':'Other'
+  'أخرى':'Other',
+  'مبنى':'Building',
+  'المباني':'Buildings',
+  'قطاع':'Sector',
+  'القطاعات':'Sectors',
+  'قطاع (كم)':'Sector (km)'
 });
 
 // ============================================================
@@ -1894,7 +2031,7 @@ function renderProjects(){
     return '<div class="card' + (isCur ? ' green-b' : '') + '" style="margin-bottom:0">' +
       '<div class="sc-header"><div class="sc-icon" style="background:var(--amber-dim)">🗂</div>' +
       '<div style="flex:1"><div>' + esc(p.info.name) + (isCur ? ' <span class="pill green" style="font-size:9px">' + T('الحالي') + '</span>' : '') + '</div>' +
-      '<div style="font-size:11px;color:var(--text2)">' + (isAdmin() && companyName(p.companyId) ? '🏢 ' + esc(companyName(p.companyId)) + ' · ' : '') + esc(p.info.client || '—') + ' · ' + p.boqItems.length + ' ' + T('بند') + ' · ' + p.villas.length + ' ' + esc(p.info.unitLabel||'وحدة') + '</div></div></div>' +
+      '<div style="font-size:11px;color:var(--text2)">' + (isAdmin() && companyName(p.companyId) ? '🏢 ' + esc(companyName(p.companyId)) + ' · ' : '') + esc(p.info.client || '—') + ' · ' + p.boqItems.length + ' ' + T('بند') + ' · ' + p.villas.length + ' ' + esc(T(p.info.unitLabel||'وحدة')) + '</div></div></div>' +
       '<div class="sc-item"><span class="sc-item-name">👤 ' + T('مدير المشروع') + '</span><span class="sc-item-val" style="color:' + (mgr ? 'var(--blue)' : 'var(--red)') + '">' + (mgr ? esc(mgr) : T('غير معيّن ⚠')) + '</span></div>' +
       '<div style="margin:8px 0"><div class="villa-prog-bar" style="height:6px"><div class="villa-prog-fill" style="width:' + pct + '%;background:' + barColor + '"></div></div>' +
       '<div style="font-size:11px;font-family:var(--mono);color:' + barColor + '">' + pct.toFixed(1) + '% ' + T('إنجاز') + '</div></div>' +
@@ -1944,8 +2081,8 @@ function openProjectModal(id){
   $('pm-delete-btn').style.display = p ? '' : 'none';
   $('pm-name').value = p ? p.info.name : '';
   $('pm-type').value = p ? (p.info.projectType||'residential') : 'residential';
-  $('pm-unit').value = p ? (p.info.unitLabel||'') : PROJECT_TYPES.residential.unit;
-  $('pm-units').value = p ? (p.info.unitsTitle||'') : PROJECT_TYPES.residential.units;
+  $('pm-unit').value = p ? (p.info.unitLabel||'') : T(PROJECT_TYPES.residential.unit);
+  $('pm-units').value = p ? (p.info.unitsTitle||'') : T(PROJECT_TYPES.residential.units);
   $('pm-client').value = p ? (p.info.client||'') : '';
   $('pm-consultant').value = p ? (p.info.consultant||'') : '';
   $('pm-contractor').value = p ? (p.info.contractor||'') : (state.projects[0] ? state.projects[0].info.contractor : '');
@@ -1976,8 +2113,8 @@ Object.assign(I18N_EN, {
 
 function pmTypeChanged(){
   const t = PROJECT_TYPES[$('pm-type').value] || PROJECT_TYPES.other;
-  $('pm-unit').value = t.unit;
-  $('pm-units').value = t.units;
+  $('pm-unit').value = T(t.unit);
+  $('pm-units').value = T(t.units);
 }
 
 async function saveProject(){
@@ -2494,7 +2631,7 @@ function renderPlan(){
   const blockedItems = actionableItems().filter(i => statusOf(i) === 'blocked');
   const groups = {};
   blockedItems.forEach(i => {
-    const key = i.blocker.reason || 'غير محدد';
+    const key = i.blocker.reason || T('غير محدد');
     if (!groups[key]) groups[key] = {type:i.blocker.type, direct:[], down:new Set()};
     groups[key].direct.push(i);
     downstreamSet(i.id, groups[key].down);
@@ -2586,6 +2723,7 @@ function renderPlan(){
   $('plan-content').innerHTML = html;
 }
 Object.assign(I18N_EN, {
+  'غير محدد':'Unspecified',
   'ارفع مستخلص الآن — صافي جاهز:':'Submit a claim now — net ready:',
   'ابنِ المستخلص':'Build the claim',
   'منفذ':'executed',
@@ -2645,8 +2783,29 @@ function searchItemsChanged(){
   renderItemsTable();
 }
 
+// مجموعات مفتوحة (موسّعة) في جدول البنود — حالة عرض فقط للجلسة الحالية، لا تُحفظ.
+// مطوية افتراضياً؛ أثناء البحث/الفلترة تُفتح تلقائياً المجموعة التي يوجد بها تطابق (ليظهر ضمن سياقه)،
+// لكن لو المستخدم طواها يدوياً تبقى مطوية حتى أثناء البحث (بدل أن يبدو زر الطي/الفتح وكأنه لا يعمل)
+const expandedGroups = new Set();
+const collapsedGroups = new Set();
+function isGroupExpanded(id, filtering){
+  if (collapsedGroups.has(id)) return false;
+  return expandedGroups.has(id) || !!filtering;
+}
+function toggleGroup(id){
+  const wasExpanded = isGroupExpanded(id, isFilteringItems() && childrenOf(id).length > 0);
+  if (wasExpanded) { collapsedGroups.add(id); expandedGroups.delete(id); }
+  else { expandedGroups.add(id); collapsedGroups.delete(id); }
+  renderItemsTable();
+}
+function isFilteringItems(){
+  const search = ($('search-items').value || '').toLowerCase();
+  return !!search || currentFilter !== 'all';
+}
+
 function renderItemsTable(){
   const search = ($('search-items').value || '').toLowerCase();
+  const filtering = isFilteringItems();
   const matches = it => {
     if (search && !(it.desc.toLowerCase().includes(search) || it.id.toLowerCase().includes(search) || (it.divAr||'').includes(search))) return false;
     if (currentFilter === 'all') return true;
@@ -2657,15 +2816,17 @@ function renderItemsTable(){
   // ترتيب هرمي: كل بند رئيسي يتبعه بنوده الفرعية
   const all = proj().boqItems;
   const topLevel = all.filter(it => !isChild(it));
-  const rows = []; // {it, kind:'header'|'child'|'normal'}
+  const rows = []; // {it, kind:'header'|'child'|'normal', expanded?}
   let shownLeaves = 0;
   topLevel.forEach(t => {
     if (isParent(t)) {
       const kids = childrenOf(t.id);
       const visKids = matches(t) ? kids : kids.filter(matches);
       if (matches(t) || visKids.length) {
-        rows.push({it:t, kind:'header'});
-        visKids.forEach(k => { rows.push({it:k, kind:'child'}); shownLeaves++; });
+        const expanded = isGroupExpanded(t.id, filtering && visKids.length > 0);
+        rows.push({it:t, kind:'header', expanded});
+        shownLeaves += visKids.length;
+        if (expanded) visKids.forEach(k => { rows.push({it:k, kind:'child'}); });
       }
     } else if (matches(t)) {
       rows.push({it:t, kind:'normal'}); shownLeaves++;
@@ -2673,65 +2834,84 @@ function renderItemsTable(){
   });
 
   let sumAmt = 0, sumNet = 0;
-  $('items-tbody').innerHTML = rows.map(({it, kind}) => {
+  $('items-tbody').innerHTML = rows.map(({it, kind, expanded}) => {
     if (kind === 'header') {
       const g = groupAgg(it);
       sumAmt += g.amt; sumNet += g.net;
       const stColor = g.execPct>=DONE?'green':g.execPct>0?'amber':'red';
+      const kidsAreSplit = childrenOf(it.id).some(k => k.splitAt);
       return '<tr style="background:var(--panel2,rgba(127,127,127,0.06))">' +
-        '<td><span class="item-no">▸ ' + esc(it.id) + '</span><br><span style="font-size:10px;color:var(--text3)">' + esc(it.div) + '</span></td>' +
-        '<td><div class="desc-text" style="font-weight:700" data-tip="بند رئيسي مقسّم إلى ' + g.count + ' بند فرعي">📁 ' + esc(it.desc) + ' <span class="pill blue" style="font-size:9px">' + g.count + ' فرعي</span></div><span style="font-size:10px;color:var(--text3)">' + esc(it.divAr||'') + '</span></td>' +
+        '<td><button class="group-toggle" onclick="toggleGroup(\'' + esc(it.id) + '\')" data-tip="' + T('عرض/إخفاء البنود الفرعية') + '" style="background:none;border:none;color:inherit;cursor:pointer;font-size:13px;padding:0 4px 0 0">' + (expanded?'▾':'▸') + '</button><span class="item-no">' + esc(it.id) + '</span><br><span style="font-size:10px;color:var(--text3)">' + esc(it.div) + '</span></td>' +
+        '<td><div class="desc-text" style="font-weight:700" data-tip="' + T('بند رئيسي مقسّم إلى ') + g.count + T(' بند فرعي') + '">📁 ' + esc(it.desc) + ' <span class="pill blue" style="font-size:9px">' + g.count + ' ' + T('فرعي') + '</span></div><span style="font-size:10px;color:var(--text3)">' + esc(it.divAr||'') + '</span></td>' +
         '<td><span style="color:var(--text3)">—</span></td>' +
         '<td class="amount muted">—</td>' +
-        '<td class="amount muted" data-tip="مجموع أسعار البنود الفرعية">' + fmtN(g.rateSum) + '</td>' +
+        '<td class="amount muted" data-tip="' + T('مجموع أسعار البنود الفرعية') + '">' + fmtN(g.rateSum) + '</td>' +
         '<td class="amount">' + fmtN(g.amt) + '</td>' +
         '<td><span style="display:inline-flex;align-items:center;gap:5px"><span style="font-family:var(--mono);font-size:10px;color:var(--text2)">' + (g.execPct*100).toFixed(1) + '%</span><span class="prog-bar" style="width:56px"><span class="prog-fill ' + stColor + '" style="width:' + (g.execPct*100) + '%;display:block"></span></span></span></td>' +
-        '<td>' + (g.pending>1 ? '<span style="font-size:11px;color:var(--orange)">🕵 بانتظار ' + fmtN(g.pending) + '</span>' : '<span style="color:var(--text3)">—</span>') + '</td>' +
+        '<td>' + (g.pending>1 ? '<span style="font-size:11px;color:var(--orange)">🕵 ' + T('بانتظار') + ' ' + fmtN(g.pending) + '</span>' : '<span style="color:var(--text3)">—</span>') + '</td>' +
         '<td class="amount" style="color:var(--teal)">' + (g.claimedPct*100).toFixed(0) + '%</td>' +
         '<td class="amount ' + (g.net>1?'claimable':'muted') + '">' + (g.net>1?fmtN(g.net):'—') + '</td>' +
-        '<td><span class="pill blue" style="font-size:10px">بند رئيسي</span></td>' +
+        '<td><span class="pill blue" style="font-size:10px">' + T('بند رئيسي') + '</span></td>' +
         '<td>—</td>' +
-        '<td style="white-space:nowrap"><button class="mini-btn" onclick="openItemModal(\'' + esc(it.id) + '\')">✏️ تعديل</button> ' +
-        '<button class="mini-btn" onclick="addSubItem(\'' + esc(it.id) + '\')">➕ بند فرعي</button></td>' +
+        '<td style="white-space:nowrap"><button class="mini-btn" onclick="openItemModal(\'' + esc(it.id) + '\')">✏️ ' + T('تعديل') + '</button>' +
+        (kidsAreSplit ? '' : ' <button class="mini-btn" onclick="addSubItem(\'' + esc(it.id) + '\')">➕ ' + T('بند فرعي') + '</button>') + '</td>' +
         '</tr>';
     }
     const it2 = it, st = statusOf(it2), net = netClaimable(it2);
-    sumAmt += amt(it2); sumNet += net;
     const indent = kind === 'child';
+    // ملاحظة: قيمة البند الفرعي مُحتسبة بالفعل ضمن مجموع البند الرئيسي (groupAgg) أعلاه — لا تُضاف مرة ثانية هنا
+    if (!indent) { sumAmt += amt(it2); sumNet += net; }
     let depHtml = '—';
     if (it2.blocker && it2.blocker.active) depHtml = '<span class="blocker-box" data-tip="' + esc(it2.blocker.note||'') + '">⛔ ' + esc(it2.blocker.reason) + '</span>';
     else if ((it2.predecessors||[]).length) {
       const preds = it2.predecessors.map(pid => { const p = getItem(pid); return p ? esc(pid) + ' (' + (itemPct(p)*100).toFixed(0) + '%)' : esc(pid); }).join('، ');
-      depHtml = '<span class="prereq-box" data-tip="لا يمكن البدء قبل اكتمال هذه البنود">⏭ ' + preds + '</span>';
+      depHtml = '<span class="prereq-box" data-tip="' + T('لا يمكن البدء قبل اكتمال هذه البنود') + '">⏭ ' + preds + '</span>';
     }
     return '<tr' + (indent ? ' style="background:var(--panel2,rgba(127,127,127,0.02))"' : '') + '>' +
       '<td' + (indent?' style="padding-inline-start:18px"':'') + '><span class="item-no">' + (indent?'<span style="color:var(--text3)">↳ </span>':'') + esc(it2.id) + '</span><br><span style="font-size:10px;color:var(--text3)">' + esc(it2.div) + '</span></td>' +
       '<td><div class="desc-text" data-tip="' + esc(it2.desc) + '">' + esc(it2.desc) + '</div><span style="font-size:10px;color:var(--text3)">' + esc(it2.divAr||'') + '</span></td>' +
       '<td><span class="pill gray" style="font-size:10px">' + esc(it2.unit) + '</span></td>' +
-      '<td class="amount muted">' + fmtQ(it2.totalQty) + '</td>' +
+      '<td class="amount muted">' + fmtQ(qtyBase(it2).totalQty) + '</td>' +
       '<td class="amount muted">' + fmtN(it2.unitRate) + '</td>' +
       '<td class="amount">' + fmtN(amt(it2)) + '</td>' +
       '<td>' + (it2.scope==='others' ? '<span style="color:var(--text3)">—</span>' :
-        '<span style="display:inline-flex;flex-direction:column;gap:3px;align-items:flex-start">' +
-        '<input type="number" class="qty-input" min="0" max="' + it2.totalQty + '" step="any" value="' + (Math.round((it2.executedQty||0)*100)/100) + '" onchange="setItemQty(\'' + esc(it2.id) + '\', this.value)" data-tip="أدخل الكمية المنفذة (من أصل ' + fmtQ(it2.totalQty) + ' ' + esc(it2.unit) + ') — العميل يحاسب بالكميات">' +
+        isSplitChild(it2) ?
+        ('<span style="display:inline-flex;flex-direction:column;gap:3px;align-items:flex-start">' +
+         '<span style="font-size:10px;color:var(--text3)" data-tip="' + T('الكمية والتنفيذ مرآة للبند الأصلي — عدّلها من') + ' ' + esc(it2.parentId) + '">' + T('مرآة للبند الأصلي') + '</span>' +
+         '<span style="display:inline-flex;align-items:center;gap:5px"><span style="font-family:var(--mono);font-size:10px;color:var(--text2)">' + (itemPct(it2)*100).toFixed(1) + '%</span><span class="prog-bar" style="width:56px"><span class="prog-fill ' + (itemPct(it2)>=DONE?'green':itemPct(it2)>0?'amber':'red') + '" style="width:' + (itemPct(it2)*100) + '%;display:block"></span></span></span>' +
+         '</span>') :
+        ('<span style="display:inline-flex;flex-direction:column;gap:3px;align-items:flex-start">' +
+        '<input type="number" class="qty-input" min="0" max="' + it2.totalQty + '" step="any" value="' + (Math.round((it2.executedQty||0)*100)/100) + '" onchange="setItemQty(\'' + esc(it2.id) + '\', this.value)" data-tip="' + T('أدخل الكمية المنفذة (من أصل ') + fmtQ(it2.totalQty) + ' ' + esc(it2.unit) + T(') — العميل يحاسب بالكميات') + '">' +
         '<span style="display:inline-flex;align-items:center;gap:5px"><span style="font-family:var(--mono);font-size:10px;color:var(--text2)">' + (itemPct(it2)*100).toFixed(1) + '%</span><span class="prog-bar" style="width:56px"><span class="prog-fill ' + (itemPct(it2)>=DONE?'green':itemPct(it2)>0?'amber':'red') + '" style="width:' + (itemPct(it2)*100) + '%;display:block"></span></span></span>' +
-        '</span>') + '</td>' +
+        '</span>')) + '</td>' +
       '<td>' + approvalCell(it2) + '</td>' +
       '<td class="amount" style="color:var(--teal)">' + (claimedPct(it2)*100).toFixed(0) + '%</td>' +
       '<td class="amount ' + (net>1?'claimable':'muted') + '">' + (net>1?fmtN(net):'—') + '</td>' +
       '<td>' + statusPill(st) + '</td>' +
       '<td>' + depHtml + '</td>' +
-      '<td style="white-space:nowrap"><button class="mini-btn" onclick="openItemModal(\'' + esc(it2.id) + '\')">✏️ تعديل</button>' +
-      (!indent ? ' <button class="mini-btn" onclick="addSubItem(\'' + esc(it2.id) + '\')">➕ بند فرعي</button>' : '') +
-      (it2.scope !== 'others' && (availQty(it2) > 0.01 || pendingApprovalQty(it2) > 0.01)
-        ? ' <button class="mini-btn green" onclick="itemToMustakhlas(\'' + esc(it2.id) + '\')">📤 مستخلص</button>' : '') + '</td>' +
+      '<td style="white-space:nowrap"><button class="mini-btn" onclick="openItemModal(\'' + esc(it2.id) + '\')">✏️ ' + T('تعديل') + '</button>' +
+      (!indent ? ' <button class="mini-btn" onclick="addSubItem(\'' + esc(it2.id) + '\')">➕ ' + T('بند فرعي') + '</button>' : '') +
+      (!indent && canSplitItem(it2) ? ' <button class="mini-btn" onclick="openSplitItemModal(\'' + esc(it2.id) + '\')" data-tip="' + T('تقسيم سعر الوحدة إلى مكوّنات (نفس الكمية)') + '">✂</button>' : '') +
+      (!isSplitChild(it2) && it2.scope !== 'others' && (availQty(it2) > 0.01 || pendingApprovalQty(it2) > 0.01)
+        ? ' <button class="mini-btn green" onclick="itemToMustakhlas(\'' + esc(it2.id) + '\')">📤 ' + T('مستخلص') + '</button>' : '') + '</td>' +
       '</tr>';
-  }).join('') || '<tr><td colspan="13"><div class="empty-state"><p>لا توجد بنود مطابقة</p></div></td></tr>';
+  }).join('') || '<tr><td colspan="13"><div class="empty-state"><p>' + T('لا توجد بنود مطابقة') + '</p></div></td></tr>';
 
-  $('items-tfoot').innerHTML = '<tr class="summary-row"><td colspan="5" style="text-align:right;color:var(--text2)">الإجمالي (' + shownLeaves + ' بند)</td>' +
+  $('items-tfoot').innerHTML = '<tr class="summary-row"><td colspan="5" style="text-align:right;color:var(--text2)">' + T('الإجمالي') + ' (' + shownLeaves + ' ' + T('بند') + ')</td>' +
     '<td class="amount" style="color:var(--amber)">' + fmtN(sumAmt) + '</td><td colspan="3"></td>' +
     '<td class="amount claimable">' + fmtN(sumNet) + '</td><td colspan="3"></td></tr>';
 }
+Object.assign(I18N_EN, {
+  'عرض/إخفاء البنود الفرعية':'Show/hide sub-items',
+  'بند رئيسي مقسّم إلى ':'Main item split into ',
+  ' بند فرعي':' sub-item(s)',
+  'فرعي':'sub',
+  'مجموع أسعار البنود الفرعية':'Sum of sub-item prices',
+  'بند رئيسي':'Main item',
+  'بند فرعي':'Sub-item',
+  'أدخل الكمية المنفذة (من أصل ':'Enter the executed quantity (out of ',
+  ') — العميل يحاسب بالكميات':') — the client is billed by quantity'
+});
 
 // خلية اعتماد الاستشاري في جدول الكميات
 function approvalCell(it){
@@ -2767,7 +2947,7 @@ function setItemQty(id, val){
   // مدير المشروع: تعديل الكمية المنفذة يتطلب موافقة الإدارة (لا يُطبَّق مباشرة)
   if (editsGated() && Math.abs(newVal - (it.executedQty||0)) > 0.001) {
     submitEditRequest({ type:'qty_edit', itemId:id, fromQty:(it.executedQty||0), newQty:newVal,
-      label:'تعديل الكمية المنفذة للبند ' + id + ' من ' + fmtQ(it.executedQty||0) + ' إلى ' + fmtQ(newVal) + ' ' + (it.unit||'') });
+      label:T('تعديل الكمية المنفذة للبند ') + id + T(' من ') + fmtQ(it.executedQty||0) + T(' إلى ') + fmtQ(newVal) + ' ' + (it.unit||'') });
     renderAll(); // إرجاع الحقل لقيمته الأصلية
     return;
   }
@@ -2801,7 +2981,7 @@ function openApproveQty(id, opts){
   aqItemId = id; aqPendingFiles = []; aqThenMustakhlas = !!(opts && opts.thenMustakhlas);
   $('aq-title').textContent = aqThenMustakhlas ? T('📤 تحويل الكمية إلى مستخلص (رفع الاستلام)') : T('📋 اعتماد كمية من الاستشاري');
   const pend = pendingApprovalQty(it);
-  $('aq-info').innerHTML = '<strong>' + esc(it.desc) + '</strong><br>' + T('منفذ ميدانياً:') + ' ' + fmtQ(it.executedQty||0) + ' ' + esc(it.unit) +
+  $('aq-info').innerHTML = '<strong>' + esc(it.desc) + '</strong><br>' + T('منفذ ميدانياً:') + ' ' + fmtQ(qtyBase(it).executedQty||0) + ' ' + esc(it.unit) +
     ' · ' + T('معتمد سابقاً:') + ' ' + fmtQ(approvedOf(it)) + ' · <span style="color:var(--orange)">' + T('بانتظار الاعتماد:') + ' ' + fmtQ(pend) + '</span>';
   $('aq-sysqty').value = Math.round(pend*100)/100; // المنفذ غير المعتمد الذي أدخله المهندس
   $('aq-arqty').value = Math.round(pend*100)/100;
@@ -2856,7 +3036,7 @@ async function saveApproveQty(){
   it.approvals.push({id: nextSeq(), qty, arQty, sysQty: Number($('aq-sysqty').value)||0,
     date: $('aq-date').value || todayStr(), consultant: $('aq-consultant').value.trim(),
     arNo: $('aq-arno').value.trim(), ar: docs[0], docs, note: $('aq-note').value.trim(), by: currentUser().name});
-  it.approvedQty = Math.min(it.executedQty||0, (it.approvedQty||0) + qty);
+  it.approvedQty = Math.min(qtyBase(it).executedQty||0, (it.approvedQty||0) + qty);
   const toMustakhlas = aqThenMustakhlas;
   closeModal('approve-qty-modal'); save(); renderAll();
   if (toMustakhlas) {
@@ -3034,12 +3214,12 @@ function openItemModal(id, opts){
   const it = id ? getItem(id) : null;
   const presetParent = it ? (it.parentId || '') : (opts.parentId || '');
   const parItem = presetParent ? getItem(presetParent) : null;
-  $('item-modal-title').textContent = it ? 'تعديل بند ' + it.id : (parItem ? 'إضافة بند فرعي تحت ' + parItem.id : 'إضافة بند جديد');
+  $('item-modal-title').textContent = it ? T('تعديل بند ') + it.id : (parItem ? T('إضافة بند فرعي تحت ') + parItem.id : T('إضافة بند جديد'));
   $('im-delete-btn').style.display = it ? '' : 'none';
   // قائمة البنود الرئيسية المؤهلة: أي بند ليس فرعياً بنفسه وليس هو البند الحالي وليس من فروع البند الحالي
   const kidIds = it ? new Set(childrenOf(it.id).map(k=>k.id)) : new Set();
   const parentOpts = proj().boqItems.filter(c => (!it || c.id !== it.id) && !isChild(c) && !kidIds.has(c.id));
-  $('im-parent').innerHTML = '<option value="">— بند مستقل (بدون تجميع)</option>' +
+  $('im-parent').innerHTML = '<option value="">' + T('— بند مستقل (بدون تجميع)') + '</option>' +
     parentOpts.map(c => '<option value="' + esc(c.id) + '"' + (c.id===presetParent?' selected':'') + '>' + esc(c.id) + ' — ' + esc(c.desc.substring(0,40)) + '</option>').join('');
   // اقتراح رقم للبند الفرعي الجديد
   const suggestId = (!it && parItem) ? parItem.id + '.' + (childrenOf(parItem.id).length + 1) : '';
@@ -3049,11 +3229,11 @@ function openItemModal(id, opts){
   $('im-desc').value = it ? it.desc : '';
   $('im-unit').value = it ? it.unit : (parItem ? parItem.unit : 'م²');
   $('im-qtyv').value = it ? it.qtyPerVilla : (parItem ? parItem.qtyPerVilla : '');
-  $('im-qty').value = it ? it.totalQty : (parItem ? parItem.totalQty : '');
+  // بند فرعي (مكوّن سعر تقسيم): الكمية والمنفذ مرآة للبند الأصلي — تُعرض هنا للعلم فقط ولا تُعدَّل
+  $('im-qty').value = it ? qtyBase(it).totalQty : (parItem ? parItem.totalQty : '');
   $('im-rate').value = it ? it.unitRate : '';
-  $('im-exec').value = it ? (isKid ? father.executedQty : it.executedQty) : 0;
-  $('im-qty').disabled = $('im-exec').disabled = !!isKid;
-  $('im-group-note').style.display = isKid ? '' : 'none';
+  $('im-exec').value = it ? qtyBase(it).executedQty : 0;
+  $('im-qty').disabled = $('im-exec').disabled = !!(it && isSplitChild(it));
   $('im-scope').value = it ? it.scope : 'azoom';
   $('im-blk').checked = !!(it && it.blocker && it.blocker.active);
   $('im-blk-reason').value = it && it.blocker ? it.blocker.reason : '';
@@ -3082,9 +3262,9 @@ function imRateHint(){
   const sum = others + myRate;
   const diff = Math.round((sum - (par.unitRate||0)) * 100) / 100;
   const cmp = Math.abs(diff) < 0.01
-    ? '<span style="color:var(--green)">✓ مطابق لسعر البند الرئيسي</span>'
-    : (diff > 0 ? '<span style="color:var(--amber)">أعلى بـ ' + fmtN(diff) + '</span>' : '<span style="color:var(--amber)">أقل بـ ' + fmtN(-diff) + '</span>');
-  hint.innerHTML = 'مجموع أسعار الفروع = <strong>' + fmtN(sum) + '</strong> مقابل سعر البند الرئيسي <strong>' + fmtN(par.unitRate||0) + '</strong> — ' + cmp;
+    ? '<span style="color:var(--green)">✓ ' + T('مطابق لسعر البند الرئيسي') + '</span>'
+    : (diff > 0 ? '<span style="color:var(--amber)">' + T('أعلى بـ ') + fmtN(diff) + '</span>' : '<span style="color:var(--amber)">' + T('أقل بـ ') + fmtN(-diff) + '</span>');
+  hint.innerHTML = T('مجموع أسعار الفروع = ') + '<strong>' + fmtN(sum) + '</strong> ' + T('مقابل سعر البند الرئيسي') + ' <strong>' + fmtN(par.unitRate||0) + '</strong> — ' + cmp;
 }
 
 function saveItem(){
@@ -3092,14 +3272,14 @@ function saveItem(){
   if (!id || !$('im-desc').value.trim() || !$('im-qty').value || !$('im-rate').value) { alert(T('أكمل الحقول الإلزامية: رقم البند، الوصف، الكمية، السعر')); return; }
   if (!editingItemId && getItem(id)) { alert(T('رقم البند موجود مسبقاً')); return; }
   const preds = [...$('im-preds').querySelectorAll('input:checked')].map(c => c.value);
-  if (preds.includes(id)) { alert('البند لا يمكن أن يعتمد على نفسه'); return; }
+  if (preds.includes(id)) { alert(T('البند لا يمكن أن يعتمد على نفسه')); return; }
   // البند الرئيسي (للتقسيم إلى بنود فرعية) — مستوى واحد فقط
   let parentId = $('im-parent').value || null;
   if (parentId) {
-    if (parentId === id) { alert('البند لا يمكن أن يكون فرعاً من نفسه'); return; }
+    if (parentId === id) { alert(T('البند لا يمكن أن يكون فرعاً من نفسه')); return; }
     const par = getItem(parentId);
-    if (par && par.parentId) { alert('لا يمكن التداخل أكثر من مستوى واحد — اختر بنداً رئيسياً ليس فرعياً بنفسه'); return; }
-    if (editingItemId && childrenOf(editingItemId).length) { alert('هذا البند رئيسي وله بنود فرعية — لا يمكن جعله فرعاً لبند آخر'); return; }
+    if (par && par.parentId) { alert(T('لا يمكن التداخل أكثر من مستوى واحد — اختر بنداً رئيسياً ليس فرعياً بنفسه')); return; }
+    if (editingItemId && childrenOf(editingItemId).length) { alert(T('هذا البند رئيسي وله بنود فرعية — لا يمكن جعله فرعاً لبند آخر')); return; }
   }
   const blkActive = $('im-blk').checked;
   const data = {
@@ -3108,16 +3288,22 @@ function saveItem(){
     totalQty:Number($('im-qty').value)||0, unitRate:Number($('im-rate').value)||0,
     executedQty:clamp($('im-exec').value, 0, Number($('im-qty').value)||0),
     scope:$('im-scope').value, predecessors:preds, parentId,
-    blocker: blkActive ? {active:true, reason:$('im-blk-reason').value.trim()||'عائق غير محدد', type:$('im-blk-type').value, note:$('im-blk-note').value.trim(), since:$('im-blk-since').value || todayStr(), expected:$('im-blk-expected').value || ''} : null,
+    blocker: blkActive ? {active:true, reason:$('im-blk-reason').value.trim()||T('عائق غير محدد'), type:$('im-blk-type').value, note:$('im-blk-note').value.trim(), since:$('im-blk-since').value || todayStr(), expected:$('im-blk-expected').value || ''} : null,
     notes:$('im-notes').value.trim()
   };
   if (editingItemId) {
     const it = getItem(editingItemId);
+    if (isSplitChild(it)) {
+      // بند فرعي (مكوّن سعر تقسيم): يُعدَّل فقط الوصف وسعر الوحدة — الكمية والتنفيذ مرآة للبند الأصلي ولا تُكتب هنا
+      it.desc = data.desc; it.unitRate = data.unitRate; it.notes = data.notes;
+      closeModal('item-modal'); save(); renderAll();
+      return;
+    }
     // مدير المشروع: تعديل الكمية المنفذة من نموذج البند يتطلب موافقة الإدارة — لا يُطبَّق مباشرة
     let qtyReq = null;
     if (editsGated() && Math.abs((data.executedQty||0) - (it.executedQty||0)) > 0.001) {
       qtyReq = { type:'qty_edit', itemId:it.id, fromQty:(it.executedQty||0), newQty:data.executedQty,
-        label:'تعديل الكمية المنفذة للبند ' + it.id + ' من ' + fmtQ(it.executedQty||0) + ' إلى ' + fmtQ(data.executedQty) + ' ' + (it.unit||'') };
+        label:T('تعديل الكمية المنفذة للبند ') + it.id + T(' من ') + fmtQ(it.executedQty||0) + T(' إلى ') + fmtQ(data.executedQty) + ' ' + (it.unit||'') };
       data.executedQty = it.executedQty; // إبقاء القيمة الأصلية حتى الموافقة
     }
     data.claimedQty = it.claimedQty;
@@ -3133,6 +3319,7 @@ function saveItem(){
     data.approvedQty = 0; // الكميات الجديدة تبدأ بانتظار اعتماد الاستشاري
     data.approvals = [];
     proj().boqItems.push(data);
+    if (parentId) { expandedGroups.add(parentId); collapsedGroups.delete(parentId); }
   }
   closeModal('item-modal'); save(); renderAll();
 }
@@ -3141,26 +3328,177 @@ function deleteItem(){
   if (!editingItemId) return;
   const it = getItem(editingItemId);
   const kids = childrenOf(editingItemId);
-  if (kids.length && !confirm('هذا بند رئيسي وله ' + kids.length + ' بند فرعي. سيصبح كل فرعٍ بنداً مستقلاً. متابعة؟')) return;
-  if (it.claimedQty > 0 && !confirm('هذا البند مرفوع في مستخلصات سابقة. متأكد من حذفه؟')) return;
-  if (!confirm('حذف البند ' + editingItemId + ' نهائياً؟')) return;
+  const kidsAreSplit = kids.length && !!kids[0].splitAt; // مكوّنات تقسيم سعر: تُحذف مع الأب (لا معنى لها منفردة) — بخلاف بند فرعي مستقل يُفك ارتباطه
+  if (kids.length) {
+    const msg = kidsAreSplit
+      ? T('هذا البند مقسَّم السعر — سيُحذف معه كل أجزائه') + ' (' + kids.length + '). ' + T('متابعة؟')
+      : T('هذا بند رئيسي وله ') + kids.length + T(' بند فرعي. سيصبح كل فرعٍ بنداً مستقلاً. متابعة؟');
+    if (!confirm(msg)) return;
+  }
+  if (it.claimedQty > 0 && !confirm(T('هذا البند مرفوع في مستخلصات سابقة. متأكد من حذفه؟'))) return;
+  if (!confirm(T('حذف البند ') + editingItemId + T(' نهائياً؟'))) return;
   proj().boqItems = proj().boqItems.filter(i => i.id !== editingItemId);
-  // فك ارتباط الفروع لتصبح بنوداً مستقلة
-  proj().boqItems.forEach(i => { if (i.parentId === editingItemId) i.parentId = null; });
+  if (kidsAreSplit) {
+    // مكوّنات تقسيم السعر تُحذف مع البند الأصلي
+    const kidIds = new Set(kids.map(k => k.id));
+    proj().boqItems = proj().boqItems.filter(i => !kidIds.has(i.id));
+  } else {
+    // فك ارتباط الفروع المستقلة لتصبح بنوداً مستقلة
+    proj().boqItems.forEach(i => { if (i.parentId === editingItemId) i.parentId = null; });
+  }
   proj().boqItems.forEach(i => { i.predecessors = (i.predecessors||[]).filter(p => p !== editingItemId); });
   delete proj().villaProgress[editingItemId];
   closeModal('item-modal'); save(); renderAll();
 }
 
+// ============================================================
+//  تقسيم سعر البند إلى مكوّنات (منفصل عن "➕ بند فرعي" أعلاه):
+//  الكمية والتنفيذ يبقيان بالكامل على البند الأصلي (نفس الشغل الفعلي) — فقط سعر الوحدة
+//  يتوزّع على 2-4 مكوّنات، ولكل مكوّن اعتماده الخاص من الاستشاري (استلام منفصل ممكن لكل جزء).
+//  قيد: بند لا يُقسَّم سعرياً وله بالفعل بنود فرعية مستقلة، ولا يُضاف له بند فرعي مستقل بعد تقسيم سعره —
+//  الطريقتان لا تُخلطان على نفس البند لتفادي ازدواج/التباس في حساب القيمة الإجمالية.
+// ============================================================
+function canSplitItem(it){ return it.scope !== 'others' && !it.parentId && !isParent(it); }
+
+let splitItemId = null;
+function openSplitItemModal(id){
+  const it = getItem(id);
+  if (!it || !canSplitItem(it)) return;
+  splitItemId = id;
+  $('split-item-info').innerHTML = '<strong>' + esc(it.id) + '</strong> — ' + esc(it.desc) + '<br>' +
+    T('الكمية:') + ' ' + fmtQ(it.totalQty) + ' ' + esc(it.unit) + ' · ' + T('سعر الوحدة:') + ' ' + fmtRate(it.unitRate) +
+    '<br><span style="font-size:11px;color:var(--text2)">' + T('الكمية تبقى كما هي لكل الأجزاء (نفس الشغل الفعلي) — فقط سعر الوحدة يتوزّع بينها. البند الأصلي يبقى هو من يُنفَّذ ويُطالَب به؛ لكل جزء اعتماده الخاص من الاستشاري (استلام منفصل ممكن لكل مكوّن).') + '</span>';
+  $('split-count').value = '2';
+  renderSplitRows();
+  $('split-item-modal').classList.add('open');
+}
+
+function renderSplitRows(){
+  const it = getItem(splitItemId);
+  if (!it) return;
+  const n = Number($('split-count').value) || 2;
+  const base = Math.floor((it.unitRate / n) * 100) / 100;
+  const rows = [];
+  let used = 0;
+  for (let i = 0; i < n; i++) {
+    const rate = i < n - 1 ? base : Math.round((it.unitRate - used) * 100) / 100;
+    used = Math.round((used + rate) * 100) / 100;
+    rows.push({ id: it.id + '-' + String.fromCharCode(65 + i), desc: it.desc + ' (' + (i+1) + '/' + n + ')', rate });
+  }
+  $('split-rows').innerHTML = rows.map((r, i) =>
+    '<div class="f-grid" style="grid-template-columns:1fr 2fr 1fr;gap:8px;align-items:end;border:1px solid var(--border);border-radius:8px;padding:8px">' +
+    '<div class="f-field"><label>' + T('رقم الجزء') + ' ' + (i+1) + '</label><input type="text" id="split-id-' + i + '" value="' + esc(r.id) + '"></div>' +
+    '<div class="f-field"><label>' + T('الوصف') + '</label><input type="text" id="split-desc-' + i + '" value="' + esc(r.desc) + '"></div>' +
+    '<div class="f-field"><label>' + T('سعر الوحدة') + '</label><input type="number" id="split-rate-' + i + '" min="0" step="0.01" value="' + r.rate + '" oninput="splitRowsRecalc()"></div>' +
+    '</div>'
+  ).join('');
+  splitRowsRecalc();
+}
+
+function splitRowsRecalc(){
+  const it = getItem(splitItemId);
+  if (!it) return;
+  const n = Number($('split-count').value) || 2;
+  let sum = 0;
+  for (let i = 0; i < n; i++) sum += Number($('split-rate-' + i).value) || 0;
+  sum = Math.round(sum * 100) / 100;
+  const remaining = Math.round((it.unitRate - sum) * 100) / 100;
+  const box = $('split-remaining');
+  if (Math.abs(remaining) < 0.01) {
+    box.style.color = 'var(--green-bright)';
+    box.textContent = '✅ ' + T('المجموع مطابق لسعر الوحدة') + ' (' + fmtRate(it.unitRate) + ')';
+    $('split-confirm-btn').disabled = false;
+  } else {
+    box.style.color = 'var(--red)';
+    box.textContent = (remaining > 0 ? '⚠️ ' + T('متبقٍ') : '⚠️ ' + T('زيادة')) + ' ' + fmtRate(Math.abs(remaining)) +
+      ' — ' + T('يجب أن يساوي مجموع أسعار الأجزاء سعر وحدة البند الأصلي.');
+    $('split-confirm-btn').disabled = true;
+  }
+}
+
+function confirmSplitItem(){
+  const it = getItem(splitItemId);
+  if (!it || !canSplitItem(it)) { closeModal('split-item-modal'); return; }
+  const n = Number($('split-count').value) || 2;
+  const children = [];
+  const seenIds = new Set();
+  for (let i = 0; i < n; i++) {
+    const id = $('split-id-' + i).value.trim();
+    const desc = $('split-desc-' + i).value.trim();
+    const rate = Number($('split-rate-' + i).value) || 0;
+    if (!id || !desc) { alert(T('أكمل رقم ووصف كل جزء')); return; }
+    if (rate <= 0) { alert(T('سعر كل جزء يجب أن يكون أكبر من صفر')); return; }
+    if (seenIds.has(id) || (getItem(id) && id !== it.id)) { alert(T('رقم البند') + ' "' + id + '" ' + T('مكرر أو مستخدم في بند آخر')); return; }
+    seenIds.add(id);
+    children.push({ id, desc, unitRate: Math.round(rate*100)/100 });
+  }
+  const sum = Math.round(children.reduce((s,c) => s + c.unitRate, 0) * 100) / 100;
+  if (Math.abs(sum - it.unitRate) > 0.01) { alert(T('مجموع أسعار الأجزاء يجب أن يساوي سعر وحدة البند الأصلي بالضبط')); return; }
+  closeModal('split-item-modal');
+  applyItemSplit(it.id, children);
+  expandedGroups.add(it.id); collapsedGroups.delete(it.id);
+  save(); renderAll();
+  alert('✅ ' + T('تم تقسيم سعر البند إلى') + ' ' + n + ' ' + T('أجزاء.'));
+}
+
+// تنفيذ تقسيم السعر: البند الأصلي لا يتغيّر إطلاقاً — يبقى هو من يُنفَّذ ويُطالَب به بالكامل.
+// الأجزاء بنود عرض فقط: لا كمية ولا تنفيذ مخزّن عليها — تُقرأ من الأب عبر qtyBase، فقط سعر الوحدة واعتمادها الخاصين بها.
+function applyItemSplit(parentId, children){
+  const parent = getItem(parentId);
+  if (!parent) return;
+  children.forEach(c => {
+    proj().boqItems.push({
+      id: c.id, desc: c.desc, unitRate: c.unitRate,
+      div: parent.div, divAr: parent.divAr, unit: parent.unit, scope: parent.scope,
+      parentId: parentId, splitAt: new Date().toISOString(), approvedQty: 0, approvals: []
+    });
+  });
+}
 Object.assign(I18N_EN, {
+  'هذا البند مقسَّم السعر — سيُحذف معه كل أجزائه':'This item\'s price is split — all its parts will be deleted with it',
+  '✂ تقسيم البند إلى بنود فرعية':'✂ Split unit price into components',
+  'عدد الأجزاء':'Number of parts',
+  '✂ تقسيم البند':'✂ Split price',
+  'الكمية:':'Quantity:',
+  'سعر الوحدة:':'Unit price:',
+  'الكمية تبقى كما هي لكل الأجزاء (نفس الشغل الفعلي) — فقط سعر الوحدة يتوزّع بينها. البند الأصلي يبقى هو من يُنفَّذ ويُطالَب به؛ لكل جزء اعتماده الخاص من الاستشاري (استلام منفصل ممكن لكل مكوّن).':'The quantity stays the same for every part (it\'s the same physical work) — only the unit price is split between them. The original item remains the one that gets executed and claimed; each part has its own consultant approval (a separate receipt is possible for each component).',
+  'رقم الجزء':'Part no.',
+  'الوصف':'Description',
+  'المجموع مطابق لسعر الوحدة':'The total matches the unit price',
+  'متبقٍ':'Remaining',
+  'زيادة':'Excess',
+  'يجب أن يساوي مجموع أسعار الأجزاء سعر وحدة البند الأصلي.':'The parts\' prices must add up exactly to the original item\'s unit price.',
+  'أكمل رقم ووصف كل جزء':'Fill in the number and description for every part',
+  'سعر كل جزء يجب أن يكون أكبر من صفر':'Each part\'s price must be greater than zero',
+  'مكرر أو مستخدم في بند آخر':'is duplicated or already used by another item',
+  'مجموع أسعار الأجزاء يجب أن يساوي سعر وحدة البند الأصلي بالضبط':'The parts\' prices must add up exactly to the original item\'s unit price',
+  'تم تقسيم سعر البند إلى':'The item\'s price was split into',
+  'أجزاء.':'parts.',
+  'مرآة للبند الأصلي':'Mirrors original item',
+  'الكمية والتنفيذ مرآة للبند الأصلي — عدّلها من':'Quantity and execution mirror the original item — edit them from',
+  'تقسيم سعر الوحدة إلى مكوّنات (نفس الكمية)':'Split the unit price into components (same quantity)',
   'تعديل بند':'Edit item',
+  'تعديل بند ':'Edit item ',
+  'إضافة بند فرعي تحت ':'Add sub-item under ',
   'إضافة بند جديد':'Add new item',
+  '— بند مستقل (بدون تجميع)':'— Independent item (no grouping)',
   'أكمل الحقول الإلزامية: رقم البند، الوصف، الكمية، السعر':'Fill in the required fields: item number, description, quantity, price',
   'رقم البند موجود مسبقاً':'Item number already exists',
   'البند لا يمكن أن يعتمد على نفسه':'An item cannot depend on itself',
+  'البند لا يمكن أن يكون فرعاً من نفسه':'An item cannot be a sub-item of itself',
+  'لا يمكن التداخل أكثر من مستوى واحد — اختر بنداً رئيسياً ليس فرعياً بنفسه':'Only one level of nesting is allowed — choose a main item that is not itself a sub-item',
+  'هذا البند رئيسي وله بنود فرعية — لا يمكن جعله فرعاً لبند آخر':'This is a main item with sub-items — it cannot become a sub-item of another item',
+  'مطابق لسعر البند الرئيسي':'Matches the main item price',
+  'أعلى بـ ':'Higher by ',
+  'أقل بـ ':'Lower by ',
+  'مجموع أسعار الفروع = ':'Sum of sub-item prices = ',
+  'مقابل سعر البند الرئيسي':'against the main item price',
   'عائق غير محدد':'Unspecified blocker',
+  'هذا بند رئيسي وله ':'This is a main item with ',
+  ' بند فرعي. سيصبح كل فرعٍ بنداً مستقلاً. متابعة؟':' sub-item(s). Each sub-item will become an independent item. Continue?',
   'هذا البند مرفوع في مستخلصات سابقة. متأكد من حذفه؟':'This item has been claimed in previous claims. Are you sure you want to delete it?',
   'حذف البند':'Delete item',
+  'حذف البند ':'Delete item ',
   ' نهائياً؟':' permanently?'
 });
 
@@ -3169,7 +3507,7 @@ Object.assign(I18N_EN, {
 // ============================================================
 let mbSel = {}; // itemId -> qty
 
-function claimableItems(){ return proj().boqItems.filter(i => i.scope !== 'others' && !isParent(i) && availQty(i) > 0.01); }
+function claimableItems(){ return proj().boqItems.filter(i => i.scope !== 'others' && !isParent(i) && !isSplitChild(i) && availQty(i) > 0.01); }
 
 let mbRatesProjectId = null; // آخر مشروع زُامنت له حقول محتجز الضمان / الدفعة المقدمة
 function renderBuilder(){
@@ -3254,12 +3592,12 @@ function renderMbTotals(){
   const c = mbCompute();
   $('mb-count').textContent = c.lines.length + ' ' + T('بند');
   $('mb-totals').innerHTML =
-    '<div style="font-size:11px;color:var(--text2);margin-bottom:6px">💡 القيمة محسوبة بسعر الوحدة فقط (غير شامل الضريبة) — تُضاف ضريبة القيمة المضافة أدناه في المطالبة</div>' +
-    '<div class="sc-item"><span class="sc-item-name">قيمة الأعمال الحالية</span><span class="sc-item-val" style="color:var(--green-bright)">' + money(c.gross) + '</span></div>' +
-    '<div class="sc-item"><span class="sc-item-name">+ ضريبة ' + c.vatRate + '%</span><span class="sc-item-val">' + money(c.vat) + '</span></div>' +
-    '<div class="sc-item"><span class="sc-item-name">− محتجز ضمان ' + c.retRate + '%</span><span class="sc-item-val" style="color:var(--red)">' + money(c.retention) + '</span></div>' +
-    '<div class="sc-item"><span class="sc-item-name">− استرداد دفعة مقدمة ' + c.advRate + '%</span><span class="sc-item-val" style="color:var(--red)">' + money(c.advance) + '</span></div>' +
-    '<div class="sc-item"><span class="sc-item-name" style="font-weight:700">صافي المستحق</span><span class="sc-item-val" style="color:var(--green-bright);font-size:15px;font-weight:700">' + money(c.net) + '</span></div>';
+    '<div style="font-size:11px;color:var(--text2);margin-bottom:6px">💡 ' + T('القيمة محسوبة بسعر الوحدة فقط (غير شامل الضريبة) — تُضاف ضريبة القيمة المضافة أدناه في المطالبة') + '</div>' +
+    '<div class="sc-item"><span class="sc-item-name">' + T('قيمة الأعمال الحالية') + '</span><span class="sc-item-val" style="color:var(--green-bright)">' + money(c.gross) + '</span></div>' +
+    '<div class="sc-item"><span class="sc-item-name">+ ' + T('ضريبة') + ' ' + c.vatRate + '%</span><span class="sc-item-val">' + money(c.vat) + '</span></div>' +
+    '<div class="sc-item"><span class="sc-item-name">− ' + T('محتجز ضمان') + ' ' + c.retRate + '%</span><span class="sc-item-val" style="color:var(--red)">' + money(c.retention) + '</span></div>' +
+    '<div class="sc-item"><span class="sc-item-name">− ' + T('استرداد دفعة مقدمة') + ' ' + c.advRate + '%</span><span class="sc-item-val" style="color:var(--red)">' + money(c.advance) + '</span></div>' +
+    '<div class="sc-item"><span class="sc-item-name" style="font-weight:700">' + T('صافي المستحق') + '</span><span class="sc-item-val" style="color:var(--green-bright);font-size:15px;font-weight:700">' + money(c.net) + '</span></div>';
 }
 
 // ---- مرفقات المستخلص (ملفات المستخلص + استلامات الاستشاري) ----
@@ -3346,6 +3684,7 @@ function previewMustakhlas(){
   showDoc({no:T('(معاينة - غير محفوظ)'), date:$('mb-date').value||todayStr(), status:'preview', ...c, notes:$('mb-notes').value.trim()});
 }
 Object.assign(I18N_EN, {
+  'القيمة محسوبة بسعر الوحدة فقط (غير شامل الضريبة) — تُضاف ضريبة القيمة المضافة أدناه في المطالبة':'The value is calculated at the unit price only (excluding VAT) — VAT is added below in the claim',
   'قيمة الأعمال الحالية':'Value of current work',
   'محتجز ضمان':'Retention',
   'استرداد دفعة مقدمة':'Advance recovery',
@@ -3426,7 +3765,7 @@ function renderHistory(){
     }
     const canDelete = canReviewMus() || ['submitted','rejected'].includes(m.status);
     return '<tr>' +
-      '<td><span class="item-no">' + esc(m.no) + '</span>' + (nAtt ? '<br><span class="pill blue" style="font-size:9px" data-tip="مرفقات: ' + (m.attachments||[]).map(a=>esc(a.name||'ملف')).join(' · ') + '">📎 ' + nAtt + '</span>' : '') + '</td>' +
+      '<td><span class="item-no">' + esc(m.no) + '</span>' + (nAtt ? '<br><span class="pill blue" style="font-size:9px" data-tip="' + T('مرفقات:') + ' ' + (m.attachments||[]).map(a=>esc(a.name||T('ملف'))).join(' · ') + '">📎 ' + nAtt + '</span>' : '') + '</td>' +
       '<td style="font-family:var(--mono);font-size:12px">' + esc(m.date) + '</td>' +
       '<td>' + m.lines.length + '</td>' +
       '<td class="amount">' + fmtN(m.gross) + '</td>' +
@@ -3481,7 +3820,8 @@ Object.assign(I18N_EN, {
   'متبقي التحصيل':'Remaining to collect',
   'مستحق لم يُدفع بعد':'Due but not yet paid',
   'التراكمي حتى تاريخه':'Cumulative to date',
-  'سجّله':'Logged by'
+  'سجّله':'Logged by',
+  'مرفقات:':'Attachments:'
 });
 
 // ---- payments ----
@@ -3634,9 +3974,9 @@ function showDoc(m){
     sumRow(T('صافي المستحق للدفع (الحالي)'), m.net, '', true) +
     '</tfoot></table></div>' +
     ((m.attachments||[]).length ?
-      '<div style="margin-top:14px"><div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:6px">📎 المرفقات (' + m.attachments.length + ') — ملفات المستخلص واستلامات الاستشاري</div>' +
+      '<div style="margin-top:14px"><div style="font-size:13px;font-weight:700;color:var(--amber);margin-bottom:6px">📎 ' + T('المرفقات') + ' (' + m.attachments.length + ') — ' + T('ملفات المستخلص واستلامات الاستشاري') + '</div>' +
       m.attachments.map(a => '<div style="font-size:12px;padding:3px 0"><a href="' + esc(a.url) + '" target="_blank" style="color:var(--blue);text-decoration:none">' +
-        (String(a.url).endsWith('.pdf') ? '📄' : '🖼') + ' ' + esc(a.name || 'ملف مرفق') + ' ↗</a></div>').join('') + '</div>' : '') +
+        (String(a.url).endsWith('.pdf') ? '📄' : '🖼') + ' ' + esc(a.name || T('ملف مرفق')) + ' ↗</a></div>').join('') + '</div>' : '') +
     '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:28px;font-size:12px">' +
       ['معد المستخلص','مدير الموقع','مدير المشروع'].map(r => '<div style="text-align:center;border-top:1px solid var(--border);padding-top:8px"><div style="color:var(--text2)">' + T(r) + '</div><div style="margin-top:26px;color:var(--text3)">' + T('التوقيع / التاريخ') + '</div></div>').join('') +
     '</div></div>';
@@ -3672,7 +4012,10 @@ Object.assign(I18N_EN, {
   'معد المستخلص':'Prepared by',
   'مدير الموقع':'Site manager',
   'مدير المشروع':'Project manager',
-  'التوقيع / التاريخ':'Signature / Date'
+  'التوقيع / التاريخ':'Signature / Date',
+  'المرفقات':'Attachments',
+  'ملفات المستخلص واستلامات الاستشاري':'Claim files and consultant receipts',
+  'ملف مرفق':'Attached file'
 });
 
 // 🧾 الفاتورة الضريبية للمستخلص المعتمد
@@ -4024,7 +4367,7 @@ function renderBlocked(){
   const blocked = actionableItems().filter(i => statusOf(i) === 'blocked');
   const groups = {};
   blocked.forEach(i => {
-    const key = i.blocker.reason || 'غير محدد';
+    const key = i.blocker.reason || T('غير محدد');
     if (!groups[key]) groups[key] = {type:i.blocker.type, items:[], down:new Set()};
     groups[key].items.push(i);
     downstreamSet(i.id, groups[key].down);
@@ -4134,7 +4477,7 @@ function villaPct(itemId, villaNo){
 function renderVillaGrid(){
   let list = proj().villas;
   if (currentVillaFilter !== 'all') list = list.filter(v => v.sheet === currentVillaFilter);
-  const activeItems = proj().boqItems.filter(i => i.scope !== 'others' && !isParent(i));
+  const activeItems = proj().boqItems.filter(i => i.scope !== 'others' && !isParent(i) && !isSplitChild(i));
   $('villa-grid').innerHTML = list.map(v => {
     let wSum = 0, wTot = 0, done = 0, prog = 0, blockedC = 0;
     activeItems.forEach(it => {
@@ -4161,8 +4504,8 @@ function showVillaDetail(no){
   if (!v) return;
   $('villa-grid').style.display = 'none';
   $('villa-detail').style.display = 'block';
-  $('villa-detail-title').textContent = 'تفاصيل ' + UL() + ' ' + no + ' - ' + v.sheet;
-  $('villa-detail-tbody').innerHTML = proj().boqItems.filter(i => i.scope !== 'others' && !isParent(i)).map(it => {
+  $('villa-detail-title').textContent = T('تفاصيل') + ' ' + UL() + ' ' + no + ' - ' + v.sheet;
+  $('villa-detail-tbody').innerHTML = proj().boqItems.filter(i => i.scope !== 'others' && !isParent(i) && !isSplitChild(i)).map(it => {
     const p = villaPct(it.id, no);
     return '<tr>' +
       '<td><span class="item-no">' + esc(it.id) + '</span></td>' +
@@ -4243,9 +4586,9 @@ function renderProd(){
   $('crew-list').innerHTML = [...new Set(proj().workLogs.map(l => l.crew).filter(Boolean))].map(c => '<option value="' + esc(c) + '">').join('');
   // البند: حقل بحث ذكي بدل القائمة الطويلة — إعادة الضبط لو تغيّر المشروع أو حُذف البند المختار
   if ($('wl-item').value && !getItem($('wl-item').value)) { $('wl-item').value = ''; $('wl-item-search').value = ''; }
-  $('wl-villa').innerHTML = '<option value="">— بدون ' + UL() + ' محددة —</option>' + proj().villas.map(v => '<option value="' + esc(v.no) + '">' + esc(v.no) + ' (' + esc(v.sheet) + ')</option>').join('');
+  $('wl-villa').innerHTML = '<option value="">' + T('— بدون ') + UL() + T(' محددة —') + '</option>' + proj().villas.map(v => '<option value="' + esc(v.no) + '">' + esc(v.no) + ' (' + esc(v.sheet) + ')</option>').join('');
   const wlSubCur = $('wl-sub').value;
-  $('wl-sub').innerHTML = '<option value="">— تنفيذ ذاتي (بدون مقاول باطن) —</option>' + (proj().subcontractors||[]).map(s => '<option value="' + s.id + '">🧱 ' + esc(s.name) + '</option>').join('');
+  $('wl-sub').innerHTML = '<option value="">' + T('— تنفيذ ذاتي (بدون مقاول باطن) —') + '</option>' + (proj().subcontractors||[]).map(s => '<option value="' + s.id + '">🧱 ' + esc(s.name) + '</option>').join('');
   if (wlSubCur) $('wl-sub').value = wlSubCur;
 
   const logs = [...proj().workLogs].sort((a,b) => b.date.localeCompare(a.date) || b.id - a.id);
@@ -4257,7 +4600,7 @@ function renderProd(){
       '<td style="font-size:11px;white-space:nowrap">' + crewLabel(l) + '</td>' +
       '<td><span class="item-no">' + esc(l.itemId) + '</span> <span style="font-size:11px;color:var(--text3)">' + esc(it ? it.desc.substring(0,25) : '') + '</span></td>' +
       '<td>' + (l.villaNo ? '#' + esc(l.villaNo) : '—') + '</td>' +
-      '<td style="font-size:11px">' + (l.subId && getSub(l.subId) ? '🧱 ' + esc(getSub(l.subId).name) : '<span style="color:var(--text3)">تنفيذ ذاتي</span>') + '</td>' +
+      '<td style="font-size:11px">' + (l.subId && getSub(l.subId) ? '🧱 ' + esc(getSub(l.subId).name) : '<span style="color:var(--text3)">' + T('تنفيذ ذاتي') + '</span>') + '</td>' +
       '<td class="amount">' + fmtQ(l.qty) + ' ' + esc(it ? it.unit : '') + '</td>' +
       '<td class="amount muted">' + (l.workers||'—') + '</td>' +
       '<td class="amount muted">' + fmtQ(perWorker) + '</td>' +
@@ -4266,10 +4609,10 @@ function renderProd(){
         : '<span style="color:var(--text3);font-size:11px">—</span>') + '</td>' +
       '<td>' + (l.applied ? '<span class="pill green" style="font-size:10px">' + T('نعم') + '</span>' : '<span class="pill gray" style="font-size:10px">' + T('لا') + '</span>') + '</td>' +
       '<td style="font-size:11px;color:var(--text3)">' + esc(l.by || '—') + '</td>' +
-      '<td style="white-space:nowrap"><button class="mini-btn" onclick="openLogEdit(' + l.id + ')" data-tip="' + (editsGated()?'طلب تعديل (يحتاج موافقة الإدارة)':'تعديل') + '">✏️</button> ' +
-      '<button class="mini-btn red" onclick="deleteWorkLog(' + l.id + ')" data-tip="' + (editsGated()?'طلب حذف (يحتاج موافقة الإدارة)':'حذف') + '">🗑</button></td>' +
+      '<td style="white-space:nowrap"><button class="mini-btn" onclick="openLogEdit(' + l.id + ')" data-tip="' + (editsGated()?T('طلب تعديل (يحتاج موافقة الإدارة)'):T('تعديل')) + '">✏️</button> ' +
+      '<button class="mini-btn red" onclick="deleteWorkLog(' + l.id + ')" data-tip="' + (editsGated()?T('طلب حذف (يحتاج موافقة الإدارة)'):T('حذف')) + '">🗑</button></td>' +
       '</tr>';
-  }).join('') || '<tr><td colspan="12"><div class="empty-state"><p>لا توجد يوميات مسجلة</p></div></td></tr>';
+  }).join('') || '<tr><td colspan="12"><div class="empty-state"><p>' + T('لا توجد يوميات مسجلة') + '</p></div></td></tr>';
 
   // معرض أحدث صور الموقع
   const allPhotos = [];
@@ -4335,6 +4678,7 @@ Object.assign(I18N_EN, {
   'اختر بند':'Choose an item',
   'اختر بند من قائمة البحث':'Choose an item from the search list',
   'لا يوجد بند مطابق':'No matching item',
+  '— ضمن: ':'— under: ',
   'بند إضافي — أكمل البحث لتضييق النتائج':'more item(s) — refine your search to narrow the results',
   'اكتب اسم الفرقة / المسؤول':'Enter the crew / responsible name',
   'اكتب الكمية المنفذة':'Enter the executed quantity',
@@ -4345,6 +4689,12 @@ Object.assign(I18N_EN, {
   'وستحذف صورها.':'and its photos will be deleted.',
   'بدون':'Without a',
   'محددة':'specified',
+  '— بدون ':'— Without a ',
+  ' محددة —':' specified —',
+  '— تنفيذ ذاتي (بدون مقاول باطن) —':'— Self-executed (no subcontractor) —',
+  'تنفيذ ذاتي':'Self-executed',
+  'طلب تعديل (يحتاج موافقة الإدارة)':'Edit request (needs admin approval)',
+  'طلب حذف (يحتاج موافقة الإدارة)':'Delete request (needs admin approval)',
   'نعم':'Yes',
   'لا':'No',
   'لا توجد يوميات مسجلة':'No logs recorded',
@@ -4420,20 +4770,20 @@ function wlItemFilter(typing){
   const q = ($('wl-item-search').value || '').toLowerCase().trim();
   // لو غيّر النص بعد اختيار بند، أفرغ الاختيار المخزّن
   if (typing) $('wl-item').value = '';
-  const items = proj().boqItems.filter(i => i.scope !== 'others' && !isParent(i)); // الإنتاجية تُسجّل على البنود الفرعية لا الرئيسية
+  const items = proj().boqItems.filter(i => i.scope !== 'others' && !isParent(i) && !isSplitChild(i)); // الإنتاجية تُسجّل على البنود الفرعية لا الرئيسية
   const norm = s => String(s||'').toLowerCase();
   let list = q ? items.filter(i => norm(i.id).includes(q) || norm(i.desc).includes(q) || norm(i.divAr).includes(q) || norm(i.div).includes(q)) : items;
   wlItemActive = -1;
   const box = $('wl-item-list');
   box.innerHTML = list.slice(0, 60).map((i, idx) => {
     const par = parentOf(i);
-    return '<div class="combo-opt" data-idx="' + idx + '" data-id="' + esc(i.id) + '" onmousedown="wlItemPick(\'' + esc(i.id).replace(/'/g,"\\'") + '\')">' +
+    return '<div class="combo-opt" data-idx="' + idx + '" data-id="' + esc(i.id) + '" onmousedown="event.preventDefault(); wlItemPick(\'' + esc(i.id).replace(/'/g,"\\'") + '\')">' +
       (par ? '<span style="color:var(--text3)">↳ </span>' : '') +
       '<span class="co-code">' + esc(i.id) + '</span> ' + esc(i.desc) + ' <span class="co-unit">(' + esc(i.unit) + ')</span>' +
-      (par ? ' <span style="font-size:10px;color:var(--text3)">— ضمن: ' + esc(par.desc.substring(0,30)) + '</span>' : '') + '</div>';
+      (par ? ' <span style="font-size:10px;color:var(--text3)">' + T('— ضمن: ') + esc(par.desc.substring(0,30)) + '</span>' : '') + '</div>';
   }).join('')
-    || '<div class="combo-opt" style="color:var(--text3)">لا يوجد بند مطابق</div>';
-  if (list.length > 60) box.innerHTML += '<div class="combo-opt" style="color:var(--text3);font-size:11px">... ' + (list.length-60) + ' بند إضافي — أكمل البحث لتضييق النتائج</div>';
+    || '<div class="combo-opt" style="color:var(--text3)">' + T('لا يوجد بند مطابق') + '</div>';
+  if (list.length > 60) box.innerHTML += '<div class="combo-opt" style="color:var(--text3);font-size:11px">... ' + (list.length-60) + ' ' + T('بند إضافي — أكمل البحث لتضييق النتائج') + '</div>';
   box.style.display = 'block';
 }
 function wlItemPick(id){
@@ -4501,10 +4851,10 @@ function deleteWorkLog(id){
   if (editsGated()) {
     const it = getItem(l.itemId);
     submitEditRequest({ type:'log_delete', logId:id,
-      label:'حذف يومية ' + esc(l.date) + ' · ' + esc(l.crew) + ' · ' + fmtQ(l.qty) + ' ' + (it?it.unit:'') + ' (بند ' + esc(l.itemId) + ')' });
+      label:T('حذف يومية ') + esc(l.date) + ' · ' + esc(l.crew) + ' · ' + fmtQ(l.qty) + ' ' + (it?it.unit:'') + T(' (بند ') + esc(l.itemId) + ')' });
     return;
   }
-  if (!confirm('حذف اليومية؟' + (l.applied ? ' سيتم خصم الكمية من نسبة إنجاز البند.' : '') + ((l.photos||[]).length ? ' وستحذف صورها.' : ''))) return;
+  if (!confirm(T('حذف اليومية؟') + (l.applied ? T(' سيتم خصم الكمية من نسبة إنجاز البند.') : '') + ((l.photos||[]).length ? T(' وستحذف صورها.') : ''))) return;
   applyLogDelete(id, true);
   save(); renderAll();
 }
@@ -4538,26 +4888,26 @@ function openLogEdit(id){
   if (!l) return;
   editingLogId = id;
   const it = getItem(l.itemId);
-  $('le-info').innerHTML = '<strong>' + esc(l.date) + ' · ' + esc(l.crew) + '</strong> — بند ' + esc(l.itemId) + ' ' + esc(it?it.desc.substring(0,30):'');
+  $('le-info').innerHTML = '<strong>' + esc(l.date) + ' · ' + esc(l.crew) + '</strong> — ' + T('بند') + ' ' + esc(l.itemId) + ' ' + esc(it?it.desc.substring(0,30):'');
   $('le-qty').value = l.qty;
   $('le-note').value = l.note || '';
   $('le-reason-wrap').style.display = editsGated() ? '' : 'none';
   $('le-reason').value = '';
-  $('le-save-btn').textContent = editsGated() ? '📨 إرسال طلب التعديل للإدارة' : '💾 حفظ التعديل';
+  $('le-save-btn').textContent = editsGated() ? T('📨 إرسال طلب التعديل للإدارة') : T('💾 حفظ التعديل');
   $('log-edit-modal').classList.add('open');
 }
 function saveLogEdit(){
   const l = proj().workLogs.find(x => x.id === editingLogId);
   if (!l) return;
   const newQty = Number($('le-qty').value);
-  if (!newQty || newQty <= 0) { alert('اكتب كمية صحيحة'); return; }
+  if (!newQty || newQty <= 0) { alert(T('اكتب كمية صحيحة')); return; }
   const newNote = $('le-note').value.trim();
   if (editsGated()) {
     const reason = $('le-reason').value.trim();
-    if (!reason) { alert('اكتب سبب التعديل ليطّلع عليه المعتمِدون'); return; }
+    if (!reason) { alert(T('اكتب سبب التعديل ليطّلع عليه المعتمِدون')); return; }
     const it = getItem(l.itemId);
     submitEditRequest({ type:'log_edit', logId:editingLogId, newQty, newNote, reason,
-      label:'تعديل يومية ' + esc(l.date) + ' · بند ' + esc(l.itemId) + ': الكمية من ' + fmtQ(l.qty) + ' إلى ' + fmtQ(newQty) + ' ' + (it?it.unit:'') });
+      label:T('تعديل يومية ') + esc(l.date) + T(' · بند ') + esc(l.itemId) + T(': الكمية من ') + fmtQ(l.qty) + T(' إلى ') + fmtQ(newQty) + ' ' + (it?it.unit:'') });
     closeModal('log-edit-modal'); return;
   }
   applyLogEdit(editingLogId, newQty, newNote);
@@ -4602,17 +4952,17 @@ function submitEditRequest(payload){
     clientApproved:false, clientBy:'', pmoApproved:false, pmoBy:''
   }, payload));
   save(); renderAll();
-  alert('📨 تم إرسال طلب التعديل إلى الإدارة (العميل ومدير المشاريع). لن يُطبَّق التغيير إلا بعد موافقتهما.');
+  alert(T('📨 تم إرسال طلب التعديل إلى الإدارة (العميل ومدير المشاريع). لن يُطبَّق التغيير إلا بعد موافقتهما.'));
 }
 
 const pendingEditRequests = () => (proj().editRequests||[]).filter(r => r.status === 'pending');
 
 function approveEditRequest(id){
-  if (!canApproveEdits()) { alert('اعتماد التعديلات صلاحية العميل ومدير المشاريع'); return; }
+  if (!canApproveEdits()) { alert(T('اعتماد التعديلات صلاحية العميل ومدير المشاريع')); return; }
   const r = (proj().editRequests||[]).find(x => x.id === id);
   if (!r || r.status !== 'pending') return;
   const role = state.me.role, me = currentUser().name;
-  if (role === 'admin') { r.clientApproved = true; r.clientBy = me + ' (أدمن)'; r.pmoApproved = true; r.pmoBy = me + ' (أدمن)'; }
+  if (role === 'admin') { r.clientApproved = true; r.clientBy = me + T(' (أدمن)'); r.pmoApproved = true; r.pmoBy = me + T(' (أدمن)'); }
   else if (role === 'client') { r.clientApproved = true; r.clientBy = me; }
   else if (role === 'pmo') { r.pmoApproved = true; r.pmoBy = me; }
   if (r.clientApproved && r.pmoApproved) {
@@ -4632,10 +4982,10 @@ function approveEditRequest(id){
 }
 
 function rejectEditRequest(id){
-  if (!canApproveEdits()) { alert('رفض التعديلات صلاحية العميل ومدير المشاريع'); return; }
+  if (!canApproveEdits()) { alert(T('رفض التعديلات صلاحية العميل ومدير المشاريع')); return; }
   const r = (proj().editRequests||[]).find(x => x.id === id);
   if (!r || r.status !== 'pending') return;
-  const reason = prompt('سبب رفض طلب التعديل (اختياري):') || '';
+  const reason = prompt(T('سبب رفض طلب التعديل (اختياري):')) || '';
   r.status = 'rejected'; r.rejectedBy = currentUser().name; r.rejectReason = reason; r.rejectedAt = new Date().toISOString();
   save(); renderAll();
 }
@@ -4649,21 +4999,21 @@ function renderEditRequests(){
   if (canApproveEdits()) {
     if (!pend.length) { box.innerHTML = ''; return; }
     box.innerHTML = '<div class="card orange-b" style="margin-bottom:14px"><div class="sc-header"><div class="sc-icon" style="background:var(--orange-dim,rgba(240,136,62,0.15))">🔔</div>' +
-      '<div><div style="font-weight:700">طلبات تعديل الإنتاجية بانتظار موافقتك (' + pend.length + ')</div>' +
-      '<div style="font-size:11px;color:var(--text2)">لن يُطبَّق أي تعديل من مدير المشروع إلا بموافقة العميل ومدير المشاريع معاً</div></div></div>' +
+      '<div><div style="font-weight:700">' + T('طلبات تعديل الإنتاجية بانتظار موافقتك') + ' (' + pend.length + ')</div>' +
+      '<div style="font-size:11px;color:var(--text2)">' + T('لن يُطبَّق أي تعديل من مدير المشروع إلا بموافقة العميل ومدير المشاريع معاً') + '</div></div></div>' +
       '<div style="margin-top:10px;display:flex;flex-direction:column;gap:8px">' +
       pend.map(r => {
-        const cOk = r.clientApproved ? '<span style="color:var(--green)">✅ العميل</span>' : '<span style="color:var(--text3)">⏳ العميل</span>';
-        const mOk = r.pmoApproved ? '<span style="color:var(--green)">✅ مدير المشاريع</span>' : '<span style="color:var(--text3)">⏳ مدير المشاريع</span>';
+        const cOk = r.clientApproved ? '<span style="color:var(--green)">✅ ' + T('العميل') + '</span>' : '<span style="color:var(--text3)">⏳ ' + T('العميل') + '</span>';
+        const mOk = r.pmoApproved ? '<span style="color:var(--green)">✅ ' + T('مدير المشاريع') + '</span>' : '<span style="color:var(--text3)">⏳ ' + T('مدير المشاريع') + '</span>';
         const already = (state.me.role === 'client' && r.clientApproved) || (state.me.role === 'pmo' && r.pmoApproved);
         return '<div class="sc-item" style="align-items:flex-start;flex-direction:column;gap:6px;border:1px solid var(--border);border-radius:8px;padding:10px">' +
           '<div style="font-size:13px">' + esc(r.label||r.type) + '</div>' +
-          (r.reason ? '<div style="font-size:12px;color:var(--text2)">السبب: ' + esc(r.reason) + '</div>' : '') +
-          '<div style="font-size:11px;color:var(--text3)">مقدّم الطلب: ' + esc(r.by||'—') + ' · ' + esc((r.createdAt||'').slice(0,16).replace('T',' ')) + ' · ' + cOk + ' · ' + mOk + '</div>' +
+          (r.reason ? '<div style="font-size:12px;color:var(--text2)">' + T('السبب:') + ' ' + esc(r.reason) + '</div>' : '') +
+          '<div style="font-size:11px;color:var(--text3)">' + T('مقدّم الطلب:') + ' ' + esc(r.by||'—') + ' · ' + esc((r.createdAt||'').slice(0,16).replace('T',' ')) + ' · ' + cOk + ' · ' + mOk + '</div>' +
           '<div style="display:flex;gap:6px">' +
-          (already ? '<span class="pill green" style="font-size:11px">وافقت — بانتظار الطرف الآخر</span>'
-                   : '<button class="mini-btn green" onclick="approveEditRequest(' + r.id + ')">✅ موافقة</button>') +
-          '<button class="mini-btn red" onclick="rejectEditRequest(' + r.id + ')">✖ رفض</button>' +
+          (already ? '<span class="pill green" style="font-size:11px">' + T('وافقت — بانتظار الطرف الآخر') + '</span>'
+                   : '<button class="mini-btn green" onclick="approveEditRequest(' + r.id + ')">✅ ' + T('موافقة') + '</button>') +
+          '<button class="mini-btn red" onclick="rejectEditRequest(' + r.id + ')">✖ ' + T('رفض') + '</button>' +
           '</div></div>';
       }).join('') + '</div></div>';
   } else if (editsGated()) {
@@ -4671,10 +5021,39 @@ function renderEditRequests(){
     const mine = (proj().editRequests||[]).filter(r => r.byId === state.me.id).slice(-8).reverse();
     const pendMine = mine.filter(r => r.status === 'pending');
     if (!pendMine.length) { box.innerHTML = ''; return; }
-    box.innerHTML = '<div class="alert info" style="font-size:12px"><strong>طلبات تعديل بانتظار موافقة الإدارة (' + pendMine.length + ')</strong><br>' +
-      pendMine.map(r => '• ' + esc(r.label||r.type) + ' — ' + (r.clientApproved?'✅':'⏳') + ' العميل · ' + (r.pmoApproved?'✅':'⏳') + ' مدير المشاريع').join('<br>') + '</div>';
+    box.innerHTML = '<div class="alert info" style="font-size:12px"><strong>' + T('طلبات تعديل بانتظار موافقة الإدارة') + ' (' + pendMine.length + ')</strong><br>' +
+      pendMine.map(r => '• ' + esc(r.label||r.type) + ' — ' + (r.clientApproved?'✅':'⏳') + ' ' + T('العميل') + ' · ' + (r.pmoApproved?'✅':'⏳') + ' ' + T('مدير المشاريع')).join('<br>') + '</div>';
   } else { box.innerHTML = ''; }
 }
+Object.assign(I18N_EN, {
+  'تعديل الكمية المنفذة للبند ':'Editing the executed quantity for item ',
+  ' من ':' from ',
+  ' إلى ':' to ',
+  'تعديل يومية ':'Editing log ',
+  ' · بند ':' · item ',
+  ': الكمية من ':': quantity from ',
+  'حذف يومية ':'Deleting log ',
+  ' (بند ':' (item ',
+  '📨 إرسال طلب التعديل للإدارة':'📨 Send edit request to admin',
+  '💾 حفظ التعديل':'💾 Save edit',
+  'اكتب كمية صحيحة':'Enter a valid quantity',
+  'اكتب سبب التعديل ليطّلع عليه المعتمِدون':'Enter a reason for the edit for the approvers to see',
+  ' سيتم خصم الكمية من نسبة إنجاز البند.':' The quantity will be deducted from the item\'s completion percentage.',
+  ' وستحذف صورها.':' and its photos will be deleted.',
+  '📨 تم إرسال طلب التعديل إلى الإدارة (العميل ومدير المشاريع). لن يُطبَّق التغيير إلا بعد موافقتهما.':'📨 The edit request was sent to admin (client and projects manager). The change will not apply until both approve.',
+  'اعتماد التعديلات صلاحية العميل ومدير المشاريع':'Approving edits is restricted to the client and projects manager',
+  ' (أدمن)':' (admin)',
+  'رفض التعديلات صلاحية العميل ومدير المشاريع':'Rejecting edits is restricted to the client and projects manager',
+  'سبب رفض طلب التعديل (اختياري):':'Reason for rejecting the edit request (optional):',
+  'طلبات تعديل الإنتاجية بانتظار موافقتك':'Productivity edit requests awaiting your approval',
+  'لن يُطبَّق أي تعديل من مدير المشروع إلا بموافقة العميل ومدير المشاريع معاً':'No edit from a project manager will apply without the joint approval of the client and projects manager',
+  'السبب:':'Reason:',
+  'مقدّم الطلب:':'Requested by:',
+  'وافقت — بانتظار الطرف الآخر':'Approved — awaiting the other party',
+  'موافقة':'Approve',
+  'رفض':'Reject',
+  'طلبات تعديل بانتظار موافقة الإدارة':'Edit requests awaiting admin approval'
+});
 
 // ============================================================
 //  مقاولو الباطن (جانب الصرف) — تسجيلهم، كمياتهم، مستخلصاتهم
@@ -4744,11 +5123,11 @@ function renderSubs(){
   if (banner) {
     if (canApproveSubMus() && alerts.length) {
       banner.innerHTML = '<div class="card red-b" style="margin-bottom:12px"><div class="sc-header"><div class="sc-icon" style="background:var(--red-dim)">🚨</div>' +
-        '<div><div style="font-weight:700;color:var(--red)">إنذارات محاولات تجاوز كميات مقاولي الباطن (' + alerts.length + ')</div>' +
-        '<div style="font-size:11px;color:var(--text2)">حاول مدير المشروع تعميد كمية أكبر من المنفذ فعلاً — مُنعت تلقائياً</div></div>' +
-        '<button class="mini-btn" style="margin-inline-start:auto" onclick="clearSubAlerts()">مسح</button></div>' +
+        '<div><div style="font-weight:700;color:var(--red)">' + T('إنذارات محاولات تجاوز كميات مقاولي الباطن') + ' (' + alerts.length + ')</div>' +
+        '<div style="font-size:11px;color:var(--text2)">' + T('حاول مدير المشروع تعميد كمية أكبر من المنفذ فعلاً — مُنعت تلقائياً') + '</div></div>' +
+        '<button class="mini-btn" style="margin-inline-start:auto" onclick="clearSubAlerts()">' + T('مسح') + '</button></div>' +
         '<div style="margin-top:8px;font-size:12px;display:flex;flex-direction:column;gap:4px">' +
-        alerts.slice(-6).reverse().map(a => '• ' + esc(a.at||'') + ' — ' + esc(a.by||'') + ': بند ' + esc(a.itemId) + ' لمقاول «' + esc(a.subName||'') + '» حاول ' + fmtQ(a.attempted) + ' والمتاح ' + fmtQ(a.max)).join('') +
+        alerts.slice(-6).reverse().map(a => '• ' + esc(a.at||'') + ' — ' + esc(a.by||'') + ': ' + T('بند') + ' ' + esc(a.itemId) + ' ' + T('لمقاول «') + esc(a.subName||'') + T('» حاول ') + fmtQ(a.attempted) + ' ' + T('والمتاح') + ' ' + fmtQ(a.max)).join('') +
         '</div></div>';
     } else banner.innerHTML = '';
   }
@@ -4760,19 +5139,19 @@ function renderSubs(){
     return '<div class="card" style="cursor:default">' +
       '<div class="sc-header"><div class="sc-icon" style="background:var(--blue-dim,rgba(88,166,255,0.15))">🧱</div>' +
       '<div><div style="font-weight:700">' + esc(s.name) + '</div>' +
-      '<div style="font-size:11px;color:var(--text2)">' + (s.phone?esc(s.phone)+' · ':'') + (s.items||[]).length + ' بند · حجز ' + (s.retentionRate!=null?s.retentionRate:10) + '%</div></div></div>' +
+      '<div style="font-size:11px;color:var(--text2)">' + (s.phone?esc(s.phone)+' · ':'') + (s.items||[]).length + ' ' + T('بند') + ' · ' + T('حجز') + ' ' + (s.retentionRate!=null?s.retentionRate:10) + '%</div></div></div>' +
       '<div style="display:flex;flex-direction:column;gap:4px;margin-top:8px;font-size:12px">' +
-      '<div class="sc-item"><span class="sc-item-name">متاح للتعميد الآن</span><span class="sc-item-val" style="color:var(--green-bright)">' + money(d.availValue) + '</span></div>' +
-      '<div class="sc-item"><span class="sc-item-name">صافي مستخلصاته</span><span class="sc-item-val">' + money(d.net) + '</span></div>' +
-      '<div class="sc-item"><span class="sc-item-name">مدفوع</span><span class="sc-item-val" style="color:var(--teal)">' + money(d.paid) + '</span></div>' +
-      '<div class="sc-item"><span class="sc-item-name">متبقٍ للصرف</span><span class="sc-item-val" style="color:var(--red)">' + money(d.remaining) + '</span></div>' +
+      '<div class="sc-item"><span class="sc-item-name">' + T('متاح للتعميد الآن') + '</span><span class="sc-item-val" style="color:var(--green-bright)">' + money(d.availValue) + '</span></div>' +
+      '<div class="sc-item"><span class="sc-item-name">' + T('صافي مستخلصاته') + '</span><span class="sc-item-val">' + money(d.net) + '</span></div>' +
+      '<div class="sc-item"><span class="sc-item-name">' + T('مدفوع') + '</span><span class="sc-item-val" style="color:var(--teal)">' + money(d.paid) + '</span></div>' +
+      '<div class="sc-item"><span class="sc-item-name">' + T('متبقٍ للصرف') + '</span><span class="sc-item-val" style="color:var(--red)">' + money(d.remaining) + '</span></div>' +
       '</div>' +
       '<div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap">' +
-      (canManage ? '<button class="mini-btn green" onclick="openSubDetail(' + s.id + ')">📂 فتح الصفحة وبناء مستخلص</button>' : '') +
-      (canManage ? '<button class="mini-btn" onclick="openSubEdit(' + s.id + ')">✏️ تعديل</button>' : '') +
+      (canManage ? '<button class="mini-btn green" onclick="openSubDetail(' + s.id + ')">📂 ' + T('فتح الصفحة وبناء مستخلص') + '</button>' : '') +
+      (canManage ? '<button class="mini-btn" onclick="openSubEdit(' + s.id + ')">✏️ ' + T('تعديل') + '</button>' : '') +
       (isManagerial() ? '<button class="mini-btn red" onclick="deleteSub(' + s.id + ')">🗑</button>' : '') +
       '</div></div>';
-  }).join('') || '<div class="empty-state"><div class="icon">🧱</div><p>لا يوجد مقاولو باطن — أضف أول مقاول</p></div>';
+  }).join('') || '<div class="empty-state"><div class="icon">🧱</div><p>' + T('لا يوجد مقاولو باطن — أضف أول مقاول') + '</p></div>';
   $('subs-cards').innerHTML = cards;
   renderSubMusTable();
 }
@@ -4785,17 +5164,17 @@ function renderSubMusTable(){
   const totPaid = round2(ms.reduce((s,m)=>s+subPaid(m),0));
   $('submus-kpis').innerHTML = [
     {label:'عدد المستخلصات', value:ms.length, color:'amber', sub:''},
-    {label:'إجمالي صافي المستحق', value:money(totNet), color:'blue', sub:'بعد الحجز والخصومات'},
+    {label:'إجمالي صافي المستحق', value:money(totNet), color:'blue', sub:T('بعد الحجز والخصومات')},
     {label:'💵 المدفوع', value:money(totPaid), color:'green', sub:''},
     {label:'متبقٍ للصرف', value:money(Math.max(0,round2(totNet-totPaid))), color:'red', sub:''}
-  ].map(k => '<div class="kpi-card ' + k.color + '"><div class="kpi-label">' + k.label + '</div><div class="kpi-value ' + k.color + '">' + k.value + '</div><div class="kpi-sub">' + k.sub + '</div></div>').join('');
+  ].map(k => '<div class="kpi-card ' + k.color + '"><div class="kpi-label">' + T(k.label) + '</div><div class="kpi-value ' + k.color + '">' + k.value + '</div><div class="kpi-sub">' + k.sub + '</div></div>').join('');
   $('submus-tbody').innerHTML = ms.map(m => {
     const sub = getSub(m.subId); const st = SUBMUS_STATUS[m.status]||SUBMUS_STATUS.submitted;
     const paid = subPaid(m); const nAtt = (m.docs||[]).length;
-    let btns = '<button class="mini-btn" onclick="viewSubMus(' + m.id + ')">📄 عرض</button> ';
+    let btns = '<button class="mini-btn" onclick="viewSubMus(' + m.id + ')">📄 ' + T('عرض') + '</button> ';
     if (canApproveSubMus()) {
-      if (m.status === 'submitted') btns += '<button class="mini-btn green" onclick="approveSubMus(' + m.id + ')">✅ اعتماد</button> <button class="mini-btn red" onclick="rejectSubMus(' + m.id + ')">↩ رفض</button> ';
-      if (['approved','paid'].includes(m.status)) btns += '<button class="mini-btn green" onclick="openSubPay(' + m.id + ')">💵 اعتماد صرف</button> ';
+      if (m.status === 'submitted') btns += '<button class="mini-btn green" onclick="approveSubMus(' + m.id + ')">✅ ' + T('اعتماد') + '</button> <button class="mini-btn red" onclick="rejectSubMus(' + m.id + ')">↩ ' + T('رفض') + '</button> ';
+      if (['approved','paid'].includes(m.status)) btns += '<button class="mini-btn green" onclick="openSubPay(' + m.id + ')">💵 ' + T('اعتماد صرف') + '</button> ';
     }
     const canDel = isManagerial() || ['submitted','rejected'].includes(m.status);
     return '<tr>' +
@@ -4807,10 +5186,10 @@ function renderSubMusTable(){
       '<td class="amount muted">' + fmtN(round2((m.retention||0)+(m.dedTotal||0))) + '</td>' +
       '<td class="amount claimable">' + fmtN(m.net) + '</td>' +
       '<td class="amount" style="color:' + (paid>=m.net-1?'var(--green-bright)':paid>0?'var(--amber)':'var(--text3)') + '">' + (paid>0?fmtN(paid):'—') + '</td>' +
-      '<td><span class="pill ' + st.color + '"' + (m.status==='rejected'&&m.rejectReason?' data-tip="'+esc(m.rejectReason)+'"':'') + '>' + st.label + '</span></td>' +
+      '<td><span class="pill ' + st.color + '"' + (m.status==='rejected'&&m.rejectReason?' data-tip="'+esc(m.rejectReason)+'"':'') + '>' + T(st.label) + '</span></td>' +
       '<td style="white-space:nowrap">' + btns + (canDel?'<button class="mini-btn red" onclick="deleteSubMus(' + m.id + ')">🗑</button>':'') + '</td>' +
       '</tr>';
-  }).join('') || '<tr><td colspan="10"><div class="empty-state"><p>لا توجد مستخلصات مقاولي باطن بعد</p></div></td></tr>';
+  }).join('') || '<tr><td colspan="10"><div class="empty-state"><p>' + T('لا توجد مستخلصات مقاولي باطن بعد') + '</p></div></td></tr>';
 }
 
 // ---- إضافة/تعديل مقاول باطن ----
@@ -4819,7 +5198,7 @@ function openSubEdit(id){
   const s = id ? getSub(id) : null;
   editingSubId = id;
   subDraftItems = s ? JSON.parse(JSON.stringify(s.items||[])) : [];
-  $('sub-edit-title').textContent = s ? 'تعديل مقاول باطن' : 'إضافة مقاول باطن';
+  $('sub-edit-title').textContent = s ? T('تعديل مقاول باطن') : T('إضافة مقاول باطن');
   $('sub-name').value = s ? s.name : '';
   $('sub-phone').value = s ? (s.phone||'') : '';
   $('sub-ret').value = s ? (s.retentionRate!=null?s.retentionRate:10) : 10;
@@ -4831,48 +5210,81 @@ function openSubEdit(id){
 function renderSubDraftItems(){
   $('sub-items-list').innerHTML = subDraftItems.length ? subDraftItems.map((r,i) => {
     const it = getItem(r.itemId);
-    return '<div class="sc-item"><span class="sc-item-name" style="white-space:normal"><span class="item-no">' + esc(r.itemId) + '</span> ' + esc(it?it.desc.substring(0,40):'(بند محذوف)') + ' <span style="color:var(--text3)">(' + esc(it?it.unit:'') + ')</span></span>' +
-      '<span style="display:flex;align-items:center;gap:8px"><span class="sc-item-val">' + fmtN(r.rate) + ' ر.س</span>' +
+    return '<div class="sc-item"><span class="sc-item-name" style="white-space:normal"><span class="item-no">' + esc(r.itemId) + '</span> ' + esc(it?it.desc.substring(0,40):T('(بند محذوف)')) + ' <span style="color:var(--text3)">(' + esc(it?it.unit:'') + ')</span></span>' +
+      '<span style="display:flex;align-items:center;gap:8px"><span class="sc-item-val">' + fmtN(r.rate) + ' ' + T('ر.س') + '</span>' +
       '<button class="mini-btn red" onclick="subDraftItems.splice(' + i + ',1);renderSubDraftItems()">✕</button></span></div>';
-  }).join('') : '<div style="color:var(--text3);font-size:12px;padding:6px">لم تُضف بنود بعد</div>';
+  }).join('') : '<div style="color:var(--text3);font-size:12px;padding:6px">' + T('لم تُضف بنود بعد') + '</div>';
 }
 function subAddItemRate(){
   const itemId = $('sub-item-id').value;
   const rate = Number($('sub-item-rate').value);
-  if (!itemId) { alert('اختر بنداً من القائمة'); return; }
-  if (!rate || rate <= 0) { alert('أدخل السعر المتفق عليه'); return; }
-  if (subDraftItems.some(r => r.itemId === itemId)) { alert('البند مضاف مسبقاً'); return; }
+  if (!itemId) { alert(T('اختر بنداً من القائمة')); return; }
+  if (!rate || rate <= 0) { alert(T('أدخل السعر المتفق عليه')); return; }
+  if (subDraftItems.some(r => r.itemId === itemId)) { alert(T('البند مضاف مسبقاً')); return; }
   subDraftItems.push({ itemId, rate });
   $('sub-item-id').value = ''; $('sub-item-search').value = ''; $('sub-item-rate').value = '';
   renderSubDraftItems();
 }
 function saveSub(){
   const name = $('sub-name').value.trim();
-  if (!name) { alert('اكتب اسم مقاول الباطن'); return; }
+  if (!name) { alert(T('اكتب اسم مقاول الباطن')); return; }
   const data = { name, phone:$('sub-phone').value.trim(), retentionRate:clamp($('sub-ret').value,0,100), note:$('sub-note').value.trim(), items:subDraftItems };
   if (editingSubId) { Object.assign(getSub(editingSubId), data); }
   else { proj().subcontractors.push(Object.assign({id: nextSeq()}, data)); }
   closeModal('sub-edit-modal'); save(); renderAll();
 }
 function deleteSub(id){
-  if (!isManagerial()) { alert('حذف مقاول الباطن صلاحية العميل أو الأدمن'); return; }
+  if (!isManagerial()) { alert(T('حذف مقاول الباطن صلاحية العميل أو الأدمن')); return; }
   const s = getSub(id); if (!s) return;
-  if (subMusOf(id).length) { alert('لا يمكن حذف مقاول له مستخلصات — احذف مستخلصاته أولاً'); return; }
-  if (!confirm('حذف مقاول الباطن «' + s.name + '»؟')) return;
+  if (subMusOf(id).length) { alert(T('لا يمكن حذف مقاول له مستخلصات — احذف مستخلصاته أولاً')); return; }
+  if (!confirm(T('حذف مقاول الباطن «') + s.name + T('»؟'))) return;
   proj().subcontractors = proj().subcontractors.filter(x => x.id !== id);
   save(); renderAll();
 }
+Object.assign(I18N_EN, {
+  'إنذارات محاولات تجاوز كميات مقاولي الباطن':'Subcontractor over-quantity attempt alerts',
+  'حاول مدير المشروع تعميد كمية أكبر من المنفذ فعلاً — مُنعت تلقائياً':'The project manager tried to allocate a quantity greater than what was actually executed — automatically blocked',
+  'مسح':'Clear',
+  'لمقاول «':'for contractor «',
+  '» حاول ':'» attempted ',
+  'والمتاح':'and available',
+  'حجز':'Retention',
+  'متاح للتعميد الآن':'Available to allocate now',
+  'صافي مستخلصاته':'Net of their claims',
+  'مدفوع':'Paid',
+  '💵 المدفوع':'💵 Paid',
+  'متبقٍ للصرف':'Remaining to disburse',
+  'فتح الصفحة وبناء مستخلص':'Open page and build a claim',
+  'لا يوجد مقاولو باطن — أضف أول مقاول':'No subcontractors — add the first one',
+  'بعد الحجز والخصومات':'After retention and deductions',
+  '↩ مرفوض':'↩ Rejected',
+  'اعتماد صرف':'Approve disbursement',
+  'لا توجد مستخلصات مقاولي باطن بعد':'No subcontractor claims yet',
+  'تعديل مقاول باطن':'Edit subcontractor',
+  'إضافة مقاول باطن':'Add subcontractor',
+  '(بند محذوف)':'(deleted item)',
+  'ر.س':'SAR',
+  'لم تُضف بنود بعد':'No items added yet',
+  'اختر بنداً من القائمة':'Choose an item from the list',
+  'أدخل السعر المتفق عليه':'Enter the agreed price',
+  'البند مضاف مسبقاً':'Item already added',
+  'اكتب اسم مقاول الباطن':'Enter the subcontractor name',
+  'حذف مقاول الباطن صلاحية العميل أو الأدمن':'Deleting a subcontractor is restricted to the client or admin',
+  'لا يمكن حذف مقاول له مستخلصات — احذف مستخلصاته أولاً':'Cannot delete a subcontractor with claims — delete their claims first',
+  'حذف مقاول الباطن «':'Delete subcontractor «',
+  '»؟':'»?'
+});
 // combobox لاختيار بند في نموذج المقاول
 function subItemFilter(typing){
   const q = ($('sub-item-search').value||'').toLowerCase().trim();
   if (typing) $('sub-item-id').value = '';
-  const items = proj().boqItems.filter(i => i.scope !== 'others' && !isParent(i));
+  const items = proj().boqItems.filter(i => i.scope !== 'others' && !isParent(i) && !isSplitChild(i));
   const norm = s => String(s||'').toLowerCase();
   const list = q ? items.filter(i => norm(i.id).includes(q) || norm(i.desc).includes(q) || norm(i.divAr).includes(q)) : items;
   const box = $('sub-item-list');
   box.innerHTML = list.slice(0,50).map(i =>
-    '<div class="combo-opt" onmousedown="subItemPick(\'' + esc(i.id).replace(/\x27/g,"\\\x27") + '\')"><span class="co-code">' + esc(i.id) + '</span> ' + esc(i.desc) + ' <span class="co-unit">(' + esc(i.unit) + ')</span></div>').join('')
-    || '<div class="combo-opt" style="color:var(--text3)">لا يوجد بند مطابق</div>';
+    '<div class="combo-opt" onmousedown="event.preventDefault(); subItemPick(\'' + esc(i.id).replace(/\x27/g,"\\\x27") + '\')"><span class="co-code">' + esc(i.id) + '</span> ' + esc(i.desc) + ' <span class="co-unit">(' + esc(i.unit) + ')</span></div>').join('')
+    || '<div class="combo-opt" style="color:var(--text3)">' + T('لا يوجد بند مطابق') + '</div>';
   box.style.display = 'block';
 }
 function subItemPick(id){ const it = getItem(id); if (!it) return; $('sub-item-id').value = id; $('sub-item-search').value = id + ' - ' + it.desc; $('sub-item-list').style.display = 'none'; }
@@ -4883,7 +5295,7 @@ let sdSubId = null, sdSel = {}, sdPendingFiles = [];
 function openSubDetail(id){
   const s = getSub(id); if (!s) return;
   sdSubId = id; sdSel = {}; sdPendingFiles = [];
-  $('sub-detail-title').textContent = '📂 ' + s.name + ' — تعميد الكميات وبناء المستخلص';
+  $('sub-detail-title').textContent = '📂 ' + s.name + ' — ' + T('تعميد الكميات وبناء المستخلص');
   $('sd-ret').value = s.retentionRate!=null?s.retentionRate:10;
   ['sd-materials','sd-utilities','sd-performance','sd-other'].forEach(k => $(k).value = 0);
   $('sd-date').value = todayStr();
@@ -4909,7 +5321,7 @@ function renderSubDetail(){
       '<td><input type="number" class="qty-input" min="0" max="' + avail + '" step="any" value="' + val + '" placeholder="0" oninput="sdSetQty(\'' + esc(id) + '\', this.value)" style="width:90px"></td>' +
       '<td class="amount">' + fmtN(round2((Number(val)||0)*rate)) + '</td>' +
       '</tr>';
-  }).join('') || '<tr><td colspan="9"><div class="empty-state"><p>لا بنود لهذا المقاول — أضف بنوده وأسعاره من «تعديل»</p></div></td></tr>';
+  }).join('') || '<tr><td colspan="9"><div class="empty-state"><p>' + T('لا بنود لهذا المقاول — أضف بنوده وأسعاره من «تعديل»') + '</p></div></td></tr>';
   renderSubMusTotals();
 }
 function sdSetQty(id, val){
@@ -4918,7 +5330,7 @@ function sdSetQty(id, val){
   if (q > avail + 0.001) {
     // منع التلاعب: تجاوز المتاح (المنفذ المعتمد) — إنذار + تسجيل
     recordSubAlert(sdSubId, id, q, avail);
-    alert('⛔ إنذار: لا يمكن تعميد كمية (' + fmtQ(q) + ') أكبر من المتاح فعلاً (' + fmtQ(avail) + ') لهذا المقاول في البند ' + id + '. تم إبلاغ الإدارة.');
+    alert(T('⛔ إنذار: لا يمكن تعميد كمية (') + fmtQ(q) + T(') أكبر من المتاح فعلاً (') + fmtQ(avail) + T(') لهذا المقاول في البند ') + id + T('. تم إبلاغ الإدارة.'));
     q = avail;
   }
   if (q <= 0) delete sdSel[id]; else sdSel[id] = q;
@@ -4950,22 +5362,22 @@ function subMusComputeDraft(){
 function renderSubMusTotals(){
   const c = subMusComputeDraft();
   $('sd-totals').innerHTML =
-    '<div class="sc-item"><span class="sc-item-name">قيمة الأعمال (' + c.lines.length + ' بند)</span><span class="sc-item-val" style="color:var(--green-bright)">' + money(c.gross) + '</span></div>' +
-    '<div class="sc-item"><span class="sc-item-name">− حجز جودة ' + c.retRate + '%</span><span class="sc-item-val" style="color:var(--red)">' + money(c.retention) + '</span></div>' +
-    (c.ded.materials?'<div class="sc-item"><span class="sc-item-name">− مواد</span><span class="sc-item-val" style="color:var(--red)">' + money(c.ded.materials) + '</span></div>':'') +
-    (c.ded.utilities?'<div class="sc-item"><span class="sc-item-name">− كهرباء وماء</span><span class="sc-item-val" style="color:var(--red)">' + money(c.ded.utilities) + '</span></div>':'') +
-    (c.ded.performance?'<div class="sc-item"><span class="sc-item-name">− سوء أداء/غرامات</span><span class="sc-item-val" style="color:var(--red)">' + money(c.ded.performance) + '</span></div>':'') +
-    (c.ded.other?'<div class="sc-item"><span class="sc-item-name">− خصومات أخرى</span><span class="sc-item-val" style="color:var(--red)">' + money(c.ded.other) + '</span></div>':'') +
-    (c.prevPaid?'<div class="sc-item"><span class="sc-item-name" style="font-size:11px;color:var(--text3)">(سبق صرفه لهذا المقاول تراكمياً: ' + money(c.prevPaid) + ')</span><span></span></div>':'') +
-    '<div class="sc-item"><span class="sc-item-name" style="font-weight:700">صافي مستحق هذا المستخلص</span><span class="sc-item-val" style="color:var(--green-bright);font-size:15px;font-weight:700">' + money(c.net) + '</span></div>';
+    '<div class="sc-item"><span class="sc-item-name">' + T('قيمة الأعمال') + ' (' + c.lines.length + ' ' + T('بند') + ')</span><span class="sc-item-val" style="color:var(--green-bright)">' + money(c.gross) + '</span></div>' +
+    '<div class="sc-item"><span class="sc-item-name">− ' + T('حجز جودة') + ' ' + c.retRate + '%</span><span class="sc-item-val" style="color:var(--red)">' + money(c.retention) + '</span></div>' +
+    (c.ded.materials?'<div class="sc-item"><span class="sc-item-name">− ' + T('مواد') + '</span><span class="sc-item-val" style="color:var(--red)">' + money(c.ded.materials) + '</span></div>':'') +
+    (c.ded.utilities?'<div class="sc-item"><span class="sc-item-name">− ' + T('كهرباء وماء') + '</span><span class="sc-item-val" style="color:var(--red)">' + money(c.ded.utilities) + '</span></div>':'') +
+    (c.ded.performance?'<div class="sc-item"><span class="sc-item-name">− ' + T('سوء أداء/غرامات') + '</span><span class="sc-item-val" style="color:var(--red)">' + money(c.ded.performance) + '</span></div>':'') +
+    (c.ded.other?'<div class="sc-item"><span class="sc-item-name">− ' + T('خصومات أخرى') + '</span><span class="sc-item-val" style="color:var(--red)">' + money(c.ded.other) + '</span></div>':'') +
+    (c.prevPaid?'<div class="sc-item"><span class="sc-item-name" style="font-size:11px;color:var(--text3)">(' + T('سبق صرفه لهذا المقاول تراكمياً:') + ' ' + money(c.prevPaid) + ')</span><span></span></div>':'') +
+    '<div class="sc-item"><span class="sc-item-name" style="font-weight:700">' + T('صافي مستحق هذا المستخلص') + '</span><span class="sc-item-val" style="color:var(--green-bright);font-size:15px;font-weight:700">' + money(c.net) + '</span></div>';
 }
 async function sdFilesPicked(input){
   const files = [...(input.files||[])].slice(0, 15 - sdPendingFiles.length);
   for (const f of files) {
     try {
-      if (f.type === 'application/pdf') { if (f.size > 9*1024*1024) { alert(f.name+': أكبر من 9MB'); continue; } sdPendingFiles.push({dataUrl: await readFileAsDataURL(f), name:f.name}); }
+      if (f.type === 'application/pdf') { if (f.size > 9*1024*1024) { alert(f.name+': '+T('أكبر من 9MB')); continue; } sdPendingFiles.push({dataUrl: await readFileAsDataURL(f), name:f.name}); }
       else if (f.type.startsWith('image/')) sdPendingFiles.push({dataUrl: await compressImage(f), name:f.name});
-      else alert(f.name+': صيغة غير مدعومة');
+      else alert(f.name+': '+T('صيغة غير مدعومة'));
     } catch(e){ alert(e.message); }
   }
   input.value = '';
@@ -4973,18 +5385,18 @@ async function sdFilesPicked(input){
 }
 async function buildSubMus(){
   const c = subMusComputeDraft();
-  if (!c.lines.length) { alert('عمّد كمية بند واحد على الأقل'); return; }
-  if (offlineMode) { alert('📴 لا يمكن البناء بدون اتصال'); return; }
+  if (!c.lines.length) { alert(T('عمّد كمية بند واحد على الأقل')); return; }
+  if (offlineMode) { alert(T('📴 لا يمكن البناء بدون اتصال')); return; }
   // فحص أمان أخير: لا تجاوز للمتاح
   for (const l of c.lines) {
-    if (l.currQty > subAvailQty(sdSubId, l.itemId) + 0.01) { alert('⛔ كمية البند ' + l.itemId + ' تتجاوز المتاح'); return; }
+    if (l.currQty > subAvailQty(sdSubId, l.itemId) + 0.01) { alert(T('⛔ كمية البند ') + l.itemId + T(' تتجاوز المتاح')); return; }
   }
-  if (!sdPendingFiles.length) { alert('⛔ المرفقات إلزامية: أرفق المستخلص المعمول من قِبل الشركة واعتمادات الاستشاري قبل الرفع (تُحفظ في أرشيف المشروع).'); return; }
-  if (!confirm('بناء مستخلص مقاول الباطن بصافي ' + money(c.net) + ' ورفعه للاعتماد؟')) return;
+  if (!sdPendingFiles.length) { alert(T('⛔ المرفقات إلزامية: أرفق المستخلص المعمول من قِبل الشركة واعتمادات الاستشاري قبل الرفع (تُحفظ في أرشيف المشروع).')); return; }
+  if (!confirm(T('بناء مستخلص مقاول الباطن بصافي ') + money(c.net) + T(' ورفعه للاعتماد؟'))) return;
   let docs = [];
   if (sdPendingFiles.length) {
     try { for (const f of sdPendingFiles) { const r = await API.req('POST', '/api/projects/' + proj().id + '/photos', {dataUrl:f.dataUrl}); docs.push({url:r.url, name:f.name}); } }
-    catch(e){ alert('تعذر رفع المرفقات: ' + e.message); return; }
+    catch(e){ alert(T('تعذر رفع المرفقات:') + ' ' + e.message); return; }
   }
   const s = getSub(sdSubId);
   const no = 'SUB-' + String((proj().subMustakhlasat||[]).length + 1).padStart(3,'0');
@@ -4994,7 +5406,7 @@ async function buildSubMus(){
     prevPaid:c.prevPaid, net:c.net, docs, payments:[], by: currentUser().name, createdAt: new Date().toISOString()
   });
   closeModal('sub-detail-modal'); save(); renderAll(); switchSubView('mus');
-  setTimeout(()=>alert('✅ تم رفع مستخلص مقاول الباطن للاعتماد.'), 200);
+  setTimeout(()=>alert(T('✅ تم رفع مستخلص مقاول الباطن للاعتماد.')), 200);
 }
 
 // ---- عرض/اعتماد/صرف مستخلص مقاول الباطن ----
@@ -5002,43 +5414,43 @@ function subMusDocHtml(m){
   const sub = getSub(m.subId);
   const rows = (m.lines||[]).map(l => '<tr><td style="text-align:right">' + esc(l.itemId) + ' — ' + esc(l.desc) + '</td><td style="text-align:center">' + esc(l.unit) + '</td><td style="text-align:center;font-family:var(--mono)">' + fmtN(l.rate) + '</td><td style="text-align:center;font-family:var(--mono)">' + fmtQ(l.currQty) + '</td><td style="text-align:center;font-family:var(--mono)">' + fmtN(l.amount) + '</td></tr>').join('');
   const dedRows = [];
-  if (m.retention) dedRows.push(['حجز جودة ' + m.retRate + '%', m.retention]);
-  if (m.ded && m.ded.materials) dedRows.push(['خصم مواد', m.ded.materials]);
-  if (m.ded && m.ded.utilities) dedRows.push(['كهرباء وماء', m.ded.utilities]);
-  if (m.ded && m.ded.performance) dedRows.push(['سوء أداء/غرامات', m.ded.performance]);
-  if (m.ded && m.ded.other) dedRows.push(['خصومات أخرى', m.ded.other]);
-  const docsHtml = (m.docs||[]).length ? '<div style="margin-top:10px"><strong>المرفقات والتسوية:</strong><br>' + m.docs.map(d=>'<a href="' + esc(d.url) + '" target="_blank" style="color:var(--blue);font-size:12px">' + (String(d.url).endsWith('.pdf')?'📄':'🖼') + ' ' + esc(d.name||'ملف') + ' ↗</a>').join('<br>') + '</div>' : '<div style="margin-top:10px;color:var(--red);font-size:12px">⚠ لا مرفقات</div>';
-  return '<div style="font-family:var(--font)"><div style="font-size:14px;font-weight:700;margin-bottom:4px">مستخلص مقاول باطن ' + esc(m.no) + '</div>' +
-    '<div style="font-size:12px;color:var(--text2);margin-bottom:10px">المقاول: ' + esc(sub?sub.name:'—') + ' · التاريخ: ' + esc(m.date) + ' · أعدّه: ' + esc(m.by||'—') + '</div>' +
-    '<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr style="background:var(--bg2)"><th style="text-align:right;padding:5px">البند</th><th>الوحدة</th><th>السعر</th><th>الكمية</th><th>القيمة</th></tr></thead><tbody>' + rows + '</tbody></table>' +
+  if (m.retention) dedRows.push([T('حجز جودة') + ' ' + m.retRate + '%', m.retention]);
+  if (m.ded && m.ded.materials) dedRows.push([T('خصم مواد'), m.ded.materials]);
+  if (m.ded && m.ded.utilities) dedRows.push([T('كهرباء وماء'), m.ded.utilities]);
+  if (m.ded && m.ded.performance) dedRows.push([T('سوء أداء/غرامات'), m.ded.performance]);
+  if (m.ded && m.ded.other) dedRows.push([T('خصومات أخرى'), m.ded.other]);
+  const docsHtml = (m.docs||[]).length ? '<div style="margin-top:10px"><strong>' + T('المرفقات والتسوية:') + '</strong><br>' + m.docs.map(d=>'<a href="' + esc(d.url) + '" target="_blank" style="color:var(--blue);font-size:12px">' + (String(d.url).endsWith('.pdf')?'📄':'🖼') + ' ' + esc(d.name||T('ملف')) + ' ↗</a>').join('<br>') + '</div>' : '<div style="margin-top:10px;color:var(--red);font-size:12px">⚠ ' + T('لا مرفقات') + '</div>';
+  return '<div style="font-family:var(--font)"><div style="font-size:14px;font-weight:700;margin-bottom:4px">' + T('مستخلص مقاول باطن') + ' ' + esc(m.no) + '</div>' +
+    '<div style="font-size:12px;color:var(--text2);margin-bottom:10px">' + T('المقاول:') + ' ' + esc(sub?sub.name:'—') + ' · ' + T('التاريخ:') + ' ' + esc(m.date) + ' · ' + T('أعدّه:') + ' ' + esc(m.by||'—') + '</div>' +
+    '<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr style="background:var(--bg2)"><th style="text-align:right;padding:5px">' + T('البند') + '</th><th>' + T('الوحدة') + '</th><th>' + T('السعر') + '</th><th>' + T('الكمية') + '</th><th>' + T('القيمة') + '</th></tr></thead><tbody>' + rows + '</tbody></table>' +
     '<table style="width:100%;border-collapse:collapse;font-size:12px;margin-top:8px">' +
-    '<tr><td style="text-align:right;padding:4px"><strong>قيمة الأعمال</strong></td><td style="text-align:left;font-family:var(--mono)">' + fmtN(m.gross) + '</td></tr>' +
+    '<tr><td style="text-align:right;padding:4px"><strong>' + T('قيمة الأعمال') + '</strong></td><td style="text-align:left;font-family:var(--mono)">' + fmtN(m.gross) + '</td></tr>' +
     dedRows.map(d=>'<tr><td style="text-align:right;padding:4px;color:var(--red)">− ' + esc(d[0]) + '</td><td style="text-align:left;font-family:var(--mono);color:var(--red)">' + fmtN(d[1]) + '</td></tr>').join('') +
-    '<tr style="background:var(--green-dim)"><td style="text-align:right;padding:6px"><strong style="color:var(--green-bright)">صافي المستحق</strong></td><td style="text-align:left;font-family:var(--mono);font-weight:700;color:var(--green-bright)">' + fmtN(m.net) + '</td></tr>' +
-    (m.prevPaid?'<tr><td style="text-align:right;padding:4px;font-size:11px;color:var(--text3)">سبق صرفه تراكمياً</td><td style="text-align:left;font-family:var(--mono);font-size:11px;color:var(--text3)">' + fmtN(m.prevPaid) + '</td></tr>':'') +
+    '<tr style="background:var(--green-dim)"><td style="text-align:right;padding:6px"><strong style="color:var(--green-bright)">' + T('صافي المستحق') + '</strong></td><td style="text-align:left;font-family:var(--mono);font-weight:700;color:var(--green-bright)">' + fmtN(m.net) + '</td></tr>' +
+    (m.prevPaid?'<tr><td style="text-align:right;padding:4px;font-size:11px;color:var(--text3)">' + T('سبق صرفه تراكمياً') + '</td><td style="text-align:left;font-family:var(--mono);font-size:11px;color:var(--text3)">' + fmtN(m.prevPaid) + '</td></tr>':'') +
     '</table>' + docsHtml + '</div>';
 }
-function viewSubMus(id){ const m = (proj().subMustakhlasat||[]).find(x=>x.id===id); if (m) showPrintable('مستخلص مقاول باطن ' + m.no, subMusDocHtml(m)); }
+function viewSubMus(id){ const m = (proj().subMustakhlasat||[]).find(x=>x.id===id); if (m) showPrintable(T('مستخلص مقاول باطن') + ' ' + m.no, subMusDocHtml(m)); }
 function approveSubMus(id){
-  if (!canApproveSubMus()) { alert('اعتماد مستخلصات مقاولي الباطن صلاحية العميل ومدير المشاريع'); return; }
+  if (!canApproveSubMus()) { alert(T('اعتماد مستخلصات مقاولي الباطن صلاحية العميل ومدير المشاريع')); return; }
   const m = (proj().subMustakhlasat||[]).find(x=>x.id===id); if (!m || m.status!=='submitted') return;
-  if (!confirm('اعتماد مستخلص ' + m.no + ' بصافي ' + money(m.net) + '؟ راجع الأوراق والتسوية قبل الاعتماد.')) return;
+  if (!confirm(T('اعتماد مستخلص ') + m.no + T(' بصافي ') + money(m.net) + T('؟ راجع الأوراق والتسوية قبل الاعتماد.'))) return;
   m.status = 'approved'; m.approvedBy = currentUser().name; m.approvedAt = todayStr(); m.rejectReason = '';
   save(); renderAll();
 }
 function rejectSubMus(id){
   if (!canApproveSubMus()) return;
   const m = (proj().subMustakhlasat||[]).find(x=>x.id===id); if (!m) return;
-  const reason = prompt('سبب الرفض (يظهر لمدير المشروع):'); if (reason===null) return;
-  m.status = 'rejected'; m.rejectReason = reason.trim()||'يحتاج تعديل'; m.approvedBy = currentUser().name; m.approvedAt = todayStr();
+  const reason = prompt(T('سبب الرفض (يظهر لمدير المشروع):')); if (reason===null) return;
+  m.status = 'rejected'; m.rejectReason = reason.trim()||T('يحتاج تعديل'); m.approvedBy = currentUser().name; m.approvedAt = todayStr();
   save(); renderAll();
 }
 let subPayId = null;
 function openSubPay(id){
-  if (!canApproveSubMus()) { alert('اعتماد الصرف صلاحية العميل ومدير المشاريع'); return; }
+  if (!canApproveSubMus()) { alert(T('اعتماد الصرف صلاحية العميل ومدير المشاريع')); return; }
   const m = (proj().subMustakhlasat||[]).find(x=>x.id===id); if (!m) return;
   subPayId = id; const paid = subPaid(m);
-  $('subpay-info').textContent = m.no + ' — صافي ' + money(m.net) + ' · مدفوع ' + money(paid) + ' · متبقٍ ' + money(Math.max(0,round2(m.net-paid)));
+  $('subpay-info').textContent = m.no + ' — ' + T('صافي') + ' ' + money(m.net) + ' · ' + T('مدفوع') + ' ' + money(paid) + ' · ' + T('متبقٍ') + ' ' + money(Math.max(0,round2(m.net-paid)));
   $('subpay-date').value = todayStr();
   $('subpay-amount').value = Math.max(0, round2(m.net - paid));
   $('subpay-note').value = '';
@@ -5047,20 +5459,64 @@ function openSubPay(id){
 function saveSubPay(){
   const m = (proj().subMustakhlasat||[]).find(x=>x.id===subPayId); if (!m) return;
   const amount = Number($('subpay-amount').value);
-  if (!amount || amount <= 0) { alert('اكتب مبلغ الصرف'); return; }
+  if (!amount || amount <= 0) { alert(T('اكتب مبلغ الصرف')); return; }
   const paid = subPaid(m);
-  if (amount > round2(m.net - paid) + 0.01) { if (!confirm('المبلغ أكبر من المتبقٍ — متابعة؟')) return; }
+  if (amount > round2(m.net - paid) + 0.01) { if (!confirm(T('المبلغ أكبر من المتبقٍ — متابعة؟'))) return; }
   m.payments.push({id:nextSeq(), date:$('subpay-date').value||todayStr(), amount:round2(amount), note:$('subpay-note').value.trim(), by:currentUser().name});
   if (subPaid(m) >= m.net - 1) m.status = 'paid';
   closeModal('subpay-modal'); save(); renderAll();
 }
 function deleteSubMus(id){
   const m = (proj().subMustakhlasat||[]).find(x=>x.id===id); if (!m) return;
-  if (!isManagerial() && !['submitted','rejected'].includes(m.status)) { alert('لا يمكن حذف مستخلص معتمد — راجع الإدارة'); return; }
-  if (!confirm('حذف مستخلص ' + m.no + '؟ سترجع كمياته للمتاح.')) return;
+  if (!isManagerial() && !['submitted','rejected'].includes(m.status)) { alert(T('لا يمكن حذف مستخلص معتمد — راجع الإدارة')); return; }
+  if (!confirm(T('حذف مستخلص ') + m.no + T('؟ سترجع كمياته للمتاح.'))) return;
   proj().subMustakhlasat = proj().subMustakhlasat.filter(x=>x.id!==id);
   save(); renderAll();
 }
+Object.assign(I18N_EN, {
+  'تعميد الكميات وبناء المستخلص':'Allocate quantities and build a claim',
+  'لا بنود لهذا المقاول — أضف بنوده وأسعاره من «تعديل»':'No items for this subcontractor — add their items and rates from "Edit"',
+  '⛔ إنذار: لا يمكن تعميد كمية (':'⛔ Alert: cannot allocate a quantity (',
+  ') أكبر من المتاح فعلاً (':') greater than what is actually available (',
+  ') لهذا المقاول في البند ':') for this subcontractor on item ',
+  '. تم إبلاغ الإدارة.':'. Admin has been notified.',
+  'حجز جودة':'Quality retention',
+  'مواد':'Materials',
+  'كهرباء وماء':'Electricity & water',
+  'سوء أداء/غرامات':'Poor performance/penalties',
+  'خصومات أخرى':'Other deductions',
+  'سبق صرفه لهذا المقاول تراكمياً:':'Previously disbursed to this subcontractor (cumulative):',
+  'صافي مستحق هذا المستخلص':'Net due for this claim',
+  'صيغة غير مدعومة':'Unsupported format',
+  'عمّد كمية بند واحد على الأقل':'Allocate a quantity for at least one item',
+  '📴 لا يمكن البناء بدون اتصال':'📴 Cannot build while offline',
+  '⛔ كمية البند ':'⛔ Quantity for item ',
+  ' تتجاوز المتاح':' exceeds what is available',
+  '⛔ المرفقات إلزامية: أرفق المستخلص المعمول من قِبل الشركة واعتمادات الاستشاري قبل الرفع (تُحفظ في أرشيف المشروع).':'⛔ Attachments are mandatory: attach the claim prepared by the company and the consultant approvals before submitting (stored in the project archive).',
+  'بناء مستخلص مقاول الباطن بصافي ':'Build the subcontractor claim with net ',
+  ' ورفعه للاعتماد؟':' and submit it for approval?',
+  '✅ تم رفع مستخلص مقاول الباطن للاعتماد.':'✅ The subcontractor claim was submitted for approval.',
+  'خصم مواد':'Materials deduction',
+  'المرفقات والتسوية:':'Attachments and settlement:',
+  'لا مرفقات':'No attachments',
+  'مستخلص مقاول باطن':'Subcontractor claim',
+  'المقاول:':'Subcontractor:',
+  'أعدّه:':'Prepared by:',
+  'سبق صرفه تراكمياً':'Previously disbursed (cumulative)',
+  'اعتماد مستخلصات مقاولي الباطن صلاحية العميل ومدير المشاريع':'Approving subcontractor claims is restricted to the client and projects manager',
+  'اعتماد مستخلص ':'Approve claim ',
+  ' بصافي ':' with net ',
+  '؟ راجع الأوراق والتسوية قبل الاعتماد.':'? Review the documents and settlement before approving.',
+  'سبب الرفض (يظهر لمدير المشروع):':'Reason for rejection (shown to the project manager):',
+  'اعتماد الصرف صلاحية العميل ومدير المشاريع':'Approving disbursement is restricted to the client and projects manager',
+  'صافي':'Net',
+  'متبقٍ':'Remaining',
+  'اكتب مبلغ الصرف':'Enter the disbursement amount',
+  'المبلغ أكبر من المتبقٍ — متابعة؟':'The amount is greater than what remains — continue?',
+  'لا يمكن حذف مستخلص معتمد — راجع الإدارة':'An approved claim cannot be deleted — contact admin',
+  'حذف مستخلص ':'Delete claim ',
+  '؟ سترجع كمياته للمتاح.':'? Its quantities will be returned to the available balance.'
+});
 
 function rejectEditRequest(id){
   if (!canApproveEdits()) { alert(T('رفض التعديلات صلاحية مالك الشركة فقط')); return; }
@@ -5423,7 +5879,7 @@ function openBoqImport(){
   biWB = null; biRows = [];
   // عنوان النافذة حسب الهدف
   const isPdb = biTarget === 'pricedb';
-  document.querySelector('#boq-import-modal .modal-title span').textContent = isPdb ? '📥 استيراد بنود أسعار من Excel' : '📥 استيراد جدول كميات من Excel';
+  document.querySelector('#boq-import-modal .modal-title span').textContent = isPdb ? T('📥 استيراد بنود أسعار من Excel') : T('📥 استيراد جدول كميات من Excel');
   $('boq-import-modal').classList.add('open');
   loadXLSX().catch(e => alert(e.message));
 }
@@ -5757,7 +6213,14 @@ Object.assign(I18N_EN, {
 function openHelp(){ $('help-modal').classList.add('open'); }
 function closeModal(id){ $(id).classList.remove('open'); }
 document.querySelectorAll('.modal-overlay').forEach(ov => {
-  ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('open'); });
+  // إغلاق النافذة بالنقر على الخلفية: يُشترط أن يبدأ الضغط (mousedown) وينتهي (click) كلاهما على
+  // الخلفية نفسها — وليس فقط أن ينتهي عليها. بدون هذا الشرط، اختيار عنصر من قائمة منسدلة (مثل بحث
+  // البند في نموذج مقاول الباطن) تُخفى فور الـmousedown يمكن أن يجعل الـclick التالي (نفس الإحداثيات)
+  // يقع فعلياً على الخلفية بعد اختفاء القائمة من تحت المؤشر، فيُغلق النافذة خطأً رغم أن المستخدم كان
+  // يختار عنصراً داخلها لا ينقر خارجها.
+  let downOnOverlay = false;
+  ov.addEventListener('mousedown', e => { downOnOverlay = (e.target === ov); });
+  ov.addEventListener('click', e => { if (downOnOverlay && e.target === ov) ov.classList.remove('open'); downOnOverlay = false; });
 });
 
 // live-update sidebar totals when rates change
@@ -5936,6 +6399,7 @@ Object.assign(I18N_EN, {
   ': مشروعه المعيّن له فقط.':': only their assigned project.',
   '+ إضافة المستخدم':'+ Add User',
   '📥 استيراد جدول كميات من Excel':'📥 Import BOQ from Excel',
+  '📥 استيراد بنود أسعار من Excel':'📥 Import price items from Excel',
   '💡 ارفع ملف جدول الكميات (xlsx / xls / csv) — النظام يتعرف على الأعمدة تلقائياً وتقدر تعدّل المطابقة قبل الاستيراد.':'💡 Upload the BOQ file (xlsx / xls / csv) — the system detects columns automatically and you can adjust the mapping before importing.',
   'الأعمدة المطلوبة:':'Required columns:',
   'رقم البند، الوصف، الكمية، سعر الوحدة':'Item No., Description, Quantity, Unit price',
