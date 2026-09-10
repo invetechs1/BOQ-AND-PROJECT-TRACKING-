@@ -487,7 +487,7 @@ app.put('/api/projects/:id', auth, (req, res) => {
     const incomingLogIds = new Set(incomingLogs.map(l => l.id));
     // لا حذف ليوميات قائمة
     for (const sid of storedLogs.keys()) {
-      if (!incomingLogIds.has(sid)) return res.status(403).json({ error: 'حذف يومية الإنتاجية يتطلب موافقة مالك الشركة' });
+      if (!incomingLogIds.has(sid)) return res.status(403).json({ error: 'حذف يومية الإنتاجية يتطلب موافقة العميل ومدير المشاريع' });
     }
     // لا تعديل ليومية قائمة؛ وجمع الكميات المطبّقة من اليوميات الجديدة
     const addByItem = {};
@@ -496,7 +496,7 @@ app.put('/api/projects/:id', auth, (req, res) => {
       if (s) {
         if ((s.qty || 0) !== (l.qty || 0) || (s.appliedQty || 0) !== (l.appliedQty || 0) ||
             !!s.applied !== !!l.applied || s.itemId !== l.itemId || s.date !== l.date) {
-          return res.status(403).json({ error: 'تعديل يومية الإنتاجية يتطلب موافقة مالك الشركة' });
+          return res.status(403).json({ error: 'تعديل يومية الإنتاجية يتطلب موافقة العميل ومدير المشاريع' });
         }
       } else if (l.applied) {
         addByItem[l.itemId] = (addByItem[l.itemId] || 0) + (Number(l.appliedQty) || 0);
@@ -511,7 +511,7 @@ app.put('/api/projects/:id', auth, (req, res) => {
       }
       const allowed = (Number(s.executedQty) || 0) + (addByItem[it.id] || 0);
       if (Math.abs((Number(it.executedQty) || 0) - allowed) > 0.02) {
-        return res.status(403).json({ error: 'تعديل الكمية المنفذة يتطلب موافقة مالك الشركة (البند ' + it.id + ')' });
+        return res.status(403).json({ error: 'تعديل الكمية المنفذة يتطلب موافقة العميل ومدير المشاريع (البند ' + it.id + ')' });
       }
     }
     // طلبات التعديل: يُضيف مدير المشروع طلبات جديدة فقط (بحالة pending وبدون اعتمادات) ولا يعدّل القائمة
@@ -520,7 +520,7 @@ app.put('/api/projects/:id', auth, (req, res) => {
       const s = storedReqs.get(r.id);
       if (s) {
         if (s.status !== r.status || !!s.clientApproved !== !!r.clientApproved || !!s.pmoApproved !== !!r.pmoApproved) {
-          return res.status(403).json({ error: 'مدير المشروع لا يعتمد طلبات التعديل — الاعتماد لمالك الشركة' });
+          return res.status(403).json({ error: 'مدير المشروع لا يعتمد طلبات التعديل — الاعتماد للعميل ومدير المشاريع' });
         }
       } else if (r.status !== 'pending' || r.clientApproved || r.pmoApproved) {
         return res.status(403).json({ error: 'طلب التعديل الجديد يبدأ بانتظار الموافقة' });
